@@ -1,0 +1,105 @@
+/*
+Lindy UI Kit
+Author: UIdeck
+*/
+
+/* =========== GOOGLE FONTS ========= */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700;800;900&family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+
+@import 'variables';
+@import 'mixin';
+@import 'common';
+
+
+// =================== typography
+
+@import 'typography/typography';
+@import 'typography/typography-page';
+
+
+// ================== buttons
+
+@import 'buttons/buttons';
+@import 'buttons/buttons-page';
+
+
+// ================= navbar 
+@import 'navbars/navbar-1';
+@import 'navbars/navbar-2';
+@import 'navbars/navbar-4';
+
+
+
+// ================ hero
+@import 'hero/hero-1';
+@import 'hero/hero-2';
+
+
+
+
+// ================ feature
+@import 'feature/feature-1';
+@import 'feature/feature-2';
+
+
+
+
+// ============== team
+@import 'team/team-1';
+@import 'team/team-2';
+
+
+
+
+// ================= pricing
+@import 'pricing/pricing-1';
+@import 'pricing/pricing-2';
+
+
+
+
+
+// ============= contact
+@import 'contact/contact-1';
+@import 'contact/contact-2';
+
+
+
+
+// ============ about
+@import 'about/about-1';
+@import 'about/about-2';
+
+
+
+// ============== gallery
+@import 'gallery/gallery-1';
+@import 'gallery/gallery-2';
+
+
+
+
+// ============= testimonial 
+@import 'testimonial/testimonial-1';
+@import 'testimonial/testimonial-2';
+
+
+
+// =========== footer
+@import 'footer/footer-1';
+@import 'footer/footer-2';
+
+
+
+// =============== signup
+@import 'signup/signup-1';
+@import 'signup/signup-2';
+@import 'signup/login-1';
+@import 'signup/login-2';
+
+
+
+
+// =================== default css
+@import 'default';

@@ -1,0 +1,71 @@
+
+/* ============================= 
+    LOGIN-2 CSS
+================================ */
+.login-style-2 .login-wrapper {
+    padding: 80px 60px;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #f3f3f3;
+    background-image: url("assets/img/hero/hero-3/hero-img.svg");
+  }
+  
+  @media (max-width: 767px) {
+    .login-style-2 .login-wrapper {
+      padding: 50px 30px;
+    }
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .single-input {
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .single-input i {
+    position: absolute;
+    left: 20px;
+    bottom: 25px;
+    opacity: .5;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .single-input label {
+    display: block;
+    font-weight: 500;
+    color: #323450;
+    margin-bottom: 12px;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .single-input input {
+    width: 100%;
+    border: 1px solid rgba(88, 89, 120, 0.5);
+    height: 64px;
+    line-height: 1;
+    padding-right: 30px;
+    padding-left: 50px;
+    border-radius: 10px;
+    background: transparent;
+    color: #585978;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .single-input input::placeholder {
+    opacity: .5;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .single-input input:focus {
+    border-color: #2F80ED;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form p a {
+    color: #2F80ED;
+    font-weight: 500;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .form-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .login-style-2 .login-wrapper .login-content-wrapper .login-form .form-footer p {
+    margin-right: 20px;
+  }
+  

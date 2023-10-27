@@ -1,0 +1,19 @@
+/* ============================= 
+    BUTTONS PAGE CSS
+================================ */
+
+.buttons-wrapper {
+
+  ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+
+    li {
+      margin-right: 30px;
+      margin-bottom: 20px;
+    }
+  }
+}

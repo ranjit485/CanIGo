@@ -1,0 +1,173 @@
+/* ============================= 
+    HERO-2 CSS
+================================ */
+
+.hero-section-wrapper-2 {
+  background: $white;
+  position: relative;
+
+  .header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: transparent;
+
+    &.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      background: $white;
+      @include box-shadow(0px 0px 5px rgba(0, 0, 0, .1));
+    }
+  }
+
+  .hero-style-2 {
+    position: relative;
+    z-index: 1;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      height: 90%;
+      background: rgba($primary-color, .2);
+      z-index: -1;
+
+      @media #{$md} {
+        display: none;
+      }
+      @media #{$xs} {
+        display: none;
+      }
+
+
+    }
+
+    .hero-content-wrapper {
+      padding: 300px 0;
+
+      @media #{$laptop} {
+        padding: 250px 0;
+      }
+      @media #{$lg} {
+        padding: 200px 0;
+      }
+      @media #{$md} {
+        padding: 200px 0 50px;
+      }
+      @media #{$xs} {
+        padding: 150px 0 50px;
+      }
+
+      h4 {
+        font-weight: 600;
+        color: $primary-color;
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        margin-bottom: 30px;
+
+        @media #{$laptop} {
+          font-size: 55px;
+          line-height: 65px;
+        }
+        @media #{$lg} {
+          font-size: 47px;
+          line-height: 58px;
+        }
+        @media #{$xs} {
+          font-size: 40px;
+          line-height: 50px;
+        }
+        @media #{$sm} {
+          font-size: 47px;
+          line-height: 58px;
+        }
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 30px;
+
+        @media #{$desktop} {
+          padding-right: 100px;
+        }
+        @media #{$laptop} {
+          padding-right: 100px;
+        }
+        @media #{$md} {
+          padding-right: 100px;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .button {
+          margin-right: 60px;
+
+          @media #{$xs} {
+            margin-right: 35px;
+          }
+        }
+
+        .video-button {
+          display: flex;
+          align-items: center;
+          font-size: 18px;
+          font-weight: 500;
+          color: $heading-color;
+
+          .icon {
+            @include flex-center;
+            width: 64px;
+            height: 64px;
+            border: 1px solid $primary-color;
+            color: $primary-color;
+            border-radius: 50%;
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+
+    .hero-image {
+      margin-bottom: 100px;
+      position: relative;
+
+      img {
+        @media #{$laptop} {
+          max-width: 100%;
+        }
+        @media #{$lg} {
+          max-width: 100%;
+        }
+        @media #{$md} {
+          max-width: 100%;
+        }
+        @media #{$xs} {
+          max-width: 100%;
+        }
+      }
+      .shape {
+        position: absolute;
+
+        &.shape-1 {
+          left: -70px;
+          bottom: 120px;
+        }
+      }
+    }
+
+  }
+  
+}

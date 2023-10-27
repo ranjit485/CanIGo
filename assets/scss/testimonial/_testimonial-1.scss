@@ -1,0 +1,87 @@
+/* ============================= 
+    TESTIMONIAL-1 CSS
+================================ */
+
+.testimonial-style-1 {
+  padding: 100px 0;
+
+
+  .single-testimonial {
+
+    .content-wrapper {
+      margin-bottom: 50px;
+
+      .content {
+        position: relative;
+        background: #222B34;
+        border-radius: 25px;
+        padding: 30px 25px;
+        z-index: 1;
+        margin-bottom: 25px;
+
+        &::after {
+          content: '';
+          position: absolute;
+          background-image: url('../img/testimonial/testimonial-1/arrow.svg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: bottom center;
+          width: 100px;
+          height: 54px;
+          bottom: -48px;
+          left: 18px;
+        }
+
+        p {
+          font-size: 20px;
+          line-height: 30px;
+          color: $white;
+        }
+
+        .quote {
+          position: absolute;
+          width: 120px;
+          height: 120px;
+          top: 50%;
+          left: 50%;
+          @include transform(translate(-50%, -50%) rotate(180deg));
+          font-size: 120px;
+          line-height: 1;
+          color: rgba($white, .05);
+          z-index: -1;
+        }
+      }
+
+      .info {
+        display: flex;
+        align-items: center;
+        margin-left: 100px;
+
+        .image{
+          max-width: 72px;
+          width: 100%;
+          height: 72px;
+          border-radius: 50%;
+          margin-right: 15px;
+          overflow: hidden;
+
+          img{
+            width: 100%;
+          }
+        }
+
+        .text {
+
+          h5 {
+            font-weight: 600;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+/* ============================= 
+    ABOUT-1 CSS
+================================ */
+
+.about-style-1 {
+  background: #F3F3F3;
+  padding: 100px 0 50px;
+  position: relative;
+  z-index: 1;
+
+  @media #{$md, $xs} {
+    padding-bottom: 0px;
+  }
+
+
+  .about-content-wrapper {
+    @media #{$desktop} {
+      margin-left: 30px;
+    }
+
+    .content {
+
+      .single-item {
+        display: flex;
+        margin-bottom: 25px;
+
+        .icon {
+          max-width: 62px;
+          width: 100%;
+          height: 62px;
+          @include flex-center;
+          border-radius: 5px;
+          margin-right: 20px;
+          background: $primary-color;
+          color: $white;
+          font-size: 35px;
+        }
+      }
+
+      .read-more-button {
+        font-size: 20px;
+        font-weight: 500;
+        color: $heading-color;
+        padding: 10px 10px 0 0;
+        margin-left: 82px;
+        border-bottom: 2px solid $body-color;
+      }
+    }
+  }
+
+  .about-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 45px;
+    overflow: hidden;
+    height: 92%;
+
+    @media #{$desktop} {
+      width: 50%;
+    }
+    @media #{$laptop} {
+      width: 50%;
+    }
+    @media #{$lg} {
+      width: 45%;
+    }
+    @media #{$md, $xs} {
+      width: 100%;
+      position: static;
+      margin-top: 50px;
+      height: 400px;
+    }
+
+    img {
+      width: 100%;
+
+      @media #{$lg, $md, $xs} {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      
+    }
+  }
+
+}

@@ -1,0 +1,47 @@
+/* ============================= 
+    TEAM-1 CSS
+================================ */
+
+.team-style-1 {
+  padding: 100px 0 70px;
+  background: #e5e5e5;
+
+
+  .single-team {
+    background: $white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    @include transition(.3s);
+
+    &:hover {
+      @include box-shadow($box-shadow-2);
+    }
+
+    .image {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: auto;
+      margin-bottom: 25px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .info {
+       
+      h6 {
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

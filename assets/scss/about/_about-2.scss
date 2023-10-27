@@ -1,0 +1,60 @@
+/* ============================= 
+    ABOUT-2 CSS
+================================ */
+
+.about-style-2 {
+  background: #f3f3f3;
+  padding: 100px 0px 70px;
+
+  .about-content-wrapper {
+    margin-bottom: 50px;
+    
+    @media #{$desktop} {
+      margin-right: 30px;
+    }
+  }
+
+  .about-image-wrapper {
+    @media #{$desktop} {
+      margin-left: 50px;
+    }
+
+    .left-wrapper {
+
+      .content-item {
+        background: $white;
+        border-radius: 5px;
+        border: 2px solid $primary-color;
+        padding: 25px 35px;
+        margin-bottom: 20px;
+
+        @media #{$lg} {
+          padding: 25px;
+        }
+
+        h4 {
+          @media #{$lg} {
+            font-size: 20px;
+          }
+        }
+      }
+      .image-item {
+        border-radius: 5px;
+        margin-bottom: 20px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .right-wrapper {
+      border-radius: 5px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

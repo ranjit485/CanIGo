@@ -1,0 +1,117 @@
+/* ============================= 
+    CONTACT-1 CSS
+================================ */
+
+.contact-style-1 {
+  background: #F3F3F3;
+  padding: 100px 0 70px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  .contact-form-wrapper {
+
+    form {
+
+      .single-input {
+        position: relative;
+        margin-bottom: 20px;
+
+        label {
+          display: block;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        textarea,
+        input {
+          background: $white;
+          border-radius: 10px;
+          position: relative;
+          padding-left: 20px;
+          padding-right: 50px;
+          width: 100%;
+          border: 1px solid transparent;
+          @include box-shadow($box-shadow);
+          @include transition(.3s);
+
+
+          &::placeholder {
+            font-weight: 300;
+            opacity: 1;
+            color: 585978;
+          }
+
+          &:focus {
+            border-color: $primary-color;
+          }
+        }
+
+        input {
+          height: 56px;
+        }
+
+        textarea {
+          padding: 15px 20px;
+          padding-right: 50px;
+          resize: none;
+        }
+
+        i {
+          position: absolute;
+          right: 21px;
+          top: 53.5px;
+        }
+      }
+
+      .form-button {
+        padding-top: 10px;
+
+        button {
+          height: 56px;
+          background: $white;
+          color: $body-color;
+
+          &:hover {
+            color: $white;
+
+            &::before {
+              background: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .contact-image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    @include transform(translateY(-50%));
+    z-index: -1;
+    width: 30%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+      margin-top: 60px;
+      z-index: -1;
+      right: -400px;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: $white;
+    }
+
+    img {
+      width: 100%;
+
+      @media #{$md, $xs} {
+        display: none;
+      }
+    }
+  }
+}

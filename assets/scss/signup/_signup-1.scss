@@ -1,0 +1,92 @@
+/* ============================= 
+    SIGNUP-1 CSS
+================================ */
+
+.signup-style-1 {
+  padding: 100px 0px 50px;
+  background: #f3f3f3;
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: $white;
+    border-radius: 0px 120px 120px 0px;
+    width: 47%;
+    z-index: -1;
+
+    @media #{$md, $xs} {
+      display: none;
+    }
+  }
+
+  .signup-content-wrapper {
+    margin-bottom: 50px;
+    padding-right: 120px;
+
+    @media #{$lg} {
+      padding-right: 40px;
+    }
+    @media #{$md} {
+      margin-bottom: 30px;
+    }
+    @media #{$xs} {
+      padding-right: 0;
+      margin-bottom: 30px;
+    }
+
+    .image {
+      @media #{$md, $xs} {
+        display: none;
+      }
+    }
+  }
+
+  .signup-form-wrapper {
+    margin-bottom: 50px;
+
+    .single-input {
+      margin-bottom: 25px;
+
+      label {
+        display: block;
+        font-weight: 500;
+        color: $heading-color;
+        margin-bottom: 12px;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid transparent;
+        height: 64px;
+        line-height: 1;
+        padding: 0 30px;
+        border-radius: 10px;
+        background: $white;
+        color: $body-color;
+
+        &::placeholder {
+          opacity: .5;
+        }
+
+        &:focus {
+          border-color: $primary-color;
+        }
+      }
+    }
+
+
+    p {
+
+
+      a {
+        color: $primary-color;
+        font-weight: 500;
+      }
+    }
+  }
+}

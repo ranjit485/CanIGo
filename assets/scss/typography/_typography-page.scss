@@ -1,0 +1,31 @@
+/* ============================= 
+    TYPOGRAPHY PAGE CSS
+================================ */
+
+.title {
+
+  h4 {
+    position: relative;
+    padding-left: 20px;
+    color: $black;
+    line-height: 1.9;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 56px;
+      top: 50%;
+      left: 0;
+      @include transform(translateY(-50%));
+      background: $primary-color;
+    }
+  }
+}
+
+.headings-wrapper {
+
+  p {
+    font-family: $heading-font;
+  }
+}

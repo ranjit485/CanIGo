@@ -1,0 +1,123 @@
+/* ============================= 
+    HERO-1 CSS
+================================ */
+
+.hero-section-wrapper-1 {
+  background: $white;
+  position: relative;
+
+  .header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: transparent;
+
+    &.sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+      background: $white;
+      @include box-shadow(0px 0px 5px rgba(0, 0, 0, .1));
+    }
+  }
+
+  .hero-style-1 {
+    position: relative;
+    z-index: 1;
+
+    .hero-content-wrapper {
+      padding: 300px 0;
+
+      @media #{$laptop} {
+        padding: 250px 0;
+      }
+      @media #{$lg} {
+        padding: 200px 0;
+      }
+      @media #{$md} {
+        padding: 200px 0 50px;
+      }
+      @media #{$xs} {
+        padding: 150px 0 50px;
+      }
+
+      h2 {
+        margin-bottom: 30px;
+
+        @media #{$laptop} {
+          font-size: 55px;
+          line-height: 65px;
+        }
+        @media #{$lg} {
+          font-size: 47px;
+          line-height: 58px;
+        }
+        @media #{$xs} {
+          font-size: 40px;
+          line-height: 50px;
+        }
+        @media #{$sm} {
+          font-size: 47px;
+          line-height: 58px;
+        }
+      }
+
+      p {
+        font-weight: 500;
+        margin-bottom: 50px;
+      }
+    }
+
+    .hero-image {
+      margin-bottom: 100px;
+
+      img {
+
+        @media #{$laptop} {
+          max-width: 100%;
+        }
+        @media #{$lg} {
+          max-width: 100%;
+        }
+        @media #{$md} {
+          max-width: 100%;
+        }
+        @media #{$xs} {
+          max-width: 100%;
+        }
+      }
+    }
+
+
+    .shapes {
+
+      .shape {
+        position: absolute;
+        z-index: -1;
+
+        &.shape-1 {
+          right: 0;
+          bottom: 0;
+          height: 100%;
+        }
+        &.shape-2 {
+          top: 200px;
+          left: 49%;
+        }
+        &.shape-3 {
+          left: 15%;
+          bottom: 120px;
+        }
+        &.shape-4 {
+          left: 0;
+          bottom: 5%;
+        }
+      }
+    }
+  }
+  
+}

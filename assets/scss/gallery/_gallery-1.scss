@@ -1,0 +1,95 @@
+/* ============================= 
+    GALLERY-1 CSS
+================================ */
+
+.gallery-style-1 {
+  padding: 100px 0 70px;
+  background: #f3f3f3;
+
+  .single-gallery {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 5px;
+    margin-bottom: 30px;
+
+    &:hover {
+      .overlay {
+        opacity: 1;
+        visibility: visible;
+
+        .overlay-content {
+
+          .action {
+            @include transform(translateY(0px));
+          }
+          .info {
+            @include transform(translateX(0px));
+          }
+        }
+      }
+    }
+
+    .image {
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(196, 196, 196, 0) 0%, #558FFF 100%);
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 30px;
+      text-align: center;
+      @include transition(.3s);
+      opacity: 0;
+      visibility: hidden;
+
+      @media #{$desktop} {
+        padding: 30px 40px;
+      }
+
+      .overlay-content {
+
+        .action {
+          margin-bottom: 35px;
+          @include transform(translateY(20px));
+          @include transition(.3s);
+
+          a {
+            @include flex-center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: $white;
+            margin: auto;
+            font-size: 20px;
+            color: $heading-color;
+          }
+        }
+
+        .info {
+          @include transform(translateX(-50px));
+          @include transition(.3s);
+
+          h5 {
+            color: $white;
+            margin-bottom: 15px;
+          }
+
+          p {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
