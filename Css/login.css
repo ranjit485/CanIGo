@@ -6,6 +6,7 @@
     padding: 80px 60px;
     border-radius: 30px;
     overflow: hidden;
+    margin-bottom: 40px;
     background-color: #f3f3f3;
     background-image: url("assets/img/hero/hero-3/hero-img.svg");
   }

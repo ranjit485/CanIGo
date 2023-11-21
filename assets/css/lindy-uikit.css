@@ -6846,12 +6846,15 @@ p {
 ================================ */
 .login-style-2 .login-wrapper {
   padding: 80px 60px;
+  margin-bottom: 50px;
   border-radius: 30px;
   overflow: hidden;
   background-color: #f3f3f3;
   background-image: url("assets/img/hero/hero-3/hero-img.svg");
 }
-
+.login-style-2 .login-wrapper {
+  margin-bottom: 50px;
+}
 @media (max-width: 767px) {
   .login-style-2 .login-wrapper {
     padding: 50px 30px;
