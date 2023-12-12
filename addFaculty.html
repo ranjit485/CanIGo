@@ -4,6 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg" />
 
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,22 +12,22 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Student Dashboard</title>
+  <title>Add faculty</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-<!-- --------------------- -->
+  <!-- --------------------- -->
 
-<!-- --------------------- -->
+  <!-- --------------------- -->
 
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style type="text/css">
     /* Chart.js */
     @keyframes chartjs-render-animation {
@@ -97,7 +98,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="hod_dasbord.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -112,45 +113,36 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="hod_dasbord.html">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
+          <span>Add Faculty</span>
         </a>
       </li>
-      
+
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="hod_dasbord.html">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
+          <span>Add Faculty</span>
         </a>
       </li>
+
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="hod_dasbord.html">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
+          <span>Add Faculty</span>
         </a>
       </li>
+
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="hod_dasbord.html">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
+          <span>Add Faculty</span>
         </a>
       </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
+
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -372,7 +364,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Faculty</h1>
             <a href="http://127.0.0.1:5501/student_dashbord.html#"
               class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -381,124 +373,16 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Pending Leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">14</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        All leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                      </div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100 py-2 bg-primary">
-                <button class="card-body btn btn-primary" data-toggle="modal" data-target="#leaveFormModel">
-                  Request New Leave
+                <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addFacultyModel">
+                  ADD NEW
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Content Row -->
-
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Year Graph</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button"
-                      id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Action</a>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Something else
-                        here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <div class="chartjs-size-monitor">
-                      <div class="chartjs-size-monitor-expand">
-                        <div class=""></div>
-                      </div>
-                      <div class="chartjs-size-monitor-shrink">
-                        <div class=""></div>
-                      </div>
-                    </div>
-                    <canvas id="myAreaChart" width="1269" height="320"
-                      style="display: block; height: 320px; width: 1269px;" class="chartjs-render-monitor"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pie Chart -->
-
-          </div>
 
 
           <div class="row">
@@ -528,133 +412,73 @@
                 <!-- Card Body -->
                 <div class="card-body">
 
-                          <div class="table-responsive">
-                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                  <thead>
-                                      <tr>
-                                          <th>Date</th>
-                                          <th>Name</th>
-                                          <th>By HOD</th>
-                                          <th>By Teacher</th>
-                                          <th>Cancel</th>
-                                      </tr>
-                                  </thead>
-                                  <tfoot>
-                                      <tr>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>HOD Status</th>
-                                        <th>Teacher Status</th>
-                                        <th>Cancel</th>
-                                      </tr>
-                                  </tfoot>
-                                  <tbody>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Approved</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Year</th>
+                          <th>Dept</th>
+                          <th>Username</th>
+                          <th>Password</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th>Name</th>
+                          <th>Year</th>
+                          <th>Dept</th>
+                          <th>Username</th>
+                          <th>Password</th>
+                          <th>Action</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <tr>
+                          <td>Mahesh sir</td>
+                          <td>Fy</td>
+                          <td>CM</td>
+                          <td>mahesh@gmail.com</td>
+                          <td>maheh@123</td>
+                          <td>
+                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-
                 </div>
               </div>
+
             </div>
-
-            <!-- Pie Chart -->
-
           </div>
-
-          <!-- Content Row -->
-
         </div>
-        <!-- /.container-fluid -->
+
+        <!-- Pie Chart -->
 
       </div>
-      <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright © can I GO 2023</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+      <!-- Content Row -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright © can I GO 2023</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -684,58 +508,83 @@
     </div>
   </div>
 
-<!-- -----------------Modal Start Leave form---------------------- -->
+  <!-- -----------------Modal Start Leave form---------------------- -->
 
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaveFormModel"> -->
-<!-- kkkkkkkk -->
-<!-- </button>  --> -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaveFormModel"> -->
+  <!-- kkkkkkkk -->
+  <!-- </button>  --> -->
 
-<!-- Modal -->
-<div class="modal fade" id="leaveFormModel" tabindex="-1" role="dialog" aria-labelledby="leaveFormModel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Leave Form</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        <form>
-          <div class="form-group row">
+  <!-- Modal -->
+  <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Faculty</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form>
+            <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="datetime-local" class="form-control form-control-user" id="exampleFirstName"
-                      placeholder="First Name">
+                <input type="text" class="form-control form-control-user" id="teacherName"
+                  placeholder="Name">
               </div>
-              <div class="col-sm-6">
-                  <input type="datetime-local" class="form-control form-control-user" id="exampleLastName"
-                      placeholder="Last Name">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="teacherYear"
+                  placeholder="Year">
               </div>
-          </div>
-          <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-3">
-                  <input type="password" class="form-control form-control-user"
-                      id="exampleInputPassword" placeholder="Password">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="teacherDept"
+                  placeholder="Department">
               </div>
-              <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user"
-                      id="exampleRepeatPassword" placeholder="Repeat Password">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="teacherUsername" 
+                placeholder="Username">
               </div>
-          </div>
-              <textarea type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name"></textarea>
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="teacherPassword"
+                  placeholder="Password">
+              </div>
+            <!-- <button type="button" class="btn btn-primary" onclick="addFac()">Submit</button>
+          </form> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="addFac()">submit</button>
+        </div>
       </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- -----------------Modal End Leave form---------------------- -->
+  <!-- -----------------Modal End Leave form---------------------- -->
+
+<script>
+  function addFac(){
+    let name = document.getElementById("teacherName").value;
+    let year = document.getElementById("teacherYear").value;
+    let dept = document.getElementById("teacherDept").value;
+    let username = document.getElementById("teacherUsername").value;
+    let password = document.getElementById("teacherPassword").value;
+
+    var tableBody = document.querySelector('#dataTable tbody');
+
+            
+    var row = tableBody.insertRow();
+            var cell1 = row.insertCell(0).textContent = name;
+            var cell2 = row.insertCell(1).textContent = year;
+            var cell3 = row.insertCell(2).textContent = dept;
+            var cell3 = row.insertCell(3).textContent = username;
+            var cell3 = row.insertCell(4).textContent = password;
+            var cell3 = row.insertCell(5).innerHTML = `<td>
+                                                             <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
+                                                         </td>`;
+  }
+</script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -754,12 +603,12 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
