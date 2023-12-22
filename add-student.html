@@ -414,91 +414,40 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>Date</th>
                           <th>Name</th>
-                          <th>By HOD</th>
-                          <th>By Teacher</th>
-                          <th>Cancel</th>
+                          <th>Last Name</th>
+                          <th>Department</th>
+                          <th>Class</th>
+                          <th>Student Contact No</th>
+                          <th>Parent Contact No</th>
+                          <th>Username</th>
+                          <th>Password</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tfoot>
                         <tr>
-                          <th>Date</th>
                           <th>Name</th>
-                          <th>HOD Status</th>
-                          <th>Teacher Status</th>
-                          <th>Cancel</th>
+                          <th>Last Name</th>
+                          <th>Department</th>
+                          <th>Class</th>
+                          <th>Student Contact No</th>
+                          <th>Parent Contact No</th>
+                          <th>Username</th>
+                          <th>Password</th>
+                          <th>Action</th>
                         </tr>
                       </tfoot>
                       <tbody>
                         <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Pending</td>
-                          <td>Pending</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2011/04/25</td>
-                          <td>Family Function</td>
-                          <td>Approved</td>
-                          <td>Pending</td>
+                          <td>Ranjit</td>
+                          <td>Patil</td>
+                          <td>Computer</td>
+                          <td>TY</td>
+                          <td>7499491002</td>
+                          <td>9766800965</td>
+                          <td>Ranjit123</td>
+                          <td>Ranjit@485</td>
                           <td>
                             <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
                           </td>
@@ -542,7 +491,7 @@
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="http://127.0.0.1:5501/student_dashbord.html#page-top" style="display: none;">
+  <a class="scroll-to-top rounded" style="display: none;">
     <i class="fas fa-angle-up"></i>
   </a>
 
@@ -568,10 +517,6 @@
 
   <!-- -----------------Modal Start Leave form---------------------- -->
 
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaveFormModel"> -->
-  <!-- kkkkkkkk -->
-  <!-- </button>  --> -->
-
   <!-- Modal -->
   <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
     aria-hidden="true">
@@ -584,40 +529,61 @@
           </button>
         </div>
         <div class="modal-body">
-
           <form>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="datetime-local" class="form-control form-control-user" id="exampleFirstName"
-                  placeholder="First Name">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
               </div>
-              <div class="col-sm-6">
-                <input type="datetime-local" class="form-control form-control-user" id="exampleLastName"
-                  placeholder="Last Name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-3">
-                <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                  placeholder="Password">
-              </div>
-              <div class="col-sm-6">
-                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
-                  placeholder="Repeat Password">
+              <div class="form-group col-md-6">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
               </div>
             </div>
-            <textarea type="text" class="form-control form-control-user" id="exampleLastName"
-              placeholder="Last Name"></textarea>
-            <button type="button" class="btn btn-primary">Submit</button>
-
-          </form>
-
-
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department" class="form-control" required>
+                <option value="" selected disabled>Select department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical Engineering">Electrical </option>
+                <option value="Mechanical Engineering">Mechanical </option>
+                <option value="AI Engineering">AI </option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="class">Class</label>
+              <select id="class" class="form-control" required>
+                <option value="" selected disabled>Select class</option>
+                <option value="Class A">FY</option>
+                <option value="Class B">SY</option>
+                <option value="Class C">TY</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="studentContactNo">Student Contact No</label>
+              <input type="tel" class="form-control" id="studentContactNo" placeholder="Enter contact number" required>
+            </div>
+            <div class="form-group">
+              <label for="parentContactNo">Parent Contact No</label>
+              <input type="tel" class="form-control" id="parentContactNo" placeholder="Enter parent's contact number"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Add</button>
         </div>
+      </form>
       </div>
     </div>
   </div>

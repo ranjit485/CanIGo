@@ -416,9 +416,10 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Year</th>
-                          <th>Dept</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Position</th>
+                          <th>Department</th>
                           <th>Username</th>
                           <th>Password</th>
                           <th>Action</th>
@@ -426,9 +427,10 @@
                       </thead>
                       <tfoot>
                         <tr>
-                          <th>Name</th>
-                          <th>Year</th>
-                          <th>Dept</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Position</th>
+                          <th>Department</th>
                           <th>Username</th>
                           <th>Password</th>
                           <th>Action</th>
@@ -436,11 +438,12 @@
                       </tfoot>
                       <tbody>
                         <tr>
-                          <td>Mahesh sir</td>
-                          <td>Fy</td>
-                          <td>CM</td>
-                          <td>mahesh@gmail.com</td>
-                          <td>maheh@123</td>
+                          <td>Mahesh</td>
+                          <td>Sir</td>
+                          <td>TY</td>
+                          <td>Computer</td>
+                          <td>mahesh485</td>
+                          <td>mahesh@485</td>
                           <td>
                             <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
                           </td>
@@ -525,38 +528,53 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form>
         <div class="modal-body">
-
-          <form>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="teacherName"
-                  placeholder="Name">
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="teacherYear"
-                  placeholder="Year">
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="teacherDept"
-                  placeholder="Department">
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="teacherUsername" 
-                placeholder="Username">
-              </div>
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="teacherPassword"
-                  placeholder="Password">
-              </div>
-            <!-- <button type="button" class="btn btn-primary" onclick="addFac()">Submit</button>
-          </form> -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
+          </div>
+          <div class="form-group col-md-6">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="position">Position</label>
+          <select id="position" class="form-control" required>
+              <option value="" selected disabled>Select position</option>
+              <option value="FY">FY</option>
+              <option value="SY">SY</option>
+              <option value="TY">TY</option>
+              <!-- Add more options as needed -->
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department" class="form-control" required>
+              <option value="" selected disabled>Select department</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Electrical Engineering">Electrical Engineering</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <!-- Add more options as needed -->
+          </select>
+      </div>
+      <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+      </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+      </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="addFac()">submit</button>
+          <button type="submit" class="btn btn-primary" onclick="addFac()">Add Teacher</button>
+
         </div>
-      </form>
+       </form>
       </div>
     </div>
   </div>
