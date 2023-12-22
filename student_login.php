@@ -1,10 +1,18 @@
+<?php
+session_start();
+include "db_connect.php";
 
+
+// Close connection
+$conn->close();
+// HTML content starts here
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Faculty Login</title>
+    <title>Student Login</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg"/>
@@ -62,17 +70,17 @@
           </div>
           <div class="col-lg-6">
             <div class="signup-form-wrapper">
-              <form action="#" class="signup-form">
+              <form method="post" action="#" class="signup-form">
                 <div class="single-input">
-                  <label for="signup-email">Email</label>
-                  <input type="email" id="signup-email" name="signup-email" placeholder="Your Email">
+                  <label for="signup-email">Enrollment No</label>
+                  <input type="number" id="signup-email" name="username" placeholder="Enrollment No">
                 </div>
                 <div class="single-input">
                   <label for="signup-password">Password</label>
-                  <input type="password" id="signup-password" name="signup-password" placeholder="Enter password">
+                  <input type="password" id="signup-password" name="password" placeholder="Enter password">
                 </div>
                 <div class="signup-button mb-25">
-                  <button class="button button-lg radius-10 btn-block">Login</button>
+                  <button type="submit" class="button button-lg radius-10 btn-block">Login</button>
                 </div>
               </form>
             </div>
@@ -92,6 +100,5 @@
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
      <p class="text-center pb-30 pt-30">Contribute Here<a href="#"> GITHUB</a></p> 
-
   </body>
 </html>

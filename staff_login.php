@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Student Login</title>
+    <title>Faculty Login</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg"/>
@@ -72,7 +72,7 @@
                   <input type="password" id="signup-password" name="signup-password" placeholder="Enter password">
                 </div>
                 <div class="signup-button mb-25">
-                  <button class="button button-lg radius-10 btn-block" onclick="login()">Login</button>
+                  <button class="button button-lg radius-10 btn-block">Login</button>
                 </div>
               </form>
             </div>
@@ -81,17 +81,7 @@
       </div>
     </section>
 		<!-- ========================= signup-style-1 end ========================= -->
-<script>
-  function login(){
-    let username = document.getElementById('signup-email').value;
-    let password = document.getElementById('signup-password').value;
-    if (username=="ranjit" && password=="ranjit123") {
-      window.location="student_dashbord.html";
-    } else {
-      alert("Please enter valid username and password")
-    }
-  }
-</script>
+
     <!-- ========================= JS here ========================= -->
     <script src="assets/js/bootstrap.5.0.0.alpha-2-min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
@@ -102,6 +92,11 @@
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
      <p class="text-center pb-30 pt-30">Contribute Here<a href="#"> GITHUB</a></p> 
+<!-- PHP START FROM HERE -->
 
+
+
+
+<!-- PHP END HERE -->
   </body>
 </html>
