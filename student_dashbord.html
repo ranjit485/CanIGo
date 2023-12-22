@@ -702,39 +702,61 @@
       </div>
       <div class="modal-body">
         
-        <form>
-          <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="datetime-local" class="form-control form-control-user" id="exampleFirstName"
-                      placeholder="First Name">
-              </div>
-              <div class="col-sm-6">
-                  <input type="datetime-local" class="form-control form-control-user" id="exampleLastName"
-                      placeholder="Last Name">
-              </div>
+        <form onsubmit="return validateForm()">
+        <!-- Leave Details -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="leaveType">Leave Type</label>
+              <select id="leaveType" class="form-control" required>
+                  <option value="" selected disabled>Select leave type</option>
+                  <option value="Sick Leave">Sick Leave</option>
+                  <option value="Vacation">Vacation</option>
+                  <option value="Other">Other</option>
+              </select>
           </div>
-          <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-3">
-                  <input type="password" class="form-control form-control-user"
-                      id="exampleInputPassword" placeholder="Password">
-              </div>
-              <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user"
-                      id="exampleRepeatPassword" placeholder="Repeat Password">
-              </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+             <label for="startDate">Start Date</label>
+             <input type="datetime-local" class="form-control" id="startDate" required>
           </div>
-              <textarea type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name"></textarea>
-      </form>
-
+          <div class="form-group col-md-6">
+              <label for="endDate">End Date</label>
+              <input type="datetime-local" class="form-control" id="endDate" required>
+          </div>
+      </div> 
+        <label for="reason">Reason for Leave (Minimum 30 words)</label>
+        <textarea class="form-control" id="reason" rows="3" required></textarea>
+        <small id="reasonHelp" class="form-text text-muted">Minimum 30 words required.</small>
       </div>
       <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit Application</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
 
+<script>
+  function validateForm() {
+      // Get the value of the "Reason for Leave" textarea
+      var reason = document.getElementById("reason").value;
+
+      // Split the reason text into words
+      var words = reason.split(/\s+/).filter(function (word) {
+          return word.length > 0; // Filter out empty words
+      });
+
+      // Check if the word count is at least 30
+      if (words.length < 10) {
+          alert("Please provide a reason with at least 10 words.");
+          return false; // Prevent form submission
+      }
+      alert("submited")      
+      return true; // Allow form submission
+  }
+</script>
 <!-- -----------------Modal End Leave form---------------------- -->
 
   <!-- Bootstrap core JavaScript-->
