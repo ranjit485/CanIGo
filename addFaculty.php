@@ -82,78 +82,6 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Can I Go<sup>AIT</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        important links
-      </div>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-      <!-- Sidebar Message -->
-
-
-    </ul>
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -163,10 +91,6 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -374,7 +298,7 @@
           <div class="row">
 
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100 py-2 bg-primary">
+              <div class="card h-100 py-2 bg-light" style="border: none;">
                 <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addFacultyModel">
                   ADD NEW
                 </button>
@@ -437,17 +361,55 @@
                         </tr>
                       </tfoot>
                       <tbody>
-                        <tr>
-                          <td>Mahesh</td>
-                          <td>Sir</td>
-                          <td>TY</td>
-                          <td>Computer</td>
-                          <td>mahesh485</td>
-                          <td>mahesh@485</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
+                        <?php
+                        include "db_connect.php";
+
+                          $sql_data_display = "SELECT TeacherID, FirstName, LastName, Department, Position, Username,Password FROM Teachers"; 
+
+                          $result_data = $conn->query($sql_data_display); 
+
+                          if ($result_data->num_rows > 0) {    
+
+                              // output data of each row  
+                              while($row = $result_data->fetch_assoc()) {  
+                                  echo "<tr> 
+                                          <td>
+                                              " . $row["TeacherID"]. "
+                                          </td> 
+                                          <td>
+                                              " . $row["FirstName"]. " 
+                                              " . $row["LastName"]. "
+
+                                          </td> 
+                                          <td>
+                                              " . $row["Department"]. "
+                                          </td> 
+                                          <td>
+                                              " . $row["Position"]. "
+                                          </td> 
+                                          <td>
+                                              " . $row["Username"]. "
+                                          </td> 
+                                          </td> 
+                                          <td>
+                                              " . $row["Password"]. "
+                                          </td>  
+                                          <td>
+                                            <button class='btn btn-success'>
+                                              <i class='fas fa-edit text-white-300' title='Approve'></i>
+                                            </button>
+                                        
+                                            <button class='btn btn-success'>
+                                              <i class='fas fa-trash text-white-300' title='Approve'></i>
+                                            </button>
+                                          </td>                                          
+                                        </tr>";  
+                              }  
+                          } else {  
+                              echo "error or no results";  
+                          }  
+                          $conn->close();  
+                          ?>
                       </tbody>
                     </table>
                   </div>
@@ -512,10 +474,6 @@
   </div>
 
   <!-- -----------------Modal Start Leave form---------------------- -->
-
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaveFormModel"> -->
-  <!-- kkkkkkkk -->
-  <!-- </button>  --> -->
 
   <!-- Modal -->
   <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"

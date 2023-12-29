@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(isset($_SESSION["username"])===null){
+    header("location:index.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html class="no-js" lang>
 
@@ -58,22 +65,22 @@
                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent5">
                   <ul id="nav5" class="navbar-nav ml-auto">
                     <li class="nav-item">
-                      <a class="page-scroll" href="#0">Home</a>
+                      <a class="page-scroll" href="#0">One</a>
                     </li>
                     <li class="nav-item">
-                      <a class="page-scroll" href="student_dashbord.html">student dashbord</a>
+                      <a class="page-scroll" href="student_dashbord.html">two</a>
                     </li>
                     <li class="nav-item">
-                      <a class="page-scroll" href="hod_dasbord.html">HOD dashbord</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#0"></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#0">three</a>
+                      <a class="page-scroll" href="hod_dasbord.html">three</a>
                     </li>
                     <li class="nav-item">
                       <a class="page-scroll" href="#0">four</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="page-scroll" href="#0">five</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="page-scroll" href="#0">six</a>
                     </li>
                   </ul>
                 </div>
@@ -101,9 +108,9 @@
                 <p class="mb-40">"Experience the future of leave management at AITRC.Say goodbye to paperwork and hello
                   to convenience. Join us in making leave management effortless."</p>
                 <div class="buttons">
-                  <a href="student_login.html" class="button button-lg radius-3">STUDENT</a>
-                  <a href="hodLogin.html" class="button button-lg radius-3">HOD</a>
-                  <a href="staff_login.html" class="button button-lg radius-3">TEACHER</a>
+                  <a href="student_login.php" class="button button-lg radius-3">STUDENT</a>
+                  <a href="hodLogin.php" class="button button-lg radius-3">HOD</a>
+                  <a href="staff_login.php" class="button button-lg radius-3">TEACHER</a>
                 </div>
               </div>
               <div class="image">

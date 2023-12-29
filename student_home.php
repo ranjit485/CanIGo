@@ -1,17 +1,49 @@
+<?php
+  session_start();
+  if(isset($_SESSION["username"])==false){
+    header("location:index.php");
+  }
+
+?>
+<?php 
+  
+  include "db_connect.php";
+
+  //  Retrieve the count of all leaves for a specific student:
+  $stmt_count_all_leaves = $conn->prepare("SELECT LeaveID, COUNT(LeaveID) AS LeaveCount FROM Leaves WHERE StudentID = ? GROUP BY LeaveID");
+  $stmt_count_all_leaves->bind_param("s", $student_id);
+  
+  // Execute the query
+  $stmt_count_all_leaves->execute();
+
+  // Bind the result variables
+  $stmt_count_all_leaves->bind_result($leave_id, $leave_count);
+  $total_leaves = $stmt_count_all_leaves->bind_result($leave_id, $leave_count);
+
+  // Close the statement
+  $stmt_count_all_leaves->close();
+
+  
+  //  Retrieve the count of all Approved leaves for a specific student:
+
+
+  // Close the connection
+  $conn->close();
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
 <html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg" />
+
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Teacher Admin Panel</title>
+  <title>Student Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -81,86 +113,6 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Can I Go<sup>AIT</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>HOD</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        important links
-      </div>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="addFaculty.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-      
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Student</span>
-        </a>
-      </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>View</span>
-        </a>
-      </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-      <!-- Sidebar Message -->
-
-
-    </ul>
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -169,24 +121,6 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -335,7 +269,12 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ranjit</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    <?php
+                              echo $_SESSION["username"]; // Check the username specifically
+
+                    ?>
+                </span>
                 <img class="img-profile rounded-circle" src="./Student Dashboard-2_files/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->
@@ -353,7 +292,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#" data-toggle="modal"
+                <a class="dropdown-item" href="logout.php" data-toggle="modal"
                   data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -387,8 +326,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Pending Leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">14</div>
+                        Total Leaves</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_leaves ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-eye fa-2x text-gray-300"></i>
@@ -405,25 +344,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        All leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        All leaves</div>
+                        Approved</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
                     </div>
                     <div class="col-auto">
@@ -439,25 +360,26 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pending
                       </div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">5</div>
                         </div>
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      <i class="fas fa-eye fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card h-100 py-2 bg-light" style="border: none;">
+                <button class="card-body btn btn-primary" data-toggle="modal" data-target="#leaveFormModel">
+                  Request New Leave
+                </button>
               </div>
             </div>
           </div>
@@ -484,7 +406,7 @@
                       <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Another action</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Something else
-                        here</a>
+                        here </a>
                     </div>
                   </div>
                 </div>
@@ -542,57 +464,99 @@
                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                   <thead>
                                       <tr>
-                                          <th>Student Name</th>
-                                          <th>Leave Type</th>
-                                          <th>Start</th>
+                                          <th>StudentID</th>
+                                          <th>Name</th> 
+                                          <th>Reson</th> 
+                                          <th>Start</th> 
                                           <th>End</th>
-                                          <th>Reason</th>
-                                          <th>BY HOD</th>
-                                          <th>Approve</th>
-                                          <th>Reject</th>
+                                          <th>By Teacher</th>
+                                          <th>By HOD</th>
+                                          <th>Action</th>
                                       </tr>
                                   </thead>
                                   <tfoot>
                                       <tr>
-                                        <th>Student Name</th>
-                                        <th>Leave Type</th>
-                                        <th>Start</th>
-                                        <th>End</th>
-                                        <th>Reason</th>
-                                        <th>BY HOD</th>
-                                        <th>Approve</th>
-                                        <th>Reject</th>
+                                          <th>StudentID</th>
+                                          <th>Name</th> 
+                                          <th>Reson</th> 
+                                          <th>Start</th> 
+                                          <th>End</th>
+                                          <th>By Teacher</th>
+                                          <th>By HOD</th>
+                                          <th>Action</th>
                                       </tr>
                                   </tfoot>
                                   <tbody>
-                                    <tr>
-                                      <td>Sonali Deshmukh</td>
-                                      <td>Sick Leave</td>
-                                      <td>2023-01-10</td>
-                                      <td>2023-01-15</td>
-                                      <td>Preparing for exams</td>
-                                      <td>Approved</td>
-                                      <td>
-                                          <button class="btn btn-success"><i class="fas fa-check-circle text-white-300" title="Approve"></i></button>
-                                      </td>
-                                      <td>
-                                          <button class="btn btn-danger"><i class="fas fa-times-circle text-white-300" title="Reject"></i></button>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td>Akshay Kulkarni</td>
-                                      <td>Emergency Leave</td>
-                                      <td>2023-02-15</td>
-                                      <td>2023-02-18</td>
-                                      <td>Due to any unforeseen circumstances</td>
-                                      <td>Rejected</td>
-                                      <td>
-                                          <button class="btn btn-success"><i class="fas fa-check-circle text-white-300" title="Approve"></i></button>
-                                      </td>
-                                      <td>
-                                          <button class="btn btn-danger"><i class="fas fa-times-circle text-white-300" title="Reject"></i></button>
-                                      </td>
-                                  </tr>
+                                  <?php
+                                      include "db_connect.php";
+
+                                      $username = $_SESSION["username"];
+
+                                      // echo $username;
+
+                                      // Use prepared statement to prevent SQL injection
+                                      $stmt_one = $conn->prepare("SELECT `StudentID` FROM `Students` WHERE `Username` = ?");
+                                      $stmt_one->bind_param("s", $username);
+
+                                      // Execute the query
+                                      $stmt_one->execute();
+
+                                      // Bind the result variable
+                                      $stmt_one->bind_result($student_id);
+
+                                      // Fetch the result
+                                      $stmt_one->fetch();
+                                       
+                                      $_SESSION["student_id"]= $student_id;
+
+                                      // Output or use the result
+                                      echo "  Student ID:  $student_id Username $username";
+
+                                      // Close the statements
+                                      $stmt_one->close();
+                                      
+                                      //Retrieve all leaves for a specific student:
+                                      $sql_data_display = "SELECT LeaveID, StudentID, LeaveType, StartDate, EndDate, Reason, TeacherID, HODID,TeacherApprovalStatus,HODApprovalStatus, Status FROM Leaves WHERE StudentID = $student_id"; 
+
+                                      $result_data = $conn->query($sql_data_display); 
+
+                                      if ($result_data->num_rows > 0) {    
+
+                                          // output data of each row  
+                                          while($row = $result_data->fetch_assoc()) {  
+                                              echo "<tr> 
+                                                      <td>" . $row["StudentID"]. "</td> 
+
+                                                      <td> " . $row["LeaveType"]. "</td> 
+
+                                                      <td> " . $row["Reason"]. "</td>
+
+                                                      <td>" . $row["StartDate"]. "</td>
+
+                                                      <td>" . $row["EndDate"]. "</td>
+
+                                                      <td>" . $row["HODApprovalStatus"]. "</td>
+
+                                                      <td>" . $row["TeacherApprovalStatus"]. "</td>
+                                                      <td>
+                                                        <button class='btn btn-success'>
+                                                          <i class='fas fa-edit text-white-300' title='Approve'></i>
+                                                        </button>
+                                                    
+                                                        <button class='btn btn-success'>
+                                                          <i class='fas fa-trash text-white-300' title='Approve'></i>
+                                                        </button>
+                                                      </td>                                          
+                                                    </tr>";  
+                                          }  
+                                      } else {  
+                                          echo "error or no results";  
+                                      }
+
+                                      // Close the connection
+                                      $conn->close();
+                                      ?>
+ 
                                   </tbody>
                               </table>
                           </div>
@@ -650,67 +614,14 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="http://127.0.0.1:5501/login.html">Logout</a>
+          <a class="btn btn-primary" href="logout.php">Logout</a>
         </div>
       </div>
     </div>
   </div>
-
-<!-- -----------------Modal Start Leave form---------------------- -->
-
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaveFormModel"> -->
-<!-- kkkkkkkk -->
-<!-- </button>  --> -->
-
-<!-- Modal -->
-<div class="modal fade" id="leaveFormModel" tabindex="-1" role="dialog" aria-labelledby="leaveFormModel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Leave Form</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-        <form>
-          <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="datetime-local" class="form-control form-control-user" id="exampleFirstName"
-                      placeholder="First Name">
-              </div>
-              <div class="col-sm-6">
-                  <input type="datetime-local" class="form-control form-control-user" id="exampleLastName"
-                      placeholder="Last Name">
-              </div>
-          </div>
-          <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-3">
-                  <input type="password" class="form-control form-control-user"
-                      id="exampleInputPassword" placeholder="Password">
-              </div>
-              <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user"
-                      id="exampleRepeatPassword" placeholder="Repeat Password">
-              </div>
-          </div>
-              <textarea type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name"></textarea>
-      </form>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- -----------------Modal End Leave form---------------------- -->
-
-
+<?php 
+include "leave_form.php" 
+?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

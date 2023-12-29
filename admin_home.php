@@ -1,3 +1,10 @@
+<?php
+        session_start();
+        if(isset($_SESSION["username"])==true) {
+          echo'<script>alert("You are already logged in");</script>';
+          header('Location: student_home.php');
+        }
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
 <html lang="en">

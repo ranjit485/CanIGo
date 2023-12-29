@@ -1,4 +1,10 @@
-
+<?php
+        session_start();
+        if(isset($_SESSION["username"])==true) {
+          echo'<script>alert("You are already logged in");</script>';
+          header('Location: student_home.php');
+        }
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>
@@ -37,7 +43,7 @@
                 <div class="spinner-circle"></div>
               </div>
               <div class="spinner-right">
-                <div class="spinner-circle"></div>
+                <div class="spinner-circle">r</div>
               </div>
             </div>
           </div>

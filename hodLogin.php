@@ -1,4 +1,10 @@
-
+<?php
+        session_start();
+        if(isset($_SESSION["username"])==true) {
+          echo'<script>alert("You are already logged in");</script>';
+          header('Location: student_home.php');
+        }
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="">
   <head>

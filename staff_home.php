@@ -4,14 +4,14 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg" />
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Student Dashboard</title>
+  <title>Teacher Admin Panel</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -81,86 +81,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Can I Go<sup>AIT</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        important links
-      </div>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="student_dashbord.html#" data-toggle="collapse"
-          data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Month</span>
-        </a>
-      </li>
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-      <!-- Sidebar Message -->
-
-
-    </ul>
-    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -170,24 +91,6 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -416,6 +319,24 @@
                 </div>
               </div>
             </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        All leaves</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-eye fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
@@ -441,13 +362,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100 py-2 bg-primary">
-                <button class="card-body btn btn-primary" data-toggle="modal" data-target="#leaveFormModel">
-                  Request New Leave
-                </button>
               </div>
             </div>
           </div>
@@ -532,95 +446,57 @@
                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                   <thead>
                                       <tr>
-                                          <th>Date</th>
-                                          <th>Name</th>
-                                          <th>By HOD</th>
-                                          <th>By Teacher</th>
-                                          <th>Cancel</th>
+                                          <th>Student Name</th>
+                                          <th>Leave Type</th>
+                                          <th>Start</th>
+                                          <th>End</th>
+                                          <th>Reason</th>
+                                          <th>BY HOD</th>
+                                          <th>Approve</th>
+                                          <th>Reject</th>
                                       </tr>
                                   </thead>
                                   <tfoot>
                                       <tr>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>HOD Status</th>
-                                        <th>Teacher Status</th>
-                                        <th>Cancel</th>
+                                        <th>Student Name</th>
+                                        <th>Leave Type</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Reason</th>
+                                        <th>BY HOD</th>
+                                        <th>Approve</th>
+                                        <th>Reject</th>
                                       </tr>
                                   </tfoot>
                                   <tbody>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Pending</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2011/04/25</td>
-                                          <td>Family Function</td>
-                                          <td>Approved</td>
-                                          <td>Pending</td>
-                                          <td>
-                                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                          </td>
-                                      </tr>
+                                    <tr>
+                                      <td>Sonali Deshmukh</td>
+                                      <td>Sick Leave</td>
+                                      <td>2023-01-10</td>
+                                      <td>2023-01-15</td>
+                                      <td>Preparing for exams</td>
+                                      <td>Approved</td>
+                                      <td>
+                                          <button class="btn btn-success"><i class="fas fa-check-circle text-white-300" title="Approve"></i></button>
+                                      </td>
+                                      <td>
+                                          <button class="btn btn-danger"><i class="fas fa-times-circle text-white-300" title="Reject"></i></button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td>Akshay Kulkarni</td>
+                                      <td>Emergency Leave</td>
+                                      <td>2023-02-15</td>
+                                      <td>2023-02-18</td>
+                                      <td>Due to any unforeseen circumstances</td>
+                                      <td>Rejected</td>
+                                      <td>
+                                          <button class="btn btn-success"><i class="fas fa-check-circle text-white-300" title="Approve"></i></button>
+                                      </td>
+                                      <td>
+                                          <button class="btn btn-danger"><i class="fas fa-times-circle text-white-300" title="Reject"></i></button>
+                                      </td>
+                                  </tr>
                                   </tbody>
                               </table>
                           </div>
@@ -702,62 +578,43 @@
       </div>
       <div class="modal-body">
         
-        <form onsubmit="return validateForm()">
-        <!-- Leave Details -->
-        <div class="form-row">
-          <div class="form-group col-md-6">
-              <label for="leaveType">Leave Type</label>
-              <select id="leaveType" class="form-control" required>
-                  <option value="" selected disabled>Select leave type</option>
-                  <option value="Sick Leave">Sick Leave</option>
-                  <option value="Vacation">Vacation</option>
-                  <option value="Other">Other</option>
-              </select>
+        <form>
+          <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                  <input type="datetime-local" class="form-control form-control-user" id="exampleFirstName"
+                      placeholder="First Name">
+              </div>
+              <div class="col-sm-6">
+                  <input type="datetime-local" class="form-control form-control-user" id="exampleLastName"
+                      placeholder="Last Name">
+              </div>
           </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col-md-6">
-             <label for="startDate">Start Date</label>
-             <input type="datetime-local" class="form-control" id="startDate" required>
+          <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-3">
+                  <input type="password" class="form-control form-control-user"
+                      id="exampleInputPassword" placeholder="Password">
+              </div>
+              <div class="col-sm-6">
+                  <input type="password" class="form-control form-control-user"
+                      id="exampleRepeatPassword" placeholder="Repeat Password">
+              </div>
           </div>
-          <div class="form-group col-md-6">
-              <label for="endDate">End Date</label>
-              <input type="datetime-local" class="form-control" id="endDate" required>
-          </div>
-      </div> 
-        <label for="reason">Reason for Leave (Minimum 30 words)</label>
-        <textarea class="form-control" id="reason" rows="3" required></textarea>
-        <small id="reasonHelp" class="form-text text-muted">Minimum 30 words required.</small>
+              <textarea type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name"></textarea>
+      </form>
+
+
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit Application</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
-    </form>
     </div>
   </div>
 </div>
 
-<script>
-  function validateForm() {
-      // Get the value of the "Reason for Leave" textarea
-      var reason = document.getElementById("reason").value;
-
-      // Split the reason text into words
-      var words = reason.split(/\s+/).filter(function (word) {
-          return word.length > 0; // Filter out empty words
-      });
-
-      // Check if the word count is at least 30
-      if (words.length < 10) {
-          alert("Please provide a reason with at least 10 words.");
-          return false; // Prevent form submission
-      }
-      alert("submited")      
-      return true; // Allow form submission
-  }
-</script>
 <!-- -----------------Modal End Leave form---------------------- -->
+
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

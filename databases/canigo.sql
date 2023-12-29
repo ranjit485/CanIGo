@@ -38,6 +38,7 @@ CREATE TABLE `Teachers` (
     `TeacherID` INT NOT NULL,
     `FirstName` VARCHAR(255) NULL,
     `LastName` VARCHAR(255) NULL,
+    `Department` VARCHAR(255) NULL,
     `Position` VARCHAR(255) NULL,
     `Username` VARCHAR(50) NULL,
     `Password` VARCHAR(255) NULL
@@ -56,8 +57,8 @@ CREATE TABLE `Leaves` (
     `TeacherID` INT NULL,
     `HODID` INT NULL,
     `LeaveType` VARCHAR(255) NULL,
-    `StartDate` DATE NULL,
-    `EndDate` DATE NULL,
+    `StartDate` DATETIME NULL,
+    `EndDate` DATETIME NULL,
     `Status` VARCHAR(50) NULL,
     `Reason` TEXT NULL,
     `TeacherApprovalStatus` VARCHAR(50) NULL,
@@ -65,9 +66,10 @@ CREATE TABLE `Leaves` (
 );
 
 -- Add primary key constraint to Leaves table
-ALTER TABLE `Leaves` ADD PRIMARY KEY (`LeaveID`);
+ALTER TABLE `leaves` ADD `LeaveID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
 -- Add foreign key constraints to Leaves table
 ALTER TABLE `Leaves` ADD CONSTRAINT `leaves_hodid_foreign` FOREIGN KEY (`HODID`) REFERENCES `HODs` (`HODID`);
 ALTER TABLE `Leaves` ADD CONSTRAINT `leaves_studentid_foreign` FOREIGN KEY (`StudentID`) REFERENCES `Students` (`StudentID`);
 ALTER TABLE `Leaves` ADD CONSTRAINT `leaves_teacherid_foreign` FOREIGN KEY (`TeacherID`) REFERENCES `Teachers` (`TeacherID`);
+

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
 <html lang="en">
 
 <head>
@@ -80,78 +79,6 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Can I Go<sup>AIT</sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        important links
-      </div>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="hod_dasbord.html">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Add Faculty</span>
-        </a>
-      </li>
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-      <!-- Sidebar Message -->
-
-
-    </ul>
-    <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -160,24 +87,6 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -331,20 +240,20 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
+                <a class="dropdown-item" href="student_dashbord.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
+                <a class="dropdown-item" href="student_dashbord.php">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
                 </a>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
+                <a class="dropdown-item" href="student_dashbord.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#" data-toggle="modal"
+                <a class="dropdown-item" href="student_dashbord.php" data-toggle="modal"
                   data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -363,16 +272,15 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Students</h1>
-            <a href="http://127.0.0.1:5501/student_dashbord.html#"
+            <a href="student_dashbord.php"
               class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
           <div class="row">
-
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100 py-2 bg-primary">
+              <div class="card h-100 py-2 bg-light" style="border:none">
                 <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addFacultyModel">
                   ADD NEW
                 </button>
@@ -414,14 +322,14 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Last Name</th>
-                          <th>Department</th>
-                          <th>Class</th>
-                          <th>Student Contact No</th>
-                          <th>Parent Contact No</th>
-                          <th>Username</th>
-                          <th>Password</th>
+                          <th>StudentID</th> 
+                          <th>Name</th> 
+                          <th>Department</th> 
+                          <th>Class</th>                 
+                          <th>Mobail No</th> 
+                          <th>Parent Mo </th> 
+                          <th>Username</th> 
+                          <th>Password</th> 
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -439,31 +347,58 @@
                         </tr>
                       </tfoot>
                       <tbody>
-                        <tr>
-                          <td>Ranjit</td>
-                          <td>Patil</td>
-                          <td>Computer</td>
-                          <td>TY</td>
-                          <td>7499491002</td>
-                          <td>9766800965</td>
-                          <td>Ranjit123</td>
-                          <td>Ranjit@485</td>
-                          <td>
-                            <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                          </td>
-                        </tr>
+                        <?php
+                        include "db_connect.php";
+
+                          $sql_data_display = "SELECT StudentID, FirstName, LastName, Department, Class, StudentContactNo, ParentContactNo, Username,Password FROM Students"; 
+
+                          $result_data = $conn->query($sql_data_display); 
+
+                          if ($result_data->num_rows > 0) {    
+
+                              // output data of each row  
+                              while($row = $result_data->fetch_assoc()) {  
+                                  echo "<tr> 
+                                          <td>" . $row["StudentID"]. "</td> 
+
+                                          <td>" . $row["FirstName"]. " " . $row["LastName"]. " </td> 
+
+                                          <td> " . $row["Department"]. "</td> 
+
+                                          <td> " . $row["Class"]. "</td>
+
+                                          <td>" . $row["StudentContactNo"]. "</td>
+
+                                          </td> 
+                                          <td>" . $row["ParentContactNo"]. "</td>
+
+                                          <td> " . $row["Username"]. "</td> 
+                                          
+                                          <td>" . $row["Password"]. "</td>  
+                                          <td>
+                                            <button class='btn btn-success'>
+                                              <i class='fas fa-edit text-white-300' title='Approve'></i>
+                                            </button>
+                                        
+                                            <button class='btn btn-success'>
+                                              <i class='fas fa-trash text-white-300' title='Approve'></i>
+                                            </button>
+                                          </td>                                          
+                                        </tr>";  
+                              }  
+                          } else {  
+                              echo "error or no results";  
+                          }  
+                          $conn->close();  
+                          ?>  
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
-        <!-- Pie Chart -->
-
       </div>
 
       <!-- Content Row -->
@@ -515,7 +450,7 @@
     </div>
   </div>
 
-  <!-- -----------------Modal Start Leave form---------------------- -->
+  <!-- -----------------Modal Start add student form---------------------- -->
 
   <!-- Modal -->
   <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
@@ -529,7 +464,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="add-student.php" method="POST">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
@@ -588,9 +523,7 @@
     </div>
   </div>
 
-  <!-- -----------------Modal End Leave form---------------------- -->
-
-
+  <!-- -----------------Modal End add student form---------------------- -->
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
