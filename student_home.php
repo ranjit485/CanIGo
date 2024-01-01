@@ -21,6 +21,7 @@ if ($result_data->num_rows > 0) {
   // output data of each row  
   while ($row = $result_data->fetch_assoc()) {
 
+    $_SESSION["ProfilePhoto"] = $row['ProfilePhoto'];
     $_SESSION["student_id"] = $row['StudentID'];
     $_SESSION['student_firstname'] = $row['FirstName'];
     $_SESSION['student_lastname'] = $row['LastName'];
@@ -285,7 +286,7 @@ $day = date("l");
 
                   ?>
                 </span>
-                <img class="img-profile rounded-circle" src="./Student Dashboard-2_files/undraw_profile.svg">
+                <img class="img-profile rounded-circle" src="<?php echo $_SESSION["ProfilePhoto"]?>"
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -555,11 +556,11 @@ $day = date("l");
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>StudentID</th>
-                          <th>Name</th>
+                          <th>Leave Type</th>
                           <th>Reson</th>
-                          <th>Start</th>
-                          <th>End</th>
+                          <th>When</th>
+                          <th>From</th>
+                          <th>To</th>
                           <th>By Teacher</th>
                           <th>By HOD</th>
                           <th>Action</th>
@@ -567,11 +568,11 @@ $day = date("l");
                       </thead>
                       <tfoot>
                         <tr>
-                          <th>StudentID</th>
-                          <th>Name</th>
+                          <th>Leave Type</th>
                           <th>Reson</th>
-                          <th>Start</th>
-                          <th>End</th>
+                          <th>When</th>
+                          <th>From</th>
+                          <th>To</th>
                           <th>By Teacher</th>
                           <th>By HOD</th>
                           <th>Action</th>
@@ -587,7 +588,7 @@ $day = date("l");
 
 
                         //Retrieve all leaves for a specific student:
-                        $sql_data_display = "SELECT LeaveID, StudentID, LeaveType, StartDate, EndDate, Reason, TeacherID, HODID,TeacherApprovalStatus,HODApprovalStatus, Status FROM Leaves WHERE StudentID = $student_id";
+                        $sql_data_display = "SELECT * FROM Leaves WHERE StudentID = $student_id";
 
                         $result_data = $conn->query($sql_data_display);
 
@@ -596,11 +597,11 @@ $day = date("l");
                           // output data of each row  
                           while ($row = $result_data->fetch_assoc()) {
                             echo "<tr> 
-                                    <td>" . $row["StudentID"] . "</td> 
-
                                     <td> " . $row["LeaveType"] . "</td> 
 
                                     <td> " . $row["Reason"] . "</td>
+                                    
+                                    <td> " . $row["DateTime"] . "</td> 
 
                                     <td>" . $row["StartDate"] . "</td>
 
@@ -699,7 +700,6 @@ alert("You have been logged");
 
   <?php include "leave_form.php" ?>
   <?php include "student_profile.php" ?>
-  <?php include "student\chart.php" ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

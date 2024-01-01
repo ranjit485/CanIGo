@@ -267,16 +267,65 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Students</h1>
-            <a href="student_dashbord.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div>
-
           <!-- Content Row -->
           <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        First Year</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-eye fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Second Year</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-eye fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Third Year
+                      </div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php ?></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-eye fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100 py-2 bg-light" style="border:none">
                 <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addFacultyModel">
@@ -286,8 +335,6 @@
             </div>
           </div>
 
-          <!-- Content Row -->
-
 
           <div class="row">
 
@@ -296,7 +343,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Your Leaves</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">All students</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button"
                       id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -320,6 +367,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
+                          <th>img</th>
                           <th>StudentID</th>
                           <th>Name</th>
                           <th>Department</th>
@@ -333,12 +381,13 @@
                       </thead>
                       <tfoot>
                         <tr>
+                          <th>img</th>
+                          <th>StudentID</th>
                           <th>Name</th>
-                          <th>Last Name</th>
                           <th>Department</th>
                           <th>Class</th>
-                          <th>Student Contact No</th>
-                          <th>Parent Contact No</th>
+                          <th>Mobail No</th>
+                          <th>Parent Mo </th>
                           <th>Username</th>
                           <th>Password</th>
                           <th>Action</th>
@@ -348,7 +397,7 @@
                         <?php
                         include "db_connect.php";
 
-                        $sql_data_display = "SELECT StudentID, FirstName, LastName, Department, Class, StudentContactNo, ParentContactNo, Username,Password FROM Students";
+                        $sql_data_display = "SELECT * FROM Students";
 
                         $result_data = $conn->query($sql_data_display);
 
@@ -356,7 +405,11 @@
 
                           // output data of each row  
                           while ($row = $result_data->fetch_assoc()) {
+                            $img =$row["ProfilePhoto"];
                             echo "<tr> 
+                                          <td>
+                                          <img src='$img' class='img-fluid rounded ' style='height:50px;width:50px'>
+                                          </td> 
                                           <td>" . $row["StudentID"] . "</td> 
 
                                           <td>" . $row["FirstName"] . " " . $row["LastName"] . " </td> 
@@ -462,20 +515,20 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="add-student.php" method="POST">
+          <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required>
+                <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Enter first name" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required>
+                <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter last name" required>
               </div>
             </div>
             <div class="form-group">
               <label for="department">Department</label>
-              <select id="department" class="form-control" required>
+              <select id="department" name="department" class="form-control" required>
                 <option value="" selected disabled>Select department</option>
                 <option value="Computer Science">Computer Science</option>
                 <option value="Electrical Engineering">Electrical </option>
@@ -486,11 +539,11 @@
             </div>
             <div class="form-group">
               <label for="class">Class</label>
-              <select id="class" class="form-control" required>
+              <select id="class" name="class" class="form-control" required>
                 <option value="" selected disabled>Select class</option>
-                <option value="Class A">FY</option>
-                <option value="Class B">SY</option>
-                <option value="Class C">TY</option>
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
                 <!-- Add more options as needed -->
               </select>
             </div>
@@ -508,27 +561,29 @@
                   </div>
                 </div>
             </div>
-            <div class="form-group">
-              <label for="studentContactNo">Student Contact No</label>
-              <input type="tel" class="form-control" id="studentContactNo" placeholder="Enter contact number" required>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="studentContactNo">Student Contact No</label>
+                <input type="tel" name="student_mo" class="form-control" id="studentContactNo" placeholder="Enter contact number" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="parentContactNo">Parent Contact No</label>
+                <input type="tel" name="parent_mo" class="form-control" id="parentContactNo" placeholder="Enter parent's contact number"
+                  required>
+              </div>  
             </div>
-            <div class="form-group">
-              <label for="parentContactNo">Parent Contact No</label>
-              <input type="tel" class="form-control" id="parentContactNo" placeholder="Enter parent's contact number"
-                required>
-            </div>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Enter username" required>
-            </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" required>
+              </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Add</button>
+          <button type="submit" name="submit" class="btn btn-primary">Add</button>
         </div>
         </form>
       </div>
@@ -568,6 +623,10 @@
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             })
+            
+  if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
         </script>
 </body>
 </html>
@@ -585,48 +644,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   $parent_mo = $_POST["parent_mo"];
   $username = $_POST["username"];
   $password = $_POST["password"];
-  
-  $profileName = $_FILES["profile"]["profileName"];
-  $profileSize = $_FILES["profile"]["profileSize"];
-  $profile_tmpName = $_FILES["profile"]["profile_tmpName"];
 
-  $valid_profileExtension = ['.jpg, .png, .jpeg'];
-  $profile_Extension = explode(',', $profileName);
-  $profile_Extension = strtolower(end($profile_Extension));
+  echo $first_name;
+  echo $last_name;
+  echo $department;
+  echo $class;
+  echo $student_mo;
+  // Handle image upload
+  $targetDirectory = "students\profile"; // Change this to your desired upload directory
+  $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-  if (!in_array($profile_Extension, $valid_profileExtension)) {
-    echo '<script> 
-            alert("invalid Image Extension");
-            document.location.href="add-student.php";
-          </script>';
-  } else if($profileSize>1200000){
-    echo '<script> 
-    alert("Choose small size image");
-    document.location.href="add-student.php";
-    </script>';
+  // Check if the image file is a actual image or fake image
+  if (isset($_POST["submit"])) {
+      $check = getimagesize($_FILES["profile"]["tmp_name"]);
+      if ($check !== false) {
+          echo "File is an image - " . $check["mime"] . ".";
+          $uploadOk = 1;
+      } else {
+          echo "File is not an image.";
+          $uploadOk = 0;
+      }
   }
-  else($profileSize> 0){
-        $newProfileName = $first_name ;
+
+  // Check file size
+  if ($_FILES["profile"]["size"] > 500000) {
+      echo "Sorry, your file is too large.";
+      $uploadOk = 0;
   }
 
+  // Allow only certain file formats
+  $allowedExtensions = array("jpg", "jpeg", "png", "gif");
+  if (!in_array($imageFileType, $allowedExtensions)) {
+      echo "Sorry, only JPG, JPEG, PNG, and GIF files are allowed.";
+      $uploadOk = 0;
+  }
 
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+      echo "Sorry, your file was not uploaded.";
+  } else {
+      // If everything is OK, try to upload file
+      if (move_uploaded_file($_FILES["profile"]["tmp_name"], $targetFile)) {
+          echo "The file " . basename($_FILES["profile"]["name"]) . " has been uploaded.";
+      } else {
+          echo "Sorry, there was an error uploading your file.";
+      }
+  }
 
-
+  // Continue with your existing code...
 
   // Use prepared statement to prevent SQL injection
-  $stmt_insert_profile = $conn->prepare("INSERT INTO Leaves (StudentID, TeacherID, HODID, LeaveType, StartDate, EndDate, Status, Reason, TeacherApprovalStatus, HODApprovalStatus) VALUES (?, ?, ?, ?, ?, ?, 'Pending', ?, 'Assigned', 'Assgined')");
-  
+  $stmt_insert_profile = $conn->prepare("INSERT INTO students (FirstName, LastName, Department, Class, StudentContactNo, ParentContactNo, Username, Password, ProfilePhoto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
   if (!$stmt_insert_profile) {
       die("Error in preparing the statement: " . $conn->error);
   }
 
-  $stmt_insert_profile->bind_param("iiissss", $student_id, $teacher_id, $hod_id, $leave_type, $start_date, $end_date, $reason);
+  // Bind parameters
+  $stmt_insert_profile->bind_param("sssssssss", $first_name, $last_name, $department, $class, $student_mo, $parent_mo, $username, $password, $targetFile);
 
   // Execute the query
   if ($stmt_insert_profile->execute()) {
-      echo '<script>alert("Leave request submitted successfully.")
+      echo '<script>alert("Student Added.")
       if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
+          window.history.replaceState( null, null, window.location.href );
       }
       </script>';
   } else {
@@ -636,8 +719,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   // Close the statement
   $stmt_insert_profile->close();
 }
-
-// Close the connection
-$conn->close();
-
 ?>

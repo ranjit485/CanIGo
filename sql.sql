@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `hods` (
-  `HODID` int(11) NOT NULL,
+  `HODID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `leaves` (
   `Reason` text DEFAULT NULL,
   `TeacherApprovalStatus` varchar(50) DEFAULT NULL,
   `HODApprovalStatus` varchar(50) DEFAULT NULL,
-  `LeaveID` int(11) NOT NULL
+  `LeaveID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -90,7 +90,7 @@ INSERT INTO `leaves` (`StudentID`, `DateTime`, `TeacherID`, `HODID`, `LeaveType`
 --
 
 CREATE TABLE `students` (
-  `StudentID` int(11) NOT NULL,
+  `StudentID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL,
@@ -120,7 +120,7 @@ INSERT INTO `students` (`StudentID`, `FirstName`, `LastName`, `Department`, `Cla
 --
 
 CREATE TABLE `teachers` (
-  `TeacherID` int(11) NOT NULL,
+  `TeacherID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL,
@@ -147,14 +147,12 @@ INSERT INTO `teachers` (`TeacherID`, `FirstName`, `LastName`, `Department`, `Pos
 -- Indexes for table `hods`
 --
 ALTER TABLE `hods`
-  ADD PRIMARY KEY (`HODID`),
   ADD UNIQUE KEY `hods_username_unique` (`Username`);
 
 --
 -- Indexes for table `leaves`
 --
 ALTER TABLE `leaves`
-  ADD PRIMARY KEY (`LeaveID`),
   ADD KEY `leaves_hodid_foreign` (`HODID`),
   ADD KEY `leaves_studentid_foreign` (`StudentID`),
   ADD KEY `leaves_teacherid_foreign` (`TeacherID`);
@@ -163,25 +161,23 @@ ALTER TABLE `leaves`
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`StudentID`),
   ADD UNIQUE KEY `students_username_unique` (`Username`);
 
 --
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
-  ADD PRIMARY KEY (`TeacherID`),
   ADD UNIQUE KEY `teachers_username_unique` (`Username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `leaves`
---
-ALTER TABLE `leaves`
-  MODIFY `LeaveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+-- --
+-- -- AUTO_INCREMENT for table `leaves`
+-- --
+-- ALTER TABLE `leaves`
+--   MODIFY `LeaveID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
