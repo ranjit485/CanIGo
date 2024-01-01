@@ -253,8 +253,7 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="student_dashbord.php" data-toggle="modal"
-                  data-target="#logoutModal">
+                <a class="dropdown-item" href="student_dashbord.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -272,8 +271,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Students</h1>
-            <a href="student_dashbord.php"
-              class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            <a href="student_dashbord.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -322,14 +320,14 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>StudentID</th> 
-                          <th>Name</th> 
-                          <th>Department</th> 
-                          <th>Class</th>                 
-                          <th>Mobail No</th> 
-                          <th>Parent Mo </th> 
-                          <th>Username</th> 
-                          <th>Password</th> 
+                          <th>StudentID</th>
+                          <th>Name</th>
+                          <th>Department</th>
+                          <th>Class</th>
+                          <th>Mobail No</th>
+                          <th>Parent Mo </th>
+                          <th>Username</th>
+                          <th>Password</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -350,31 +348,31 @@
                         <?php
                         include "db_connect.php";
 
-                          $sql_data_display = "SELECT StudentID, FirstName, LastName, Department, Class, StudentContactNo, ParentContactNo, Username,Password FROM Students"; 
+                        $sql_data_display = "SELECT StudentID, FirstName, LastName, Department, Class, StudentContactNo, ParentContactNo, Username,Password FROM Students";
 
-                          $result_data = $conn->query($sql_data_display); 
+                        $result_data = $conn->query($sql_data_display);
 
-                          if ($result_data->num_rows > 0) {    
+                        if ($result_data->num_rows > 0) {
 
-                              // output data of each row  
-                              while($row = $result_data->fetch_assoc()) {  
-                                  echo "<tr> 
-                                          <td>" . $row["StudentID"]. "</td> 
+                          // output data of each row  
+                          while ($row = $result_data->fetch_assoc()) {
+                            echo "<tr> 
+                                          <td>" . $row["StudentID"] . "</td> 
 
-                                          <td>" . $row["FirstName"]. " " . $row["LastName"]. " </td> 
+                                          <td>" . $row["FirstName"] . " " . $row["LastName"] . " </td> 
 
-                                          <td> " . $row["Department"]. "</td> 
+                                          <td> " . $row["Department"] . "</td> 
 
-                                          <td> " . $row["Class"]. "</td>
+                                          <td> " . $row["Class"] . "</td>
 
-                                          <td>" . $row["StudentContactNo"]. "</td>
+                                          <td>" . $row["StudentContactNo"] . "</td>
 
                                           </td> 
-                                          <td>" . $row["ParentContactNo"]. "</td>
+                                          <td>" . $row["ParentContactNo"] . "</td>
 
-                                          <td> " . $row["Username"]. "</td> 
+                                          <td> " . $row["Username"] . "</td> 
                                           
-                                          <td>" . $row["Password"]. "</td>  
+                                          <td>" . $row["Password"] . "</td>  
                                           <td>
                                             <button class='btn btn-success'>
                                               <i class='fas fa-edit text-white-300' title='Approve'></i>
@@ -384,13 +382,13 @@
                                               <i class='fas fa-trash text-white-300' title='Approve'></i>
                                             </button>
                                           </td>                                          
-                                        </tr>";  
-                              }  
-                          } else {  
-                              echo "error or no results";  
-                          }  
-                          $conn->close();  
-                          ?>  
+                                        </tr>";
+                          }
+                        } else {
+                          echo "error or no results";
+                        }
+                        $conn->close();
+                        ?>
                       </tbody>
                     </table>
                   </div>
@@ -496,6 +494,20 @@
                 <!-- Add more options as needed -->
               </select>
             </div>
+
+            <div class="form-group">
+              <label for="studentContactNo">Profile photo</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                  </div>
+                </div>
+            </div>
             <div class="form-group">
               <label for="studentContactNo">Student Contact No</label>
               <input type="tel" class="form-control" id="studentContactNo" placeholder="Enter contact number" required>
@@ -518,7 +530,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Add</button>
         </div>
-      </form>
+        </form>
       </div>
     </div>
   </div>
@@ -548,6 +560,84 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  
+  <script>
+            $('#inputGroupFile01').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        </script>
 </body>
-
 </html>
+<?php 
+include "db_connect.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
+  // Assuming your form has fields named accordingly
+
+  $first_name = $_POST["first_name"];
+  $last_name = $_POST["last_name"];
+  $department = $_POST["department"];
+  $class = $_POST["class"];
+  $student_mo = $_POST["student_mo"];
+  $parent_mo = $_POST["parent_mo"];
+  $username = $_POST["username"];
+  $password = $_POST["password"];
+  
+  $profileName = $_FILES["profile"]["profileName"];
+  $profileSize = $_FILES["profile"]["profileSize"];
+  $profile_tmpName = $_FILES["profile"]["profile_tmpName"];
+
+  $valid_profileExtension = ['.jpg, .png, .jpeg'];
+  $profile_Extension = explode(',', $profileName);
+  $profile_Extension = strtolower(end($profile_Extension));
+
+  if (!in_array($profile_Extension, $valid_profileExtension)) {
+    echo '<script> 
+            alert("invalid Image Extension");
+            document.location.href="add-student.php";
+          </script>';
+  } else if($profileSize>1200000){
+    echo '<script> 
+    alert("Choose small size image");
+    document.location.href="add-student.php";
+    </script>';
+  }
+  else($profileSize> 0){
+        $newProfileName = $first_name ;
+  }
+
+
+
+
+
+  // Use prepared statement to prevent SQL injection
+  $stmt_insert_profile = $conn->prepare("INSERT INTO Leaves (StudentID, TeacherID, HODID, LeaveType, StartDate, EndDate, Status, Reason, TeacherApprovalStatus, HODApprovalStatus) VALUES (?, ?, ?, ?, ?, ?, 'Pending', ?, 'Assigned', 'Assgined')");
+  
+  if (!$stmt_insert_profile) {
+      die("Error in preparing the statement: " . $conn->error);
+  }
+
+  $stmt_insert_profile->bind_param("iiissss", $student_id, $teacher_id, $hod_id, $leave_type, $start_date, $end_date, $reason);
+
+  // Execute the query
+  if ($stmt_insert_profile->execute()) {
+      echo '<script>alert("Leave request submitted successfully.")
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+      </script>';
+  } else {
+      die("Error: " . $stmt_insert_profile->error);
+  }
+
+  // Close the statement
+  $stmt_insert_profile->close();
+}
+
+// Close the connection
+$conn->close();
+
+?>
