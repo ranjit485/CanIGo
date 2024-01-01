@@ -68,6 +68,9 @@
       // alert("submited")      
       return true; // Allow form submission
   }
+  if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
 </script>
 <!-- -----------------Modal End Leave form---------------------- -->
 <?php
@@ -100,7 +103,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     // Execute the query
     if ($stmt_insert_leave->execute()) {
-        echo '<script>alert("Leave request submitted successfully.")</script>';
+        echo '<script>alert("Leave request submitted successfully.")
+        if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+        }
+        </script>';
     } else {
         die("Error: " . $stmt_insert_leave->error);
     }

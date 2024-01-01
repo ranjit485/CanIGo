@@ -109,8 +109,8 @@
                   to convenience. Join us in making leave management effortless."</p>
                 <div class="buttons">
                   <a href="student_login.php" class="button button-lg radius-3">STUDENT</a>
-                  <a href="hodLogin.php" class="button button-lg radius-3">HOD</a>
-                  <a href="staff_login.php" class="button button-lg radius-3">TEACHER</a>
+                  <a href="hod\login.php" class="button button-lg radius-3">HOD</a>
+                  <a href="teacher\login.php" class="button button-lg radius-3">TEACHER</a>
                 </div>
               </div>
               <div class="image">
