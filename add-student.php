@@ -645,11 +645,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  echo $first_name;
-  echo $last_name;
-  echo $department;
-  echo $class;
-  echo $student_mo;
+
+  function alert($message) {
+    echo '<script>
+    alert("' . $message . '");
+    </script>';
+
+  }
+
+  // Validate first name
+  $first_name = trim($_POST["first_name"]);
+  if (empty($first_name)) {
+    alert("First name is required.");
+      exit;
+  }
+
+  // Validate last name
+  $last_name = trim($_POST["last_name"]);
+  if (empty($last_name)) {
+    alert("Last name is required.");
+      exit;
+  }
+
+  // Validate department
+  $department = trim($_POST["department"]);
+  if (empty($department)) {
+    alert("Department is required.");
+      exit;
+  }
+
+  // Validate class
+  $class = trim($_POST["class"]);
+  if (empty($class)) {
+    alert("Class is required.");
+      exit;
+  }
+
+  // Validate student contact number
+  $student_mo = trim($_POST["student_mo"]);
+  if (empty($student_mo) || !preg_match("/^\d{10}$/", $student_mo)) {
+    alert("Invalid student contact number.");
+      exit;
+  }
+
+  // Validate parent contact number
+  $parent_mo = trim($_POST["parent_mo"]);
+  if (empty($parent_mo) || !preg_match("/^\d{10}$/", $parent_mo)) {
+      alert("Invalid parent contact number.");
+      exit;
+  }
+
+  // Validate username
+  $username = trim($_POST["username"]);
+  if (empty($username) || !preg_match("/^\d{10}$/", $username)) {
+      alert("Username must be a 10-digit number.");
+      exit;
+  }
+
+  // Validate password (you may want to add more complex checks)
+  $password = trim($_POST["password"]);
+  if (empty($password)) {
+    alert("Password is required.");
+      exit;
+  }
+
+
   // Handle image upload
   $targetDirectory = "students\profile"; // Change this to your desired upload directory
   $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
@@ -670,14 +730,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
   // Check file size
   if ($_FILES["profile"]["size"] > 500000) {
-      echo "Sorry, your file is too large.";
+      alert("Sorry, your file is too large.");
       $uploadOk = 0;
   }
 
   // Allow only certain file formats
   $allowedExtensions = array("jpg", "jpeg", "png", "gif");
   if (!in_array($imageFileType, $allowedExtensions)) {
-      echo "Sorry, only JPG, JPEG, PNG, and GIF files are allowed.";
+    alert("Sorry, only JPG, JPEG, PNG, and GIF files are allowed.");
       $uploadOk = 0;
   }
 
@@ -687,9 +747,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   } else {
       // If everything is OK, try to upload file
       if (move_uploaded_file($_FILES["profile"]["tmp_name"], $targetFile)) {
-          echo "The file " . basename($_FILES["profile"]["name"]) . " has been uploaded.";
+          alert("The file " . basename($_FILES["profile"]["name"]) . " has been uploaded.");
       } else {
-          echo "Sorry, there was an error uploading your file.";
+          alert("Sorry, there was an error uploading your file.");
       }
   }
 
