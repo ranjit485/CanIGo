@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `hods` (
   `HODID` int(11) NOT NULL,
+  `ProfilePhoto` varchar(500) NOT NULL,
   `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL,
@@ -118,6 +119,7 @@ INSERT INTO `students` (`StudentID`, `ProfilePhoto`, `FirstName`, `LastName`, `D
 
 CREATE TABLE `teachers` (
   `TeacherID` int(11) NOT NULL,
+  `ProfilePhoto` varchar(500) NOT NULL,
   `FirstName` varchar(255) DEFAULT NULL,
   `LastName` varchar(255) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL,
