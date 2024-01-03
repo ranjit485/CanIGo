@@ -473,7 +473,7 @@
     </div>
   </div>
 
-  <!-- -----------------Modal Start Leave form---------------------- -->
+  <!-- -----------------Modal faculty  form---------------------- -->
 
   <!-- Modal -->
   <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
@@ -537,7 +537,7 @@
     </div>
   </div>
 
-  <!-- -----------------Modal End Leave form---------------------- -->
+  <!-- -----------------Modal End add faculty form---------------------- -->
 
 <script>
   function addFac(){
