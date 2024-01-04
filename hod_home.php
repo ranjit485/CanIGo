@@ -1,3 +1,102 @@
+<?php
+session_start();
+if (isset($_SESSION["username"]) == false) {
+  header("location:index.php");
+}
+
+?>
+
+<?php
+
+  include "db_connect.php";
+  
+// echo $username;
+$username = $_SESSION["username"];
+$sql_data_display = "SELECT * FROM `hods` WHERE `Username` = \"$username\";";
+
+$result_data = $conn->query($sql_data_display);
+
+if ($result_data->num_rows > 0) {
+
+  // output data of each row  
+  while ($row = $result_data->fetch_assoc()) {
+
+    $_SESSION["ProfilePhoto"] = $row['ProfilePhoto'];
+    $_SESSION["hod_id"] = $row['HODID'];
+    $_SESSION["hod_firstname"] = $row['FirstName'];
+    $_SESSION["hod_lastname"] = $row['LastName'];
+    $_SESSION["hod_department"] = $row['Department'];
+    $_SESSION["hod_username"] = $row['Username'];  // I know username already in session. 'ranjit'
+    $_SESSION["hod_course"] = $row['course'];  
+
+  }
+} else {
+  echo "error or no results";
+}
+
+// echo $_SESSION["ProfilePhoto"];
+// echo $_SESSION["hod_id"];
+// echo $_SESSION["hod_lastname"];
+// echo $_SESSION["ProfilePhoto"];
+// echo $_SESSION["hod_username"];
+// echo $_SESSION["hod_course"];
+// echo $_SESSION["hod_department"];
+
+
+// Close the connection
+$conn->close();
+
+  $hod_id = $_SESSION["hod_id"];
+  $hod_course = $_SESSION["hod_course"];
+  $hod_department = $_SESSION["hod_department"];
+
+
+  $all_student_count = "SELECT COUNT(*) as count FROM students WHERE `course` = '$hod_course' AND `Department` = '$hod_department' ";
+
+
+  function getCount($class) {
+    
+  $hod_id = $_SESSION["hod_id"];
+  $hod_course = $_SESSION["hod_course"];
+  $hod_department = $_SESSION["hod_department"];
+
+    include "db_connect.php";
+    $result = $conn->query("SELECT COUNT(*) as count FROM students WHERE `course` = '$hod_course' AND `Department` = '$hod_department' AND `Class` = '$class' ");
+    if ($result) {
+      $count = $result->fetch_assoc()['count'];
+      return $count;
+    } else {
+      return $conn->error;
+    }  
+  }
+
+  echo getCount("SY");
+  echo getCount("FY");
+  echo getCount("TY");
+ 
+  function countMonth($month){
+    return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND MONTH(`DateTime`) = $month";
+  }
+
+  function countYear($year){
+    return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND YEAR(`DateTime`) = $year";
+  }
+
+  // echo getCount(countMonth(1));
+  // echo getCount(countYear(2023));
+
+// set date and time
+$date = date("Y-m-d");
+$day = date("l");
+// $time = ;
+// echo "Today is " . date("Y/m/d") . "<br>";
+// echo "Today is " . date("Y.m.d") . "<br>";
+// echo "Today is " . date("Y-m-d") . "<br>";
+// echo "Today is " . date("l");
+
+
+
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
 <html lang="en">
@@ -90,163 +189,47 @@
       <!-- Main Content -->
       <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+<!-- Topbar Navbar -->
+<ul class="navbar-nav ml-auto">
 
 
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ranjit</span>
-                <img class="img-profile rounded-circle" src="./Student Dashboard-2_files/undraw_profile.svg">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#" data-toggle="modal"
-                  data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-            
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#"
-                id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="./Student Dashboard-2_files/undraw_profile_1.svg" alt="...">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                      problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="./Student Dashboard-2_files/undraw_profile_2.svg" alt="...">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how
-                      would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="./Student Dashboard-2_files/undraw_profile_3.svg" alt="...">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                      the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                      told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500"
-                  href="http://127.0.0.1:5501/student_dashbord.html#">Read More Messages</a>
-              </div>
-            </li>
+  <!-- Nav Item - User Information -->
+  <li class="nav-item dropdown no-arrow">
+    <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
+      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img class="img-profile m-2 rounded-circle" src="<?php echo $_SESSION["ProfilePhoto"]?>">
+      <span class="ml-2 d-none d-lg-inline text-gray-600 small">ranjit</span>
 
-            <div class="topbar-divider d-none d-sm-block"></div>
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                          <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#"
-                            id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                          </a>
-                          <!-- Dropdown - Alerts -->
-                          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                              Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                              <div class="mr-3">
-                                <div class="icon-circle bg-primary">
-                                  <i class="fas fa-file-alt text-white"></i>
-                                </div>
-                              </div>
-                              <div>
-                                <div class="small text-gray-500">December 12, 2019</div>
-                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                              </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                              <div class="mr-3">
-                                <div class="icon-circle bg-success">
-                                  <i class="fas fa-donate text-white"></i>
-                                </div>
-                              </div>
-                              <div>
-                                <div class="small text-gray-500">December 7, 2019</div>
-                                $290.29 has been deposited into your account!
-                              </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="http://127.0.0.1:5501/student_dashbord.html#">
-                              <div class="mr-3">
-                                <div class="icon-circle bg-warning">
-                                  <i class="fas fa-exclamation-triangle text-white"></i>
-                                </div>
-                              </div>
-                              <div>
-                                <div class="small text-gray-500">December 2, 2019</div>
-                                Spending Alert: We've noticed unusually high spending for your account.
-                              </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500"
-                              href="http://127.0.0.1:5501/student_dashbord.html#">Show All Alerts</a>
-                          </div>
-                        </li>
+    </a>
+    <!-- Dropdown - User Information -->
+    <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
+      <a class="dropdown-item" href="student_dashbord.php">
+        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+        Profile
+      </a>
+      <a class="dropdown-item" href="student_dashbord.php">
+        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+        Settings
+      </a>
+      <a class="dropdown-item" href="student_dashbord.php">
+        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+        Activity Log
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+        Logout
+      </a>
+    </div>
+  </li>
 
-          </ul>
+</ul>
 
-        </nav>
-        <!-- End of Topbar -->
+</nav>
+<!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -269,8 +252,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Pending Leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">14</div>
+                        All students</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">"90"</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-eye fa-2x text-gray-300"></i>
@@ -287,8 +270,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        All leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                      FY students</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getCount("FY") ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-eye fa-2x text-gray-300"></i>
@@ -305,8 +288,8 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        All leaves</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                      SY students</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getCount("SY") ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-eye fa-2x text-gray-300"></i>
@@ -321,11 +304,11 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">TY students
                       </div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo getCount("TY") ?></div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -343,53 +326,74 @@
               </div>
             </div>
           </div>
-
-          <!-- Content Row -->
-
           <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Year Graph</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button"
-                      id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Action</a>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Something else
-                        here</a>
-                    </div>
-                  </div>
+<!-- Area Chart -->
+<div class="col-xl-8 col-lg-7">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <div class="chartjs-size-monitor">
-                      <div class="chartjs-size-monitor-expand">
-                        <div class=""></div>
-                      </div>
-                      <div class="chartjs-size-monitor-shrink">
-                        <div class=""></div>
-                      </div>
-                    </div>
-                    <canvas id="myAreaChart" width="1269" height="320"
-                      style="display: block; height: 320px; width: 1269px;" class="chartjs-render-monitor"></canvas>
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="myAreaChart" width="1404" height="640" style="display: block; width: 702px; height: 320px;" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Pie Chart -->
-
+<!-- Pie Chart -->
+<div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+            <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">Dropdown Header:</div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                <canvas id="myPieChart" width="636" height="490" style="display: block; width: 318px; height: 245px;" class="chartjs-render-monitor"></canvas>
+            </div>
+            <div class="mt-4 text-center small">
+                <span class="mr-2">
+                    <i class="fas fa-circle text-primary"></i> Direct
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-success"></i> Social
+                </span>
+                <span class="mr-2">
+                    <i class="fas fa-circle text-info"></i> Referral
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
           </div>
 
 
@@ -539,9 +543,6 @@
 
   <!-- -----------------Modal Start Leave form---------------------- -->
 
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#leaveFormModel"> -->
-  <!-- kkkkkkkk -->
-  <!-- </button>  --> -->
 
   <!-- Modal -->
   <div class="modal fade" id="leaveFormModel" tabindex="-1" role="dialog" aria-labelledby="leaveFormModel"
