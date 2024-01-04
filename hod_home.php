@@ -70,9 +70,9 @@ $conn->close();
     }  
   }
 
-  echo getCount("SY");
-  echo getCount("FY");
-  echo getCount("TY");
+  // echo getCount("SY");
+  // echo getCount("FY");
+  // echo getCount("TY");
  
   function countMonth($month){
     return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND MONTH(`DateTime`) = $month";
