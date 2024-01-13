@@ -74,7 +74,7 @@
 </script>
 <!-- -----------------Modal End Leave form---------------------- -->
 <?php
-include "db_connect.php";
+include "../db_connect.php";
 
 // Check if student_id is set in the session
 if (!isset($_SESSION["student_id"])) {
@@ -85,8 +85,8 @@ $student_id = $_SESSION["student_id"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     // Assuming your form has fields named accordingly
-    $teacher_id = 1;
-    $hod_id = 1;
+    $teacher_id = $_SESSION["teacher_id"];
+    $hod_id = $_SESSION["hod_id"];
     $leave_type = $_POST["leave_type"];
     $start_date = $_POST["start_date"];
     $end_date = $_POST["end_date"];

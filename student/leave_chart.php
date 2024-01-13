@@ -1,9 +1,11 @@
-
-<script>
-// Set new default font family and font color to mimic Bootstrap's default styling
+   <?php
+    
+   ?>
+   <script>
+   // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#858796';
-    
+
     function number_format(number, decimals, dec_point, thousands_sep) {
       // *     example: number_format(1234.56, 2, ',', ' ');
       // *     return: '1 234,56'
@@ -28,7 +30,7 @@
       }
       return s.join(dec);
     }
-    
+
     // Area Chart Example
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
@@ -48,18 +50,18 @@
           pointHoverBorderColor: "rgba(78, 115, 223, 1)",
           pointHitRadius: 10,
           pointBorderWidth: 2,
-          data: [<?php echo getCount(countMonth(1))?>,
-          <?php echo getCount(countMonth(2))?>,
-          <?php echo getCount(countMonth(3))?>,
-          <?php echo getCount(countMonth(4))?>,
-          <?php echo getCount(countMonth(5))?>,
-          <?php echo getCount(countMonth(6))?>, 
-          <?php echo getCount(countMonth(7))?>,
-          <?php echo getCount(countMonth(8))?>,
-          <?php echo getCount(countMonth(9))?>,
-          <?php echo getCount(countMonth(10))?>,
-          <?php echo getCount(countMonth(11))?>,
-          <?php echo getCount(countMonth(12))?>,
+          data: [<?php echo getCount(countMonth(1)) ?>,
+            <?php echo getCount(countMonth(2)) ?>,
+            <?php echo getCount(countMonth(3)) ?>,
+            <?php echo getCount(countMonth(4)) ?>,
+            <?php echo getCount(countMonth(5)) ?>,
+            <?php echo getCount(countMonth(6)) ?>,
+            <?php echo getCount(countMonth(7)) ?>,
+            <?php echo getCount(countMonth(8)) ?>,
+            <?php echo getCount(countMonth(9)) ?>,
+            <?php echo getCount(countMonth(10)) ?>,
+            <?php echo getCount(countMonth(11)) ?>,
+            <?php echo getCount(countMonth(12)) ?>,
           ],
         }],
       },
@@ -130,4 +132,4 @@
         }
       }
     });
-  </script>
+</script>

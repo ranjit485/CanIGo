@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_SESSION["hod_username"]) == false) {
+  header("location:home.php");
+}
+
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
 <html lang="en">
@@ -15,17 +23,17 @@
   <title>Add faculty</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- --------------------- -->
 
   <!-- --------------------- -->
 
   <!-- Custom styles for this template -->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style type="text/css">
     /* Chart.js */
     @keyframes chartjs-render-animation {
@@ -97,8 +105,8 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile m-2 rounded-circle" src="./Student Dashboard-2_files/undraw_profile.svg">
-                <span class="ml-2 d-none d-lg-inline text-gray-600 small">ranjit</span>
+                <img class="img-profile m-2 rounded-circle" src="<?php echo "../$_SESSION[ProfilePhoto]" ?>">
+                <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["hod_firstname"] ?></span>
 
               </a>
               <!-- Dropdown - User Information -->
@@ -140,62 +148,6 @@
 
           <!-- Content Row -->
           <div class="row">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        First Year</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Second Year</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Third Year
-                      </div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php ?></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100 py-2 bg-light" style="border: none;">
                 <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addFacultyModel">
@@ -239,27 +191,33 @@
                         <tr>
                           <th>Profile</th>
                           <th>Name</th>
-                          <th>Position</th>
+                          <th>Course</th>
                           <th>Department</th>
+                          <th>Class</th>
+                          <th>Position</th>
                           <th>Username</th>
                           <th>Password</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tfoot>
                         <tr>
                           <th>Profile</th>
                           <th>Name</th>
-                          <th>Position</th>
+                          <th>Course</th>
                           <th>Department</th>
+                          <th>Class</th>
+                          <th>Position</th>
                           <th>Username</th>
                           <th>Password</th>
-                          <th>Action</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                         </tr>
                       </tfoot>
                       <tbody>
                         <?php
-                        include "db_connect.php";
+                        include "../db_connect.php";
 
                         $sql_data_display = "SELECT * FROM Teachers";
 
@@ -275,18 +233,21 @@
                                             <img src='$img' class='img-fluid rounded ' style='height:50px;width:50px'>
                                           </td> 
                                           <td>" . $row["FirstName"] . " " . $row["LastName"] . " </td> 
+                                          <td>" . $row["course"] . "</td> 
                                           <td>" . $row["Department"] . "</td> 
+                                          <td>" . $row["Class"] . "</td> 
                                           <td>" . $row["Position"] . "</td> 
                                           <td>" . $row["Username"] . "</td> 
                                           </td> 
                                           <td>" . $row["Password"] . "</td>  
                                           <td>
                                             <button class='btn btn-success'>
-                                              <i class='fas fa-edit text-white-300' title='Approve'></i>
+                                              <i class='fas fa-edit text-white-300 editbtn' title='edit'></i>
                                             </button>
-                                        
+                                         </td>
+                                         <td>
                                             <button class='btn btn-success'>
-                                              <i class='fas fa-trash text-white-300' title='Approve'></i>
+                                              <i class='fas fa-trash text-white-300 deletebtn' title='delete'></i>
                                             </button>
                                           </td>                                          
                                         </tr>";
@@ -335,10 +296,9 @@
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="http://127.0.0.1:5501/student_dashbord.html#page-top" style="display: none;">
+  <a class="scroll-to-top rounded" href="page-top" style="display: none;">
     <i class="fas fa-angle-up"></i>
   </a>
-<?php include"logout.php"; ?>
 
   <!-- -----------------Modal faculty  form---------------------- -->
 
@@ -357,37 +317,56 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter first name" required>
+                <input type="text" name="firstName" class="form-control" placeholder="Enter first name" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter last name" required>
+                <input type="text" name="lastName" class="form-control" placeholder="Enter last name" required>
               </div>
             </div>
             <div class="form-group">
+              <label for="class">Course</label>
+              <select name="course" class="form-control" required>
+                <option value="" selected disabled>Select Course</option>
+                <option value="Diploma">Diploma</option>
+                <option value="BE TECH">BE TECH</option>
+                <option value="DFARM">D FARM</option>
+                <option value="B FARM">B FARM</option>
+                <option value="ITI">ITI</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
               <label for="position">Position</label>
-              <select id="position" name="position" class="form-control" required>
+              <select name="position" class="form-control" required>
                 <option value="" selected disabled>Select position</option>
-                <option value="FY">FY Class Teacher</option>
-                <option value="SY">SY Class Teacher</option>
-                <option value="TY">TY Class Teacher</option>
+                <option value="Class Teacher">Class Teacher</option>
+                <option value="Lab Assistant">Lab Assistant</option>
+                <option value="Helper">Helper</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="class">Class</label>
+              <select name="class" class="form-control" required>
+                <option value="" selected disabled>Select Class</option>
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
                 <!-- Add more options as needed -->
               </select>
             </div>
             <div class="form-group">
               <label for="department">Department</label>
-              <select id="department" name="department" class="form-control" required>
+              <select name="department" class="form-control" required>
                 <option value="" selected disabled>Select department</option>
                 <option value="Computer Science">Computer Engineering</option>
                 <option value="Electrical Engineering">Electrical Engineering</option>
                 <option value="Mechanical Engineering">Mechanical Engineering</option>
                 <option value="AI Engineering">AI Engineering</option>
                 <option value="Eletronic Engineering">Eletronic Engineering</option>
-                <option value="Computer Diploma">Computer Diploma</option>
-                <option value="Electrical Diploma">Electrical Diploma</option>
-                <option value="Mechanical Diploma">Mechanical Diploma</option>
-                <option value="AI Diploma">AI Diploma</option>
-                <option value="Mechanical Diploma">Eletronic Diploma</option>
+                <option value="VELDER">VELDER</option>
+                <option value="FITTER">VELDER</option>
                 <!-- Add more options as needed -->
               </select>
             </div>
@@ -423,6 +402,128 @@
 
   <!-- -----------------Modal End add faculty form---------------------- -->
 
+  <!-- -----------------Modal Update faculty  form---------------------- -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="updateFacultyModel" tabindex="-1" role="dialog" aria-labelledby="updateFacultyModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Faculty</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter first name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter last name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="class">Course</label>
+              <select id="class" name="course" class="form-control" required>
+                <option value="" selected disabled>Select Course</option>
+                <option value="Diploma">Diploma</option>
+                <option value="BE TECH">BE TECH</option>
+                <option value="DFARM">D FARM</option>
+                <option value="B FARM">B FARM</option>
+                <option value="ITI">ITI</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="position">Position</label>
+              <select id="position" name="position" class="form-control" required>
+                <option value="" selected disabled>Select position</option>
+                <option value="Class Teacher">Class Teacher</option>
+                <option value="Lab Assistant">Lab Assistant</option>
+                <option value="Helper">Helper</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="class">Class</label>
+              <select id="class" name="class" class="form-control" required>
+                <option value="" selected disabled>Select Class</option>
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department" name="department" class="form-control" required>
+                <option value="" selected disabled>Select department</option>
+                <option value="Computer Science">Computer Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="AI Engineering">AI Engineering</option>
+                <option value="Eletronic Engineering">Eletronic Engineering</option>
+                <option value="VELDER">VELDER</option>
+                <option value="FITTER">VELDER</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="studentContactNo">Profile photo</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" name="submit" class="btn btn-primary" onclick="addFac()">Add Teacher</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- -----------------Modal End update faculty form---------------------- -->
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="logout.php">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     function addFac() {
       let name = document.getElementById("teacherName").value;
@@ -432,7 +533,6 @@
       let password = document.getElementById("teacherPassword").value;
 
       var tableBody = document.querySelector('#dataTable tbody');
-
 
       var row = tableBody.insertRow();
       var cell1 = row.insertCell(0).textContent = name;
@@ -447,28 +547,28 @@
   </script>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="../vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
+  <script src="../js/demo/datatables-demo.js"></script>
 
   <script>
     $('#inputGroupFile01').on('change', function() {
@@ -482,18 +582,56 @@
       window.history.replaceState(null, null, window.location.href);
     }
   </script>
+  <script>
+
+$(document).ready(function() {
+      $('.editbtn').on('click', function(){
+
+        $('#updateFacultyModel').modal('show');
+
+        $tr = $(this).closest("tr");
+        var data = $tr.children("td").map(function(){
+          return $(this).text();
+        }).get();
+
+        var imgSrc = $tr.children("td:eq(0)").find("img").attr("src");
+
+      console.log(data);
+      $('#firstName').val(data[2]);
+      $('#lastName').val(data[3]);
+      // $('#course').val(data[4]);
+      // $('#department').val(data[5]);
+      // $('#class').val(data[6]);
+      $('#rollNo').val(data[7]);
+      // $('#profile').val(imgSrc);
+      $('#studentContactNo').val(data[8]);
+      $('#parentContactNo').val(data[9]);
+      $('#username').val(data[10]);
+      $('#password').val(data[11]);
+      $('#student_id').val(data[1]);
+       
+      console.log(data[5]);
+        
+   console.log(data[5]);
+
+      
+      });
+    });
+  </script>
 </body>
 
 </html>
 <?php
-include "db_connect.php";
+include "../db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   // Assuming your form has fields named accordingly
 
   $first_name = $_POST["firstName"];
   $last_name = $_POST["lastName"];
+  $course = $_POST["course"];
   $department = $_POST["department"];
+  $class = $_POST["class"];
   $position = $_POST["position"];
   $username = $_POST["username"];
   $password = $_POST["password"];
@@ -551,7 +689,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
 
   // Handle image upload
-  $targetDirectory = "students\profile"; // Change this to your desired upload directory
+  $targetDirectory = "../students\profile"; // Change this to your desired upload directory
   $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -596,18 +734,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   // Continue with your existing code...
 
   // Use prepared statement to prevent SQL injection
-  $stmt_insert_profile = $conn->prepare("INSERT INTO teachers (FirstName, LastName, Department, Position, Username, Password, ProfilePhoto) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  $stmt_insert_profile = $conn->prepare("INSERT INTO teachers (FirstName, LastName, course, Class, Department, Position, Username, Password, ProfilePhoto) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
 
   if (!$stmt_insert_profile) {
     die("Error in preparing the statement: " . $conn->error);
   }
 
   // Bind parameters
-  $stmt_insert_profile->bind_param("sssssss", $first_name, $last_name, $department, $position, $username, $password, $targetFile);
+  $stmt_insert_profile->bind_param("sssssssss", $first_name, $last_name, $course ,$class,$department, $position, $username, $password, $targetFile);
 
   // Execute the query
   if ($stmt_insert_profile->execute()) {
-    echo '<script>alert("Student Added.")
+    echo '<script>alert("Teacher Added.")
       if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );
       }

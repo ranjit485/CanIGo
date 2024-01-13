@@ -1,6 +1,6 @@
 <?php
         session_start();
-        if(isset($_SESSION["hod_username"])==true) {
+        if(isset($_SESSION["teacher_username"])==true) {
           echo'<script>alert("You are already logged in");</script>';
           header('Location: home.php');
         }
@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>HOD Login</title>
+  <title>Teacher Login</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.svg" />
@@ -71,7 +71,7 @@
               </div>
               <div class="single-input">
                 <label for="signup-password">Password</label>
-                <input type="password" id="signup-password" name="password" placeholder="Enter password">
+                <input type="password" id="signup-password" name="password" placeholder="Enter Password">
               </div>
               <div class="signup-button mb-25">
                 <button type="submit" name="submit" class="button button-lg radius-10 btn-block">Login</button>
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $userName = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM hods WHERE Username = ?";
+    $sql = "SELECT * FROM teachers WHERE Username = ?";
     $stmt = mysqli_prepare($conn, $sql);
 
     // Bind parameters
@@ -118,8 +118,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     // Check if a user was found and verify the password
     if ($user && $password === $user["Password"]) {
-        $_SESSION["hod_username"] = $userName;        
-        header("Location:home.php");
+        $_SESSION["teacher_username"] = $userName;        
+        header("Location: home.php");
         exit;
     } else {
         // Invalid username or password

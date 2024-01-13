@@ -1,0 +1,5 @@
+This query get the todays leaves along with the student leves based on hod id
+
+SELECT * FROM leaves INNER JOIN students ON leaves.StudentID = students.StudentID WHERE leaves.HODID = 2 AND DATE(leaves.DateTime) = CURDATE();
+
+

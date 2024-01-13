@@ -55,35 +55,7 @@
                 <a class="navbar-brand" href="index.php">
                   <img src="images/logo.png" alt="Logo" />
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                  data-target="#navbarSupportedContent5" aria-controls="navbarSupportedContent5" aria-expanded="false"
-                  aria-label="Toggle navigation">
-                  <span class="toggler-icon"></span>
-                  <span class="toggler-icon"></span>
-                  <span class="toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent5">
-                  <ul id="nav5" class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#0">One</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="student_dashbord.html">two</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="hod_dasbord.html">three</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#0">four</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#0">five</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#0">six</a>
-                    </li>
-                  </ul>
-                </div>
+                
 
               </nav>
 
@@ -97,20 +69,20 @@
     </header>
 
 
-    <div class="hero-section hero-style-3 img-bg" style="background-image: url('assets/img/hero/hero-3/hero-bg.svg');">
+    <div class="hero-section hero-style-3 img-bg" >
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-8 col-lg-8">
             <div class="hero-content-wrapper">
               <div class="content">
-                <h2 class="mb-30">Say Goodbye to Leave Hassles with <span class="mb-30" style="color:blue;">AITRC's
+                <h2 class="mb-30"><span class="mb-30" style="color:blue;">AITRC's
                   </span>Smart System</h2>
                 <p class="mb-40">"Experience the future of leave management at AITRC.Say goodbye to paperwork and hello
                   to convenience. Join us in making leave management effortless."</p>
                 <div class="buttons">
-                  <a href="student_login.php" class="button button-lg radius-3">STUDENT</a>
-                  <a href="hod_login.php" class="button button-lg radius-3">HOD</a>
-                  <a href="teacher_login.php" class="button button-lg radius-3">TEACHER</a>
+                  <a href="student\login.php" class="button button-lg radius-3">STUDENT</a>
+                  <a href="hod\login.php" class="button button-lg radius-3">HOD</a>
+                  <a href="teacher\login.php" class="button button-lg radius-3">TEACHER</a>
                 </div>
               </div>
               <div class="image">
@@ -160,10 +132,6 @@
     });
 
   </script>
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854"
-    integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg=="
-    data-cf-beacon='{"rayId":"8165afc02dff1221","version":"2023.8.0","r":1,"token":"9a6015d415bb4773a0bff22543062d3b","si":100}'
-    crossorigin="anonymous"></script>
 </body>
 
 </html>

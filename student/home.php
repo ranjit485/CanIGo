@@ -1,17 +1,14 @@
 <?php
 session_start();
-if (isset($_SESSION["username"]) == false) {
-  header("location:index.php");
+if (isset($_SESSION["student_username"]) == false) {
+  header("location:../index.php");
 }
 
-?>
 
-<?php
+include "../db_connect.php";
 
-  include "db_connect.php";
-  
 // echo $username;
-$username = $_SESSION["username"];
+$username = $_SESSION["student_username"];
 $sql_data_display = "SELECT * FROM `students` WHERE `Username` = \"$username\";";
 
 $result_data = $conn->query($sql_data_display);
@@ -25,6 +22,7 @@ if ($result_data->num_rows > 0) {
     $_SESSION["student_id"] = $row['StudentID'];
     $_SESSION['student_firstname'] = $row['FirstName'];
     $_SESSION['student_lastname'] = $row['LastName'];
+    $_SESSION['student_course'] = $row['course'];
     $_SESSION['student_department'] = $row['Department'];
     $_SESSION['student_class'] = $row['Class'];
     $_SESSION['student_mo'] = $row['StudentContactNo'];
@@ -36,39 +34,85 @@ if ($result_data->num_rows > 0) {
   echo "error or no results";
 }
 
-// Close the connection
-$conn->close();
-  $student_id = $_SESSION["student_id"];
 
-  //  Retrieve the count of all Approved leaves for a specific student:
-  $approved_leave_count = "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $student_id AND (`TeacherApprovalStatus` = 'Approved' OR `HODApprovalStatus` = 'Approved')";
+$id = $_SESSION["student_id"];
+$student_department = $_SESSION["student_department"];
+$student_course = $_SESSION["student_course"];
+$student_class = $_SESSION['student_class'];
 
-  $pending_leave_count = "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $student_id AND (`TeacherApprovalStatus` = 'pending' OR `HODApprovalStatus` = 'pending')";
-  
-  //  Retrieve the count of all  leaves for a specific student:
-  $all_leave_count = "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $student_id"; 
 
-  function getCount($query) {
-    include "db_connect.php";
-    $result = $conn->query($query);
-    if ($result) {
-      $count = $result->fetch_assoc()['count'];
-      return $count;
-    } else {
-      return $conn->error;
-    }  
+$hod_data_display = "SELECT * FROM `hods` WHERE `course` = '$student_course' AND `Department` = '$student_department'";
+
+$result_data = $conn->query($hod_data_display);
+
+if ($result_data->num_rows > 0) {
+
+  // output data of each row  
+  while ($row = $result_data->fetch_assoc()) {
+
+    $_SESSION["hod_id"] = $row['HODID'];
+    $_SESSION["hod_firstname"] = $row['FirstName'];
+    $_SESSION["hod_lastname"] = $row['LastName'];
+
   }
+} else {
+  echo "error or no results for hod";
+}
 
-  function countMonth($month){
-    return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND MONTH(`DateTime`) = $month";
+
+$teacher_data_display = "SELECT * FROM `teachers` WHERE `course` = '$student_course' AND `Department` = '$student_department' AND `Class` = '$student_class'";
+
+$result_data = $conn->query($teacher_data_display);
+
+if ($result_data->num_rows > 0) {
+
+  // output data of each row  
+  while ($row = $result_data->fetch_assoc()) {
+
+    $_SESSION["teacher_id"] = $row['TeacherID'];
+    $_SESSION["teacher_firstname"] = $row['FirstName'];
+    $_SESSION["teacher_lastname"] = $row['LastName'];
+    $_SESSION["teacher_class"] = $row['LastName'];
+
   }
+} else {
+  echo "error or no results for Teacher";
+}
 
-  function countYear($year){
-    return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND YEAR(`DateTime`) = $year";
+//  Retrieve the count of all Approved leaves for a specific student:
+$approved_leave_count = "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $id AND (`TeacherApprovalStatus` = 'Approved' OR `HODApprovalStatus` = 'Approved')";
+
+$pending_leave_count = "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $id AND (`TeacherApprovalStatus` = 'pending' OR `HODApprovalStatus` = 'pending')";
+
+//  Retrieve the count of all  leaves for a specific student:
+$all_leave_count = "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $id";
+
+function getCount($query)
+{
+  include "../db_connect.php";
+  $result = $conn->query($query);
+  if ($result) {
+    $count = $result->fetch_assoc()['count'];
+    return $count;
+  } else {
+    return $conn->error;
   }
+}
 
-  // echo getCount(countMonth(1));
-  // echo getCount(countYear(2023));
+function countMonth($month)
+{
+  $id = $_SESSION["student_id"];
+  return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $id AND MONTH(`DateTime`) = $month";
+}
+
+function countYear($year)
+{
+  $id = $_SESSION["student_id"];
+  return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = $id AND YEAR(`DateTime`) = $year";
+}
+
+// echo getCount(countMonth(1));
+// echo getCount(countYear(2023));
 
 // set date and time
 $date = date("Y-m-d");
@@ -100,17 +144,17 @@ $day = date("l");
   <title>Student Dashboard</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- --------------------- -->
 
   <!-- --------------------- -->
 
   <!-- Custom styles for this template -->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style type="text/css">
     /* Chart.js */
     @keyframes chartjs-render-animation {
@@ -161,7 +205,6 @@ $day = date("l");
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -282,32 +325,31 @@ $day = date("l");
               <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                   <?php
-                  echo $_SESSION["username"]; // Check the username specifically
+                  echo $_SESSION["student_firstname"]; // Check the username specifically
 
                   ?>
                 </span>
-                <img class="img-profile rounded-circle" src="<?php echo $_SESSION["ProfilePhoto"]?>"
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" data-toggle="modal" data-target="#profileModal">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
+                <img class="img-profile rounded-circle" src="../<?php echo $_SESSION["ProfilePhoto"] ?>" /> 
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" data-toggle="modal" data-target="#profileModal">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
             </li>
 
           </ul>
@@ -435,12 +477,11 @@ $day = date("l");
 
           <div class="row">
 
-            <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Todays Leaves <?php echo' Date '. date("Y-m-d") .'' ?></h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Todays Leaves <?php echo ' Date ' . date("Y-m-d") . '' ?></h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -461,31 +502,31 @@ $day = date("l");
 
                     <?php
 
-                    $todays_leaves ="SELECT * FROM leaves WHERE StudentID = $student_id AND DATE(DateTime) = CURDATE()";
-                    $approved_leaves ="SELECT * FROM leaves WHERE StudentID = $student_id AND DATE(DateTime) = CURDATE()";
-                    $pending_leaves ="SELECT * FROM leaves WHERE StudentID = $student_id AND DATE(DateTime) = CURDATE()";
-                    $all_leaves ="SELECT * FROM leaves WHERE StudentID = $student_id";
+                    $todays_leaves = "SELECT * FROM leaves WHERE StudentID = $id AND DATE(DateTime) = CURDATE()";
+                    $approved_leaves = "SELECT * FROM leaves WHERE StudentID = $id AND DATE(DateTime) = CURDATE()";
+                    $pending_leaves = "SELECT * FROM leaves WHERE StudentID = $id AND DATE(DateTime) = CURDATE()";
+                    $all_leaves = "SELECT * FROM leaves WHERE StudentID = $id";
 
-                    function  getTodaysLeaves($query){
-                      include "db_connect.php";
+                    function  getTodaysLeaves($query)
+                    {
+                      include "../db_connect.php";
 
-                      $student_username = $_SESSION["student_username"];
-                      $student_id = $_SESSION["student_id"];
-                      $username = $_SESSION["username"];
-                        
+                      $id = $_SESSION["student_id"];
+                      $username = $_SESSION["student_username"];
+
                       // echo $student_id;
 
-  
+
                       // $sql_data_display = "SELECT * FROM leaves WHERE StudentID = $student_id AND DATE(DateTime) = $date" ;
-                      $sql_data_display = "$query" ;
-  
+                      $sql_data_display = "$query";
+
                       $result_data = $conn->query($sql_data_display);
-  
+
                       if ($result_data->num_rows > 0) {
-  
+
                         // output data of each row  
                         while ($row = $result_data->fetch_assoc()) {
-                              echo'
+                          echo '
                               <!-- Earnings (Monthly) Card Example -->
                               <div class="col-xl-3 col-md-6 mb-4">
                                 <div class="card  shadow h-100 py-2">
@@ -493,11 +534,11 @@ $day = date("l");
                                     <div class="row no-gutters align-items-center">
                                       <div class="col mr-2">
                                         <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
-                                        '. $row["LeaveType"] . '
+                                        ' . $row["LeaveType"] . '
                                         </div>
                                         <div class="mb-0 font-weight-bold text-gray-800">
-                                           <span class="badge rounded-pill badge-success mt-1">'. $row["HODApprovalStatus"] .'</span>
-                                           <span class="badge rounded-pill badge-success">'. $row["TeacherApprovalStatus"] .'</span>
+                                           <span class="badge rounded-pill badge-success mt-1">H ' . $row["HODApprovalStatus"] . '</span>
+                                           <span class="badge rounded-pill badge-success">T ' . $row["TeacherApprovalStatus"] . '</span>
                                         </div>
                                       </div>
                                       <div class="col-auto m-2">
@@ -511,12 +552,11 @@ $day = date("l");
                       } else {
                         echo "error or no results";
                       }
-                      
-                    // Close the connection
-                    $conn->close();
 
+                      // Close the connection
+                      $conn->close();
                     }
-                    
+
                     getTodaysLeaves($todays_leaves);
 
                     ?>
@@ -580,15 +620,14 @@ $day = date("l");
                       </tfoot>
                       <tbody>
                         <?php
-                        include "db_connect.php";
+                        include "../db_connect.php";
 
-                        $student_username = $_SESSION["student_username"];
-                        $student_id = $_SESSION["student_id"];
-                        $username = $_SESSION["username"];
+                        $username = $_SESSION["student_username"];
+                        $id = $_SESSION["student_id"];
 
 
                         //Retrieve all leaves for a specific student:
-                        $sql_data_display = "SELECT * FROM Leaves WHERE StudentID = $student_id";
+                        $sql_data_display = "SELECT * FROM Leaves WHERE StudentID = $id";
 
                         $result_data = $conn->query($sql_data_display);
 
@@ -694,168 +733,31 @@ $day = date("l");
       </div>
     </div>
   </div>
-<script>
-alert("You have been logged");
-</script>
-
   <?php include "leave_form.php" ?>
-  <?php include "student_profile.php" ?>
+  <?php include "profile.php" ?>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="../vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
-  <script>
+  <script src="../js/demo/datatables-demo.js"></script>
+  <?php include "leave_chart.php" ?>
 
-    // Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
-
-function number_format(number, decimals, dec_point, thousands_sep) {
-  // *     example: number_format(1234.56, 2, ',', ' ');
-  // *     return: '1 234,56'
-  number = (number + '').replace(',', '').replace(' ', '');
-  var n = !isFinite(+number) ? 0 : +number,
-    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-    s = '',
-    toFixedFix = function(n, prec) {
-      var k = Math.pow(10, prec);
-      return '' + Math.round(n * k) / k;
-    };
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-  }
-  if ((s[1] || '').length < prec) {
-    s[1] = s[1] || '';
-    s[1] += new Array(prec - s[1].length + 1).join('0');
-  }
-  return s.join(dec);
-}
-
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-      label: "Leaves",
-      lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [<?php echo getCount(countMonth(1))?>,
-      <?php echo getCount(countMonth(2))?>,
-      <?php echo getCount(countMonth(3))?>,
-      <?php echo getCount(countMonth(4))?>,
-      <?php echo getCount(countMonth(5))?>,
-      <?php echo getCount(countMonth(6))?>, 
-      <?php echo getCount(countMonth(7))?>,
-      <?php echo getCount(countMonth(8))?>,
-      <?php echo getCount(countMonth(9))?>,
-      <?php echo getCount(countMonth(10))?>,
-      <?php echo getCount(countMonth(11))?>,
-      <?php echo getCount(countMonth(12))?>,
-      ],
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'date'
-        },
-        gridLines: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          maxTicksLimit: 9
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          maxTicksLimit: 7,
-          padding: 10,
-          // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return 'L' + number_format(value);
-          }
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
-        }
-      }],
-    },
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      titleMarginBottom: 10,
-      titleFontColor: '#6e707e',
-      titleFontSize: 14,
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      intersect: false,
-      mode: 'index',
-      caretPadding: 10,
-      callbacks: {
-        label: function(tooltipItem, chart) {
-          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
-        }
-      }
-    }
-  }
-});
-
-  </script> 
-    <script src="student/chart.js"></script>
 </body>
 
 </html>
