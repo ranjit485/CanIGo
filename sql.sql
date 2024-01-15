@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `guards` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `ProfilePhoto` mediumtext NOT NULL,
   `FirstName` varchar(250) NOT NULL,
   `LastName` varchar(250) NOT NULL,
