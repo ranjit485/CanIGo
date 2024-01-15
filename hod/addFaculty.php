@@ -351,6 +351,7 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
+                <input type="text" name="teacherID" class="form-control" id="teacherID" placeholder="teacherid" required>
                 <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter first name" required>
               </div>
               <div class="form-group col-md-6">
@@ -552,6 +553,7 @@ if (isset($_SESSION["hod_username"]) == false) {
           const myObj = JSON.parse(this.responseText);
           console.log(myObj);
           
+          document.getElementById("teacherID").value = myObj[index].TeacherID;
           document.getElementById("firstName").value = myObj[index].FirstName;
           document.getElementById("lastName").value = myObj[index].LastName;
           document.getElementById("username").value = myObj[index].Username;

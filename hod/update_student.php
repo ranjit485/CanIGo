@@ -16,14 +16,14 @@ include "../db_connect.php";
   
   
   // Handle image upload
-  $targetDirectory = "../student/profile/"; // Change this to your desired upload directory
+  $targetDirectory = "../profiles/students/"; // Change this to your desired upload directory
   $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
   
    echo $targetFile;
 
-   if($targetFile == '../profiles/student/'){
+   if($targetFile == '../profiles/students/'){
     echo 'img empty';
       
     // Use prepared statement to prevent SQL injection
