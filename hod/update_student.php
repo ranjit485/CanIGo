@@ -1,13 +1,13 @@
 
 <?php
 include "../db_connect.php";
-
+  session_start();
   $student_id = $_POST["student_id"];
   $first_name = $_POST["first_name"];
   $last_name = $_POST["last_name"];
-  $department = $_POST["department"];
+  $department = $_SESSION["hod_department"];
   $class = $_POST["class"];
-  $course = $_POST["course"];
+  $course = $_SESSION["hod_course"];
   $student_mo = $_POST["student_mo"];
   $parent_mo = $_POST["parent_mo"];
   $username = $_POST["username"];
@@ -16,14 +16,14 @@ include "../db_connect.php";
   
   
   // Handle image upload
-  $targetDirectory = "student/profile/"; // Change this to your desired upload directory
+  $targetDirectory = "../student/profile/"; // Change this to your desired upload directory
   $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
   
    echo $targetFile;
 
-   if($targetFile == 'student/profile/'){
+   if($targetFile == '../profiles/student/'){
     echo 'img empty';
       
     // Use prepared statement to prevent SQL injection

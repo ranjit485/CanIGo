@@ -94,7 +94,7 @@ if (isset($_SESSION["hod_username"]) == false) {
       <!-- Main Content -->
       <div id="content">
 
-                <!-- Topbar -->
+        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Topbar Navbar -->
@@ -103,8 +103,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile m-2 rounded-circle" src="<?php echo "../$_SESSION[ProfilePhoto]" ?>">
                 <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["hod_firstname"] ?></span>
 
@@ -135,7 +134,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
         </nav>
         <!-- End of Topbar -->
-        
+
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -158,7 +157,7 @@ if (isset($_SESSION["hod_username"]) == false) {
           </div>
 
           <!-- Content Row -->
-        
+
 
           <div class="row">
 
@@ -216,47 +215,6 @@ if (isset($_SESSION["hod_username"]) == false) {
                         </tr>
                       </tfoot>
                       <tbody>
-                        <?php
-                        include "../db_connect.php";
-
-                        $sql_data_display = "SELECT * FROM Teachers";
-
-                        $result_data = $conn->query($sql_data_display);
-
-                        if ($result_data->num_rows > 0) {
-
-                          // output data of each row  
-                          while ($row = $result_data->fetch_assoc()) {
-                            $img = $row["ProfilePhoto"];
-                            echo "<tr> 
-                                          <td>
-                                            <img src='$img' class='img-fluid rounded ' style='height:50px;width:50px'>
-                                          </td> 
-                                          <td>" . $row["FirstName"] . " " . $row["LastName"] . " </td> 
-                                          <td>" . $row["course"] . "</td> 
-                                          <td>" . $row["Department"] . "</td> 
-                                          <td>" . $row["Class"] . "</td> 
-                                          <td>" . $row["Position"] . "</td> 
-                                          <td>" . $row["Username"] . "</td> 
-                                          </td> 
-                                          <td>" . $row["Password"] . "</td>  
-                                          <td>
-                                            <button class='btn btn-success'>
-                                              <i class='fas fa-edit text-white-300 editbtn' title='edit'></i>
-                                            </button>
-                                         </td>
-                                         <td>
-                                            <button class='btn btn-success'>
-                                              <i class='fas fa-trash text-white-300 deletebtn' title='delete'></i>
-                                            </button>
-                                          </td>                                          
-                                        </tr>";
-                          }
-                        } else {
-                          echo "error or no results";
-                        }
-                        $conn->close();
-                        ?>
                       </tbody>
                     </table>
                   </div>
@@ -325,18 +283,6 @@ if (isset($_SESSION["hod_username"]) == false) {
               </div>
             </div>
             <div class="form-group">
-              <label for="class">Course</label>
-              <select name="course" class="form-control" required>
-                <option value="" selected disabled>Select Course</option>
-                <option value="Diploma">Diploma</option>
-                <option value="BE TECH">BE TECH</option>
-                <option value="DFARM">D FARM</option>
-                <option value="B FARM">B FARM</option>
-                <option value="ITI">ITI</option>
-                <!-- Add more options as needed -->
-              </select>
-            </div>
-            <div class="form-group">
               <label for="position">Position</label>
               <select name="position" class="form-control" required>
                 <option value="" selected disabled>Select position</option>
@@ -357,20 +303,6 @@ if (isset($_SESSION["hod_username"]) == false) {
               </select>
             </div>
             <div class="form-group">
-              <label for="department">Department</label>
-              <select name="department" class="form-control" required>
-                <option value="" selected disabled>Select department</option>
-                <option value="Computer Science">Computer Engineering</option>
-                <option value="Electrical Engineering">Electrical Engineering</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="AI Engineering">AI Engineering</option>
-                <option value="Eletronic Engineering">Eletronic Engineering</option>
-                <option value="VELDER">VELDER</option>
-                <option value="FITTER">VELDER</option>
-                <!-- Add more options as needed -->
-              </select>
-            </div>
-            <div class="form-group">
               <label for="studentContactNo">Profile photo</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -384,11 +316,11 @@ if (isset($_SESSION["hod_username"]) == false) {
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" name="username" id="username" placeholder="Enter username" required>
+              <input type="text" class="form-control" name="username" placeholder="Enter username" required>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
+              <input type="password" name="password" class="form-control" placeholder="Enter password" required>
             </div>
           </div>
           <div class="modal-footer">
@@ -409,12 +341,12 @@ if (isset($_SESSION["hod_username"]) == false) {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Faculty</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Update Faculty</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
+        <form action="update-teacher.php" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -425,18 +357,6 @@ if (isset($_SESSION["hod_username"]) == false) {
                 <label for="lastName">Last Name</label>
                 <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Enter last name" required>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="class">Course</label>
-              <select id="class" name="course" class="form-control" required>
-                <option value="" selected disabled>Select Course</option>
-                <option value="Diploma">Diploma</option>
-                <option value="BE TECH">BE TECH</option>
-                <option value="DFARM">D FARM</option>
-                <option value="B FARM">B FARM</option>
-                <option value="ITI">ITI</option>
-                <!-- Add more options as needed -->
-              </select>
             </div>
             <div class="form-group">
               <label for="position">Position</label>
@@ -459,27 +379,13 @@ if (isset($_SESSION["hod_username"]) == false) {
               </select>
             </div>
             <div class="form-group">
-              <label for="department">Department</label>
-              <select id="department" name="department" class="form-control" required>
-                <option value="" selected disabled>Select department</option>
-                <option value="Computer Science">Computer Engineering</option>
-                <option value="Electrical Engineering">Electrical Engineering</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="AI Engineering">AI Engineering</option>
-                <option value="Eletronic Engineering">Eletronic Engineering</option>
-                <option value="VELDER">VELDER</option>
-                <option value="FITTER">VELDER</option>
-                <!-- Add more options as needed -->
-              </select>
-            </div>
-            <div class="form-group">
               <label for="studentContactNo">Profile photo</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile08" aria-describedby="inputGroupFileAddon08">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
               </div>
@@ -495,7 +401,7 @@ if (isset($_SESSION["hod_username"]) == false) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="submit" class="btn btn-primary" onclick="addFac()">Add Teacher</button>
+            <button type="submit" name="submit" class="btn btn-primary" onclick="addFac()">Update Teacher</button>
           </div>
         </form>
       </div>
@@ -504,9 +410,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
   <!-- -----------------Modal End update faculty form---------------------- -->
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -524,26 +428,75 @@ if (isset($_SESSION["hod_username"]) == false) {
     </div>
   </div>
 
+  <!-- delete teacher modal-->
+  <div class="modal fade" id="deleteTeacher" tabindex="-1" role="dialog" aria-labelledby="deleteTeacher" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteTeacher">Delete Teacher</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this teacher?<span id="teacher_name"></span></div>
+        <div class="modal-footer">
+        <form action='delete_teacher.php' method='post'>
+          <input type='hidden' name='teacherId' value='' id='teacherId'>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit" name="submit">Delete</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- delete teacher modal end-->
   <script>
-    function addFac() {
-      let name = document.getElementById("teacherName").value;
-      let year = document.getElementById("teacherYear").value;
-      let dept = document.getElementById("teacherDept").value;
-      let username = document.getElementById("teacherUsername").value;
-      let password = document.getElementById("teacherPassword").value;
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function() {
+      const myObj = JSON.parse(this.responseText);
+      console.log(myObj);
 
-      var tableBody = document.querySelector('#dataTable tbody');
+      for (var i = 0; i < myObj.length; i++) {
+        var tableBody = document.querySelector('#dataTable tbody');
+        var row = tableBody.insertRow();
+        var pf = myObj[i].ProfilePhoto;
+        
+        var image = document.createElement('img');
+        image.src = myObj[i].ProfilePhoto;
+        image.className ="img-fluid rounded";
+        image.style.height='50px';
+        image.style.width='50px';
 
-      var row = tableBody.insertRow();
-      var cell1 = row.insertCell(0).textContent = name;
-      var cell2 = row.insertCell(1).textContent = year;
-      var cell3 = row.insertCell(2).textContent = dept;
-      var cell3 = row.insertCell(3).textContent = username;
-      var cell3 = row.insertCell(4).textContent = password;
-      var cell3 = row.insertCell(5).innerHTML = `<td>
-                                                             <i class="fas fa-sign-out-alt fa-2x fa-fw mr-2 text-gray-400"></i>
-                                                         </td>`;
+        var deleteBtn = document.createElement('button');
+        deleteBtn.className ="btn btn-success deletebtn";
+        deleteBtn.id = i;
+        var trashIcon = document.createElement('i');
+        trashIcon.className = "fas fa-trash text-white-300";
+        deleteBtn.appendChild(trashIcon);
+
+        var editBtn = document.createElement('button');
+        editBtn.className ="btn btn-success editbtn";
+        editBtn.id=i;
+        var editIcon = document.createElement('i');
+        editIcon.className = "fas fa-edit text-white-300";
+        editBtn.appendChild(editIcon);
+
+        var cell0 = row.insertCell(0).appendChild(image);
+        var cell1 = row.insertCell(1).textContent = myObj[i].FirstName + ' ' +  myObj[i].LastName;
+        var cell2 = row.insertCell(2).textContent = myObj[i].course;
+        var cell3 = row.insertCell(3).textContent = myObj[i].Department;
+        var cell4 = row.insertCell(4).textContent = myObj[i].Class;
+        var cell5 = row.insertCell(5).textContent = myObj[i].Position;
+        var cell6 = row.insertCell(6).textContent = myObj[i].Username;
+        var cell7 = row.insertCell(7).textContent = myObj[i].Password;
+        var cell8 = row.insertCell(8).appendChild(editBtn);
+        var cell9 = row.insertCell(9).appendChild(deleteBtn);
+
+      }
     }
+    
+    xmlhttp.open("POST", "getTeachers.php");
+    xmlhttp.send()
   </script>
 
   <!-- Bootstrap core JavaScript-->
@@ -571,6 +524,47 @@ if (isset($_SESSION["hod_username"]) == false) {
   <script src="../js/demo/datatables-demo.js"></script>
 
   <script>
+    $(document).ready(function() {
+
+      $('.deletebtn').on('click', function() {
+        var index = this.id;
+        $('#deleteTeacher').modal('show');
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj);
+
+          document.getElementById("teacherId").value = myObj[index].TeacherID;
+          document.getElementById("teacher_name").innerHTML = myObj[index].FirstName + " "+myObj[index].LastName;
+        }
+        xmlhttp.open("POST", "getTeachers.php");
+        xmlhttp.send();
+
+      });
+      
+      $('.editbtn').on('click', function() {
+        var index = this.id;
+        $('#updateFacultyModel').modal('show');
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj);
+          
+          document.getElementById("firstName").value = myObj[index].FirstName;
+          document.getElementById("lastName").value = myObj[index].LastName;
+          document.getElementById("username").value = myObj[index].Username;
+          document.getElementById("password").value = myObj[index].Password;
+        }
+        xmlhttp.open("POST", "getTeachers.php");
+        xmlhttp.send();
+
+      });
+
+    });
+
+
     $('#inputGroupFile01').on('change', function() {
       //get the file name
       var fileName = $(this).val();
@@ -581,42 +575,17 @@ if (isset($_SESSION["hod_username"]) == false) {
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
     }
-  </script>
-  <script>
 
-$(document).ready(function() {
-      $('.editbtn').on('click', function(){
+    $('#inputGroupFile08').on('change', function() {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+    })
 
-        $('#updateFacultyModel').modal('show');
-
-        $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function(){
-          return $(this).text();
-        }).get();
-
-        var imgSrc = $tr.children("td:eq(0)").find("img").attr("src");
-
-      console.log(data);
-      $('#firstName').val(data[2]);
-      $('#lastName').val(data[3]);
-      // $('#course').val(data[4]);
-      // $('#department').val(data[5]);
-      // $('#class').val(data[6]);
-      $('#rollNo').val(data[7]);
-      // $('#profile').val(imgSrc);
-      $('#studentContactNo').val(data[8]);
-      $('#parentContactNo').val(data[9]);
-      $('#username').val(data[10]);
-      $('#password').val(data[11]);
-      $('#student_id').val(data[1]);
-       
-      console.log(data[5]);
-        
-   console.log(data[5]);
-
-      
-      });
-    });
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
   </script>
 </body>
 
@@ -629,13 +598,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
   $first_name = $_POST["firstName"];
   $last_name = $_POST["lastName"];
-  $course = $_POST["course"];
-  $department = $_POST["department"];
+  $course = $_SESSION["hod_course"];
+  $department = $_SESSION["hod_department"];
   $class = $_POST["class"];
   $position = $_POST["position"];
   $username = $_POST["username"];
   $password = $_POST["password"];
-  echo $_POST["firstName"];
+  
+
+  echo $department;
+  echo $class;
+  echo $course;
+  echo $username;
+  echo $password;
 
   function alert($message)
   {
@@ -655,13 +630,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   $last_name = trim($_POST["lastName"]);
   if (empty($last_name)) {
     alert("Last name is required.");
-    exit;
-  }
-
-  // Validate department
-  $department = trim($_POST["department"]);
-  if (empty($department)) {
-    alert("Department is required.");
     exit;
   }
 
@@ -689,7 +657,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
 
   // Handle image upload
-  $targetDirectory = "../students\profile"; // Change this to your desired upload directory
+  $targetDirectory = "../profiles/teachers/"; // Change this to your desired upload directory
   $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -741,7 +709,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   }
 
   // Bind parameters
-  $stmt_insert_profile->bind_param("sssssssss", $first_name, $last_name, $course ,$class,$department, $position, $username, $password, $targetFile);
+  $stmt_insert_profile->bind_param("sssssssss", $first_name, $last_name, $course, $class, $department, $position, $username, $password, $targetFile);
 
   // Execute the query
   if ($stmt_insert_profile->execute()) {

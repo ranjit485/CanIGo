@@ -528,7 +528,6 @@ $day = date("l");
               </div>
             </div>
           </div>
-
           <div class="row">
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
@@ -893,6 +892,7 @@ $day = date("l");
           xmlhttp.open("POST", "thisMonthLeaves.php");
           xmlhttp.send();
         });
+
 
       });
             

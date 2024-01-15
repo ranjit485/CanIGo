@@ -566,6 +566,7 @@ $day = date("l");
               </div>
             </div>
           </div>
+          
 
           <div class="row">
 
@@ -601,8 +602,8 @@ $day = date("l");
                           <th>When</th>
                           <th>From</th>
                           <th>To</th>
-                          <th>By Teacher</th>
                           <th>By HOD</th>
+                          <th>By Teacher</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -613,8 +614,8 @@ $day = date("l");
                           <th>When</th>
                           <th>From</th>
                           <th>To</th>
-                          <th>By Teacher</th>
                           <th>By HOD</th>
+                          <th>By Teacher</th>
                           <th>Action</th>
                         </tr>
                       </tfoot>

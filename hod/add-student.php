@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION["hod_username"]) == false) {
-  header("location:index.php");
+  header("location:../index.php");
 }
 
 ?>
@@ -131,62 +131,6 @@ if (isset($_SESSION["hod_username"]) == false) {
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        First Year</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        Second Year</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Third Year
-                      </div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php ?></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100 py-2 bg-light" style="border:none">
                 <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addFacultyModel">
@@ -278,7 +222,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                             $img = $row["ProfilePhoto"];
                             echo "<tr> 
                                           <td>
-                                          <img src='../$img' class='img-fluid rounded ' style='height:50px;width:50px'>
+                                          <img src='$img' class='img-fluid rounded ' style='height:50px;width:50px'>
                                           </td> 
                                           <td>" . $row["StudentID"] . "</td> 
 
@@ -306,7 +250,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                                             </button>
                                           </td>
                                           <td>
-                                            <button class='btn btn-success .deletebtn'>
+                                            <button class='btn btn-success deletebtn'>
                                               <i class='fas fa-trash text-white-300' title='delete'></i>
                                             </button>
                                           </td>                                          
@@ -375,9 +319,31 @@ if (isset($_SESSION["hod_username"]) == false) {
     </div>
   </div>
 
+  <!-- delete student modal-->
+  <div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudent" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteStudent">Delete Student</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this student?<span id="stu_name"></span></div>
+        <div class="modal-footer">
+        <form action='delete_student.php' method='post'>
+          <input type='hidden' name='studentId' value='' id='studentId'>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit" name="submit">Delete</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- delete student modal end-->
+
   <!-- -----------------Modal Start add student form---------------------- -->
 
-  <!-- Modal -->
   <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -397,32 +363,6 @@ if (isset($_SESSION["hod_username"]) == false) {
               <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
                 <input type="text" name="last_name" class="form-control" placeholder="Enter last name" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="class">Course</label>
-                <select  name="course" class="form-control" required>
-                  <option value="" selected disabled>Select class</option>
-                  <option value="Diploma">Diploma</option>
-                  <option value="BE">BE</option>
-                  <option value="DFarm">DFarm</option>
-                  <option value="BFarm">BFarm</option>
-                  <!-- Add more options as needed -->
-                </select>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="department">Department</label>
-                <select name="department" class="form-control" required>
-                  <option value="" selected disabled>Select department</option>
-                  <option value="Computer Science">Computer Engineering</option>
-                  <option value="Electrical Engineering">Electrical Engineering</option>
-                  <option value="Mechanical Engineering">Mechanical Engineering</option>
-                  <option value="AI Engineering">AI Engineering</option>
-                  <option value="Eletronic Engineering">Eletronic Engineering</option>
-                  <option value="Eletronic Engineering">Civil Engineering</option>
-                  <!-- Add more options as needed -->
-                </select>
               </div>
             </div>
             <div class="form-row">
@@ -506,32 +446,6 @@ if (isset($_SESSION["hod_username"]) == false) {
               <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
                 <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter last name" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="class">Course</label>
-                <select id="course" name="course" class="form-control" required>
-                  <option value="" selected disabled>Select class</option>
-                  <option value="Diploma">Diploma</option>
-                  <option value="BE">BE</option>
-                  <option value="DFarm">DFarm</option>
-                  <option value="BFarm">BFarm</option>
-                  <!-- Add more options as needed -->
-                </select>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="department">Department</label>
-                <select name="department" class="form-control" id="department" data-mdb-filter="true" required>
-                  <option value="" selected disabled>Select department</option>
-                  <option value="Computer Science">Computer Engineering</option>
-                  <option value="Electrical Engineering">Electrical Engineering</option>
-                  <option value="Mechanical Engineering">Mechanical Engineering</option>
-                  <option value="AI Engineering">AI Engineering</option>
-                  <option value="Eletronic Engineering">Eletronic Engineering</option>
-                  <option value="Eletronic Engineering">Civil Engineering</option>
-                  <!-- Add more options as needed -->
-                </select>
               </div>
             </div>
             <div class="form-row">
@@ -686,6 +600,18 @@ if (isset($_SESSION["hod_username"]) == false) {
 
       
       });
+      
+      $('.deletebtn').on('click', function(){            
+        $tr = $(this).closest("tr");
+        var data = $tr.children("td").map(function(){
+          return $(this).text();
+        }).get();
+
+        $('#deleteStudent').modal('show');
+        $('#studentId').val(data[1]);
+        document.getElementById('stu_name').innerHTML = " " + data[2] + ' ' + data[3];
+      });
+
     });
       
   </script>
@@ -700,9 +626,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
   $first_name = $_POST["first_name"];
   $last_name = $_POST["last_name"];
-  $department = $_POST["department"];
+  $department = $_SESSION["hod_department"];
   $class = $_POST["class"];
-  $course = $_POST["course"];
+  $course = $_SESSION["hod_course"];
   $student_mo = $_POST["student_mo"];
   $parent_mo = $_POST["parent_mo"];
   $username = $_POST["username"];
@@ -732,7 +658,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   }
 
   // Validate course
-  $course = trim($_POST["course"]);
+  $course = trim($_SESSION["hod_course"]);
   if (empty($course)) {
     alert("Course is required.");
     exit;
@@ -775,7 +701,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
 
   // Handle image upload
-  $targetDirectory = "student/profile/"; // Change this to your desired upload directory
+  $targetDirectory = "../profiles/students/"; // Change this to your desired upload directory
   $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));

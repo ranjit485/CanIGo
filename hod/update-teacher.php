@@ -1,75 +1,48 @@
+
 <?php
 include "../db_connect.php";
+session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-  // Assuming your form has fields named accordingly
+$first_name = $_POST["firstName"];
+$last_name = $_POST["lastName"];
+$course = $_SESSION["hod_course"];
+$department = $_SESSION["hod_department"];
+$class = $_POST["class"];
+$position = $_POST["position"];
+$username = $_POST["username"];
+$password = $_POST["password"];
 
-  $first_name = $_POST["firstName"];
-  $last_name = $_POST["lastName"];
-  $course = $_POST["course"];
-  $department = $_POST["department"];
-  $class = $_POST["class"];
-  $position = $_POST["position"];
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-  echo $_POST["firstName"];
 
-  function alert($message)
-  {
-    echo '<script>
-    alert("' . $message . '");
-    </script>';
+// Handle image upload
+$targetDirectory = "../student/profile/"; // Change this to your desired upload directory
+$targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+echo $targetFile;
+
+if ($targetFile == '../profiles/teachers/') {
+  echo 'img empty';
+
+  $stmt_insert_profile = $conn->prepare("UPDATE teachers
+    SET
+        FirstName = ?,
+        LastName = ?,
+        course = ?,
+        Department = ?,
+        Class = ?,
+        Position = ?,
+        Username = ?,
+        Password = ?
+    WHERE
+        StudentID = ?;
+    ");
+
+  if (!$stmt_insert_profile) {
+    die("Error in preparing the statement: " . $conn->error);
   }
-
-  // Validate first name
-  $first_name = trim($_POST["firstName"]);
-  if (empty($first_name)) {
-    alert("First name is required.");
-    exit;
-  }
-
-  // Validate last name
-  $last_name = trim($_POST["lastName"]);
-  if (empty($last_name)) {
-    alert("Last name is required.");
-    exit;
-  }
-
-  // Validate department
-  $department = trim($_POST["department"]);
-  if (empty($department)) {
-    alert("Department is required.");
-    exit;
-  }
-
-  // Validate class
-  $position = trim($_POST["position"]);
-  if (empty($position)) {
-    alert("Class is required.");
-    exit;
-  }
-
-
-  // Validate username
-  $username = trim($_POST["username"]);
-  if (empty($username) || !preg_match("/^\d{10}$/", $username)) {
-    alert("Username must be a 10-digit number.");
-    exit;
-  }
-
-  // Validate password (you may want to add more complex checks)
-  $password = trim($_POST["password"]);
-  if (empty($password)) {
-    alert("Password is required.");
-    exit;
-  }
-
-
-  // Handle image upload
-  $targetDirectory = "../students\profile"; // Change this to your desired upload directory
-  $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+  $stmt_insert_profile->bind_param("sssssssssss", $first_name, $last_name, $course, $department, $class,$position,$username, $password,$teacher_id);
+} else {
 
   // Check if the image file is a actual image or fake image
   if (isset($_POST["submit"])) {
@@ -96,42 +69,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     $uploadOk = 0;
   }
 
-  // Check if $uploadOk is set to 0 by an error
-  if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-  } else {
-    // If everything is OK, try to upload file
-    if (move_uploaded_file($_FILES["profile"]["tmp_name"], $targetFile)) {
-      alert("The file " . basename($_FILES["profile"]["name"]) . " has been uploaded.");
-    } else {
-      alert("Sorry, there was an error uploading your file.");
-    }
-  }
-
-  // Continue with your existing code...
-
-  // Use prepared statement to prevent SQL injection
-  $stmt_insert_profile = $conn->prepare("INSERT INTO teachers (FirstName, LastName, course, Class, Department, Position, Username, Password, ProfilePhoto) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)");
+  $stmt_insert_profile = $conn->prepare("UPDATE students
+      SET
+        FirstName = ?,
+        LastName = ?,
+        course = ?,
+        Department = ?,
+        Class = ?,
+        Position = ?,
+        Username = ?,
+        Password = ?
+        ProfilePhoto = ?,
+      WHERE
+          TeacherID = ?;
+      ");
 
   if (!$stmt_insert_profile) {
     die("Error in preparing the statement: " . $conn->error);
   }
 
   // Bind parameters
-  $stmt_insert_profile->bind_param("sssssssss", $first_name, $last_name, $course ,$class,$department, $position, $username, $password, $targetFile);
+  $stmt_insert_profile->bind_param("ssssssssssss", $first_name, $last_name, $course, $department, $class, $position, $username, $password, $targetFile, $teacher_id);
+}
 
-  // Execute the query
-  if ($stmt_insert_profile->execute()) {
-    echo '<script>alert("Teacher Added.")
+
+
+// Execute the query
+if ($stmt_insert_profile->execute()) {
+  echo '<script>alert("Student updated.")
       if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );
       }
       </script>';
-  } else {
-    die("Error: " . $stmt_insert_profile->error);
-  }
-
-  // Close the statement
-  $stmt_insert_profile->close();
+  // header("location:add-student.php");
+} else {
+  die("Error: " . $stmt_insert_profile->error);
 }
+
+// Close the statement
+$stmt_insert_profile->close();
+
+
 ?>
