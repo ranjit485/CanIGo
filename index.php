@@ -83,6 +83,7 @@
                   <a href="student\login.php" class="button button-lg radius-3">STUDENT</a>
                   <a href="hod\login.php" class="button button-lg radius-3">HOD</a>
                   <a href="teacher\login.php" class="button button-lg radius-3">TEACHER</a>
+                  <a href="guard\login.php" class="button button-lg radius-3">GUARD</a>
                 </div>
               </div>
               <div class="image">
