@@ -235,7 +235,7 @@ $day = date("l");
           <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100 py-2 bg-light" style="border: none;">
-                <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addTeacherModel">
+                <button class="card-body btn btn-primary" data-toggle="modal" data-target="#addHodModel">
                   ADD NEW
                 </button>
               </div>
@@ -293,7 +293,7 @@ $day = date("l");
                                         <div class="mb-0 font-weight-bold text-gray-800">
                                            <span class="badge rounded-pill badge-success mt-1">' . $row["Department"] . '</span>
 
-                                           <button class="btn editBtn" type="submit" name="viewleave">
+                                           <button class="btn editBtn" type="submit" id="' . $i . '">
                                               <i class="fas fa-edit fa-1x text-success-300"></i>
                                            </button>
 
@@ -303,7 +303,7 @@ $day = date("l");
                                         </div>
                                       </div>
                                       <div class="col-auto m-2">
-                                        <button class="btn viewLeave" type="submit" name="viewleave" id="' . $i . '">
+                                        <button class="btn viewHOD" type="submit" name="viewHOD" id="' . $i . '">
                                           <i class="fas fa-eye fa-2x text-gray-300 "></i>
                                         </button>
                                       </div>
@@ -380,8 +380,11 @@ $day = date("l");
       </div>
     </div>
   </div>
-  <!-- view  leave modal-->
-  <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveModal" aria-hidden="true">
+
+
+  <!-- view  HOD modal-->
+
+  <div class="modal fade" id="viewHOD" tabindex="-1" role="dialog" aria-labelledby="viewHOD" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -418,29 +421,54 @@ $day = date("l");
                       <p class="text-muted mb-0" id="password"></p>
                     </div>
                   </div>
-                    <input type="hidden" name="hod_id" value="" id="hodID">
-                    <input type="hidden" name="leave_id" value="" id="leaveID">
+                  <input type="hidden" name="hod_id" value="" id="hodID">
+                  <input type="hidden" name="leave_id" value="" id="leaveID">
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- ----------------------------------- -->
-      
-  <!-- -----------------Modal HOD  form---------------------- -->
+    </div>
+  </div>
+  <!-- View hod modal end -->
+
+  <!-- delete HOD modal-->
+  <div class="modal fade" id="deleteHodModal" tabindex="-1" role="dialog" aria-labelledby="deleteHodModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteHOD">Delete HOD</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this HOD?<span id="hod_name"></span></div>
+        <div class="modal-footer">
+        <form action='delete_hod.php' method='post'>
+          <input type='hidden'  name='hodId' value='' id='hod_id'>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" type="submit" name="submit">Delete</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- delete HOD modal end-->
+
+  <!-- -----------------Modal HOD ADD form---------------------- -->
 
   <!-- Modal -->
   <div class="modal fade" id="addHodModel" tabindex="-1" role="dialog" aria-labelledby="addHodModel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addHodModel">Add New Faculty</h5>
+          <h5 class="modal-title" id="addHodModel">Add New HOD</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
+        <form action="add-hod.php" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -453,23 +481,12 @@ $day = date("l");
               </div>
             </div>
             <div class="form-group">
-              <label for="position">Position</label>
-              <select name="position" class="form-control" required>
-                <option value="" selected disabled>Select position</option>
-                <option value="Class Teacher">Class Teacher</option>
-                <option value="Lab Assistant">Lab Assistant</option>
-                <option value="Helper">Helper</option>
-                <!-- Add more options as needed -->
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="class">Class</label>
-              <select name="class" class="form-control" required>
-                <option value="" selected disabled>Select Class</option>
-                <option value="FY">FY</option>
-                <option value="SY">SY</option>
-                <option value="TY">TY</option>
-                <!-- Add more options as needed -->
+              <label for="department">Department</label>
+              <select id="position" name="department" class="form-control" required>
+                <option value="" selected disabled>Select Department</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="AI">AI</option>
               </select>
             </div>
             <div class="form-group">
@@ -479,7 +496,7 @@ $day = date("l");
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required>
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
               </div>
@@ -495,7 +512,7 @@ $day = date("l");
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" name="submit" class="btn btn-primary" onclick="addFac()">Add Teacher</button>
+            <button type="submit" name="submit" class="btn btn-primary" onclick="addFac()">Add HOD</button>
           </div>
         </form>
       </div>
@@ -516,7 +533,7 @@ $day = date("l");
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="update-teacher.php" method="post" enctype="multipart/form-data">
+        <form action="update-hod.php" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -570,91 +587,136 @@ $day = date("l");
   </div>
 
   <!-- -----------------Modal End update faculty form---------------------- -->
-      <?php include "profile.php" ?>
 
-      <!-- Bootstrap core JavaScript-->
-      <script src="../vendor/jquery/jquery.min.js"></script>
-      <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <?php include "profile.php" ?>
 
-      <!-- Core plugin JavaScript-->
-      <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      <!-- Custom scripts for all pages-->
-      <script src="../js/sb-admin-2.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-      <!-- Page level plugins -->
-      <script src="../vendor/chart.js/Chart.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="../js/sb-admin-2.min.js"></script>
 
-      <!-- Page level custom scripts -->
-      <script src="../js/demo/chart-area-demo.js"></script>
-      <script src="../js/demo/chart-pie-demo.js"></script>
+  <!-- Page level plugins -->
+  <script src="../vendor/chart.js/Chart.min.js"></script>
 
-      <!-- Page level plugins -->
-      <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-      <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- Page level custom scripts -->
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
 
-      <!-- Page level custom scripts -->
-      <script src="../js/demo/datatables-demo.js"></script>
+  <!-- Page level plugins -->
+  <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-      <script>
-        $(document).ready(function() {
+  <!-- Page level custom scripts -->
+  <script src="../js/demo/datatables-demo.js"></script>
 
-          $('.viewLeave').on('click', function() {
-            $('#leaveModal').modal('show');
-            // alert(this.id);
-            var index = this.id;
+  <script>
+    $('#inputGroupFile01').on('change', function() {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+    })
+    $('#inputGroupFile08').on('change', function() {
+      //get the file name
+      var fileName = $(this).val();
+      //replace the "Choose a file" label
+      $(this).next('.custom-file-label').html(fileName);
+    })
 
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function() {
-              const myObj = JSON.parse(this.responseText);
-              console.log(myObj);
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
+  <script>
+    $(document).ready(function() {
 
-              document.getElementById("hodID").value = myObj[index].HODID;
-              
-              document.getElementById("hodID").value = myObj[index].HODID;
-              document.getElementById("hodProfile").src = myObj[index].ProfilePhoto;
-              document.getElementById("hodName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
-              document.getElementById("hodDepartment").innerHTML = myObj[index].Department;
+      $('.viewHOD').on('click', function() {
+        $('#viewHOD').modal('show');
+        // alert(this.id);
+        var index = this.id;
 
-              document.getElementById("leaveID").value = myObj[index].LeaveID;
-              document.getElementById("username").innerHTML = myObj[index].Username;
-              document.getElementById("password").innerHTML = myObj[index].Password;
-            }
-            xmlhttp.open("POST", "get_hods.php");
-            xmlhttp.send();
-          });
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj);
 
-          $('.editBtn').on('click', function() {
-            $('#updateHodModel').modal('show');
-            // alert(this.id);
-            var index = this.id;
+          document.getElementById("hodID").value = myObj[index].HODID;
 
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onload = function() {
-              const myObj = JSON.parse(this.responseText);
-              console.log(myObj[index]);
+          document.getElementById("hodID").value = myObj[index].HODID;
+          document.getElementById("hodProfile").src = myObj[index].ProfilePhoto;
+          document.getElementById("hodName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
+          document.getElementById("hodDepartment").innerHTML = myObj[index].Department;
 
-              document.getElementById("hod_id").value = myObj[index].HODID;
-              document.getElementById("hod_username").value = myObj[index].Username;
-              document.getElementById("hod_password").value = myObj[index].Password;
-              document.getElementById("hod_firstname").value = myObj[index].FirstName;
-              document.getElementById("hod_lastname").value = myObj[index].LastName;
+          document.getElementById("leaveID").value = myObj[index].LeaveID;
+          document.getElementById("username").innerHTML = myObj[index].Username;
+          document.getElementById("password").innerHTML = myObj[index].Password;
+        }
+        xmlhttp.open("POST", "get_hods.php");
+        xmlhttp.send();
+      });
 
-            }
-            xmlhttp.open("POST", "thisMonthLeaves.php");
-            xmlhttp.send();
-          });
+      $('.editBtn').on('click', function() {
+        $('#updateHodModel').modal('show');
+        // alert(this.id);
+        var index = this.id;
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj[index]);
+
+          document.getElementById("hod_id").value = myObj[index].HODID;
+          document.getElementById("hod_username").value = myObj[index].Username;
+          document.getElementById("hod_password").value = myObj[index].Password;
+          document.getElementById("hod_firstname").value = myObj[index].FirstName;
+          document.getElementById("hod_lastname").value = myObj[index].LastName;
+
+        }
+        xmlhttp.open("POST", "get_hods.php");
+        xmlhttp.send();
+      });
+
+      $('.deleteBtn').on('click', function() {
+        $('#deleteHodModal').modal('show');
+        // alert(this.id);
+        var index = this.id;
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj[index].HODID);
+          
+          document.getElementById("hod_id").value = myObj[index].HODID;
+          document.getElementById("hod_name").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
+
+        }
+        xmlhttp.open("POST", "get_hods.php");
+        xmlhttp.send();
+      });
 
 
-        });
+    });
 
-        $(document).ready(function() {
-          $('.viewProfile').on('click', function() {
-            $('#profileModal').modal('show');
-            // alert(this.id);
-          });
-        });
-      </script>
+    $(document).ready(function() {
+      $('.addHodModel').on('click', function() {
+        $('#addHodModel').modal('show');
+        // alert(this.id);
+      });
+    });
+
+    $(document).ready(function() {
+      $('.viewProfile').on('click', function() {
+        $('#profileModal').modal('show');
+        // alert(this.id);
+      });
+    });
+  
+  </script>
 
 </body>
 
