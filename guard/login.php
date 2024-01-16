@@ -1,9 +1,9 @@
 <?php
-        session_start();
-        if(isset($_SESSION["username"])==true) {
-          echo'<script>alert("You are already logged in");</script>';
-          header('Location: student_home.php');
-        }
+          session_start();
+          if(isset($_SESSION["guard_username"])==true) {
+            echo'<script>alert("You are already logged in");</script>';
+            header('Location: home.php');
+          }
 ?>
 </html>
 <!DOCTYPE html>
