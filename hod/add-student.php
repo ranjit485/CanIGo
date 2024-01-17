@@ -101,17 +101,17 @@ if (isset($_SESSION["hod_username"]) == false) {
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="student_dashbord.php">
+                <a class="dropdown-item viewProfile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="student_dashbord.php">
+                <a class="dropdown-item" href="add-student.php">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                  Add Student
                 </a>
-                <a class="dropdown-item" href="student_dashbord.php">
+                <a class="dropdown-item" href="addFaculty.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Add Teacher
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
@@ -149,19 +149,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">All students</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Action</a>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Something else
-                        here</a>
-                    </div>
-                  </div>
+                  
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">

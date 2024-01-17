@@ -45,72 +45,6 @@ $conn->close();
 
 $admin_id = $_SESSION["admin_id"];
 $admin_course = $_SESSION["admin_course"];
-$admin_department = $_SESSION["admin_department"];
-
-
-
-function getAllCount()
-{
-
-  $admin_id = $_SESSION["admin_id"];
-  $admin_course = $_SESSION["admin_course"];
-  $admin_department = $_SESSION["admin_department"];
-
-  include "../db_connect.php";
-  $result = $conn->query("SELECT COUNT(*) as count FROM students WHERE `course` = '$admin_course' AND `Department` = '$admin_department' ");
-  if ($result) {
-    $count = $result->fetch_assoc()['count'];
-    return $count;
-  } else {
-    return $conn->error;
-  }
-}
-
-// echo getAllCount();
-function getCount($class)
-{
-
-  $admin_id = $_SESSION["admin_id"];
-  $admin_course = $_SESSION["admin_course"];
-  $admin_department = $_SESSION["admin_department"];
-
-  include "../db_connect.php";
-  $result = $conn->query("SELECT COUNT(*) as count FROM students WHERE `course` = '$admin_course' AND `Department` = '$admin_department' AND `Class` = '$class' ");
-  if ($result) {
-    $count = $result->fetch_assoc()['count'];
-    return $count;
-  } else {
-    return $conn->error;
-  }
-}
-
-// echo getCount("SY");
-// echo getCount("FY");
-// echo getCount("TY");
-
-function countMonth($month)
-{
-  return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND MONTH(`DateTime`) = $month";
-}
-
-function countYear($year)
-{
-  return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND YEAR(`DateTime`) = $year";
-}
-
-// echo getCount(countMonth(1));
-// echo getCount(countYear(2023));
-
-// set date and time
-$date = date("Y-m-d");
-$day = date("l");
-// echo $month = date('F', strtotime($date));
-
-// $time = ;
-// echo "Today is " . date("Y/m/d") . "<br>";
-// echo "Today is " . date("Y.m.d") . "<br>";
-// echo "Today is " . date("Y-m-d") . "<br>";
-// echo "Today is " . date("l");
 
 
 
@@ -288,7 +222,7 @@ $day = date("l");
                                     <div class="row no-gutters align-items-center">
                                       <div class="col mr-2">
                                         <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
-                                        ' . $row["FirstName"] . $row["LastName"] .  '
+                                        ' . $row["FirstName"] .' '. $row["LastName"] .  '
                                         </div>
                                         <div class="mb-0 font-weight-bold text-gray-800">
                                            <span class="badge rounded-pill badge-success mt-1">' . $row["Department"] . '</span>
@@ -342,16 +276,7 @@ $day = date("l");
   </div>
   <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright © can I GO 2023</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
-
+ 
   </div>
   <?php include "profile.php" ?>
 

@@ -13,7 +13,12 @@ $position = $_POST["position"];
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-
+ function alert($message)
+  {
+    echo '<script>
+    alert("' . $message . '");
+    </script>';
+  }
 // Handle image upload
 $targetDirectory = "../profiles/teachers/"; // Change this to your desired upload directory
 $targetFile = $targetDirectory . basename($_FILES["profile"]["name"]);
@@ -70,6 +75,17 @@ if ($targetFile == '../profiles/teachers/') {
     $uploadOk = 0;
   }
 
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+  } else {
+    // If everything is OK, try to upload file
+    if (move_uploaded_file($_FILES["profile"]["tmp_name"], $targetFile)) {
+      alert("The file " . basename($_FILES["profile"]["name"]) . " has been uploaded.");
+    } else {
+      alert("Sorry, there was an error uploading your file.");
+    }
+  }
   $stmt_insert_profile = $conn->prepare("UPDATE teachers
       SET
         FirstName = ?,
@@ -101,7 +117,7 @@ if ($stmt_insert_profile->execute()) {
           window.history.replaceState( null, null, window.location.href );
       }
       </script>';
-  // header("location:addFaculty.php");
+  header("location:addFaculty.php");
 } else {
   die("Error: " . $stmt_insert_profile->error);
 }
