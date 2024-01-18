@@ -110,17 +110,17 @@ if (isset($_SESSION["hod_username"]) == false) {
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="student_dashbord.php">
+                <a class="dropdown-item viewProfile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="student_dashbord.php">
+                <a class="dropdown-item" href="add-student.php">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                  Add Student
                 </a>
-                <a class="dropdown-item" href="student_dashbord.php">
+                <a class="dropdown-item" href="addFaculty.php">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Add Teacher
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
@@ -237,15 +237,6 @@ if (isset($_SESSION["hod_username"]) == false) {
   </div>
   <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright © can I GO 2023</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
@@ -608,11 +599,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   $password = $_POST["password"];
   
 
-  echo $department;
-  echo $class;
-  echo $course;
-  echo $username;
-  echo $password;
 
   function alert($message)
   {

@@ -45,6 +45,7 @@ $conn->close();
 
 $admin_id = $_SESSION["admin_id"];
 $admin_course = $_SESSION["admin_course"];
+<<<<<<< HEAD
 
 
 
@@ -110,6 +111,8 @@ $day = date("l");
 // echo "Today is " . date("Y.m.d") . "<br>";
 // echo "Today is " . date("Y-m-d") . "<br>";
 // echo "Today is " . date("l");
+=======
+>>>>>>> b7d88ea97a9de0549d9923ca0d37cd87da4c0600
 
 
 
@@ -287,7 +290,7 @@ $day = date("l");
                                     <div class="row no-gutters align-items-center">
                                       <div class="col mr-2">
                                         <div class="text-xl font-weight-bold text-primary text-uppercase mb-1">
-                                        ' . $row["FirstName"] . $row["LastName"] .  '
+                                        ' . $row["FirstName"] .' '. $row["LastName"] .  '
                                         </div>
                                         <div class="mb-0 font-weight-bold text-gray-800">
                                            <span class="badge rounded-pill badge-success mt-1">' . $row["Department"] . '</span>
@@ -341,16 +344,7 @@ $day = date("l");
   </div>
   <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright © can I GO 2023</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
-
+ 
   </div>
   <?php include "profile.php" ?>
 
