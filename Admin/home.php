@@ -45,7 +45,6 @@ $conn->close();
 
 $admin_id = $_SESSION["admin_id"];
 $admin_course = $_SESSION["admin_course"];
-$admin_department = $_SESSION["admin_department"];
 
 
 
