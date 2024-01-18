@@ -95,7 +95,7 @@ if (isset($_SESSION["hod_username"]) == false) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile m-2 rounded-circle" src="<?php echo "../$_SESSION[ProfilePhoto]" ?>">
+                <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
                 <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["hod_firstname"] ?></span>
 
               </a>
@@ -425,7 +425,7 @@ if (isset($_SESSION["hod_username"]) == false) {
         </div>
         <div class="modal-body">
           <form action="update_student.php" method="post" enctype="multipart/form-data">               
-             <input type="text" name="student_id" class="form-control" id="student_id">
+             <input type="hidden" name="student_id" class="form-control" id="student_id">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>

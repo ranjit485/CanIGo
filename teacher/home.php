@@ -83,7 +83,7 @@ function getCount($class)
 
 function countMonth($month)
 {
-  return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND MONTH(`DateTime`) = $month";
+  return "SELECT COUNT(*) as count FROM leaves WHERE `TeacherID` = $teacher_id AND MONTH(`DateTime`) = $month";
 }
 
 function countYear($year)
@@ -202,7 +202,7 @@ $day = date("l");
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile m-2 rounded-circle" src="<?php echo "../$_SESSION[ProfilePhoto]" ?>">
+                <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
                 <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["teacher_firstname"] ?></span>
 
               </a>

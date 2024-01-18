@@ -63,7 +63,7 @@ if ($targetFile == '../profiles/teachers/') {
   }
 
   // Check file size
-  if ($_FILES["profile"]["size"] > 500000) {
+  if ($_FILES["profile"]["size"] > 500000000) {
     alert("Sorry, your file is too large.");
     $uploadOk = 0;
   }

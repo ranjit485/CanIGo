@@ -14,7 +14,7 @@
         <div class="card" style="border-radius: 15px;">
           <div class="card-body text-center">
             <div class="mt-3 mb-4">
-              <img src="<?php echo"../$_SESSION[ProfilePhoto]" ?>"
+              <img src="<?php echo"$_SESSION[ProfilePhoto]" ?>"
                 class="rounded img-fluid" style="width: 100px;" />
             </div>
             <h4 class="mb-2"><?php echo"".$_SESSION["teacher_firstname"]." ".$_SESSION["teacher_lastname"].""; ?></h4>

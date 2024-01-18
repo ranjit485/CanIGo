@@ -68,7 +68,7 @@ if ($targetFile == '../profiles/students/') {
   }
 
   // Check file size
-  if ($_FILES["profile"]["size"] > 500000) {
+  if ($_FILES["profile"]["size"] > 500000000) {
     alert("Sorry, your file is too large.");
     $uploadOk = 0;
   }
@@ -126,7 +126,7 @@ if ($stmt_insert_profile->execute()) {
           window.history.replaceState( null, null, window.location.href );
       }
       </script>';
-  header("location:add-student.php");
+  // header("location:add-student.php");
 
 } else {
   die("Error: " . $stmt_insert_profile->error);

@@ -240,20 +240,17 @@ $day = date("l");
               </div>
             </li>
 
-            
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+              <a class="nav-link dropdown-toggle"  id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="ml-2 img-profile rounded-circle" src="<?php echo $_SESSION["ProfilePhoto"] ?>" /> 
+
+                <span class="ml-2 d-none d-lg-inline text-gray-600 small">
                   <?php
                   echo $_SESSION["student_firstname"]; // Check the username specifically
 
                   ?>
                 </span>
-                <img class="img-profile rounded-circle" src="../<?php echo $_SESSION["ProfilePhoto"] ?>" /> 
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                   <a class="dropdown-item" data-toggle="modal" data-target="#profileModal">
@@ -459,7 +456,7 @@ $day = date("l");
                                         </div>
                                       </div>
                                       <div class="col-auto m-2">
-                                        <i class="fas fa-eye fa-2x text-gray-300"></i>
+                                        <i class="fas fa-eye fa-2x text-gray-300 viewLeave" id='. $row["LeaveID"] .'></i>
                                      </div>
                                     </div>
                                   </div>
@@ -521,7 +518,6 @@ $day = date("l");
                           <th>To</th>
                           <th>By HOD</th>
                           <th>By Teacher</th>
-                          <th>Action</th>
                         </tr>
                       </thead>
                       <tfoot>
@@ -533,7 +529,6 @@ $day = date("l");
                           <th>To</th>
                           <th>By HOD</th>
                           <th>By Teacher</th>
-                          <th>Action</th>
                         </tr>
                       </tfoot>
                       <tbody>
@@ -566,16 +561,7 @@ $day = date("l");
 
                                     <td>" . $row["HODApprovalStatus"] . "</td>
 
-                                    <td>" . $row["TeacherApprovalStatus"] . "</td>
-                                    <td>
-                                      <button class='btn btn-success'>
-                                        <i class='fas fa-edit text-white-300' title='Approve'></i>
-                                      </button>
-                                                    
-                                      <button class='btn btn-success'>
-                                        <i class='fas fa-trash text-white-300' title='Approve'></i>
-                                      </button>
-                                    </td>                                          
+                                    <td>" . $row["TeacherApprovalStatus"] . "</td>                                        
                                   </tr>";
                           }
                         } else {
@@ -602,9 +588,7 @@ $day = date("l");
         <!-- Pie Chart -->
 
       </div>
-
       <!-- Content Row -->
-
 
     </div>
     <!-- /.container-fluid -->
@@ -632,7 +616,99 @@ $day = date("l");
   <a class="scroll-to-top rounded" href="http://127.0.0.1:5501/student_dashbord.html#page-top" style="display: none;">
     <i class="fas fa-angle-up"></i>
   </a>
+<!-- view leave start -->
 
+  <!-- view  leave modal-->
+  <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="profileModal">Leave</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <div class="mt-3 mb-4">
+                <img src="#" class="rounded img-fluid" id="studentProfile" style="width: 100px; height:120px" />
+              </div>
+              <h4 class="mb-2" id="studentName"></h4>
+              <p class="text-muted mb-4" id="studentDepartment"></p>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Type</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0" id="leaveType"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="mb-0">Reson</p>
+                    </div>
+                    <div class="col-sm-8">
+                      <p class="text-muted mb-0" id="leaveReson"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">From</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0" id="leaveStart"></p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">To</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0" id="leaveEnd"></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0 m-2"> Teacher</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0" id="teacherStatus"></p>
+                  </div>
+                </div>
+                <form action="hod_approve.php" method="post">
+                  <input type="hidden" name="student_id" value="" id="studentId">
+                  <input type="hidden" name="leave_id" value="" id="leaveID">
+
+                  <table class="table" id="dataTable" width="100%" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <button class='btn btn-success' type="submit" name="action" value="approve">Approve</button>
+                        </td>
+                        <td>
+                          <button class='btn btn-success' type="submit" name="action" value="reject">Reject</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ----------------------------------- -->
+<!-- view leave End -->
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -675,7 +751,51 @@ $day = date("l");
   <!-- Page level custom scripts -->
   <script src="../js/demo/datatables-demo.js"></script>
   <?php include "leave_chart.php" ?>
+  <script>      
 
+$(document).ready(function() {
+        
+        $('.viewLeave').on('click', function() {
+          $('#leaveModal').modal('show');
+          // alert(this.id);
+          var index = this.id;
+
+          const xmlhttp = new XMLHttpRequest();
+          xmlhttp.onload = function() {
+            const myObj = JSON.parse(this.responseText);
+            console.log(myObj);
+            // console.log(myObj[index].StudentID);
+            // console.log(myObj[index].LeaveID);
+            // console.log(myObj[index].LeaveType);
+            // console.log(myObj[index].Reason);
+            // console.log(myObj[index].StartDate);
+            // console.log(myObj[index].EndDate);
+            // console.log(myObj[index].TeacherApprovalStatus);
+            // console.log(myObj[index].HODApprovalStatus);
+
+            // console.log(myObj[index].ProfilePhoto);
+            // console.log(myObj[index].LastName);
+            // console.log(myObj[index].FirstName);
+            // console.log(myObj[index].Class);
+            // console.log(myObj[index].Department);
+
+            // document.getElementById("studentProfile").src = myObj[index].ProfilePhoto;
+            document.getElementById("studentName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
+            document.getElementById("studentDepartment").innerHTML = myObj[index].Class + " " + myObj[index].Department;
+
+            document.getElementById("leaveID").value = myObj[index].LeaveID;
+            document.getElementById("leaveType").innerHTML = myObj[index].LeaveType;
+            document.getElementById("leaveReson").innerHTML = myObj[index].Reason;
+            document.getElementById("leaveStart").innerHTML = myObj[index].StartDate;
+            document.getElementById("leaveEnd").innerHTML = myObj[index].EndDate;
+            document.getElementById("teacherStatus").innerHTML = myObj[index].TeacherApprovalStatus;
+          }
+          xmlhttp.open("POST", "todays_Leaves.php");
+          xmlhttp.send();
+        });
+
+      });
+</script>
 </body>
 
 </html>

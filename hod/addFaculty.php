@@ -104,7 +104,7 @@ if (isset($_SESSION["hod_username"]) == false) {
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile m-2 rounded-circle" src="<?php echo "../$_SESSION[ProfilePhoto]" ?>">
+                <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
                 <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["hod_firstname"] ?></span>
 
               </a>
@@ -342,7 +342,7 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" name="teacherID" class="form-control" id="teacherID" placeholder="teacherid" required>
+                <input type="hidden"  name="teacherID" class="form-control" id="teacherID" placeholder="teacherid" required>
                 <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Enter first name" required>
               </div>
               <div class="form-group col-md-6">
