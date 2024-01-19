@@ -437,7 +437,7 @@ $day = date("l");
                       $result_data = $conn->query($sql_data_display);
 
                       if ($result_data->num_rows > 0) {
-
+                        $i=0;
                         // output data of each row  
                         while ($row = $result_data->fetch_assoc()) {
                           echo '
@@ -456,12 +456,13 @@ $day = date("l");
                                         </div>
                                       </div>
                                       <div class="col-auto m-2">
-                                        <i class="fas fa-eye fa-2x text-gray-300 viewLeave" id='. $row["LeaveID"] .'></i>
+                                        <i class="fas fa-eye fa-2x text-gray-300 viewLeave" id='. $i .'></i>
                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>';
+                              $i=$i+1;
                         }
                       } else {
                         echo "error or no results";
@@ -608,6 +609,7 @@ $day = date("l");
 
   </div>
   <!-- End of Content Wrapper -->
+  <?php include "profile.php" ?>
 
   </div>
   <!-- End of Page Wrapper -->
@@ -632,9 +634,6 @@ $day = date("l");
 
           <div class="card" style="border-radius: 15px;">
             <div class="card-body text-center">
-              <div class="mt-3 mb-4">
-                <img src="#" class="rounded img-fluid" id="studentProfile" style="width: 100px; height:120px" />
-              </div>
               <h4 class="mb-2" id="studentName"></h4>
               <p class="text-muted mb-4" id="studentDepartment"></p>
               <div class="card mb-4">
@@ -644,7 +643,7 @@ $day = date("l");
                       <p class="mb-0">Type</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0" id="leaveType"></p>
+                      <p class="text-muted mb-0" id="leaveType">hrrr</p>
                     </div>
                   </div>
                   <hr>
@@ -684,29 +683,13 @@ $day = date("l");
                     <p class="text-muted mb-0" id="teacherStatus"></p>
                   </div>
                 </div>
-                <form action="hod_approve.php" method="post">
-                  <input type="hidden" name="student_id" value="" id="studentId">
-                  <input type="hidden" name="leave_id" value="" id="leaveID">
-
-                  <table class="table" id="dataTable" width="100%" cellspacing="0">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <button class='btn btn-success' type="submit" name="action" value="approve">Approve</button>
-                        </td>
-                        <td>
-                          <button class='btn btn-success' type="submit" name="action" value="reject">Reject</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </form>
-              </div>
+                </div>  
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
     <!-- ----------------------------------- -->
 <!-- view leave End -->
   <!-- Logout Modal-->
@@ -728,7 +711,6 @@ $day = date("l");
     </div>
   </div>
   <?php include "leave_form.php" ?>
-  <?php include "profile.php" ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -764,26 +746,12 @@ $(document).ready(function() {
           xmlhttp.onload = function() {
             const myObj = JSON.parse(this.responseText);
             console.log(myObj);
-            // console.log(myObj[index].StudentID);
-            // console.log(myObj[index].LeaveID);
-            // console.log(myObj[index].LeaveType);
-            // console.log(myObj[index].Reason);
-            // console.log(myObj[index].StartDate);
-            // console.log(myObj[index].EndDate);
-            // console.log(myObj[index].TeacherApprovalStatus);
-            // console.log(myObj[index].HODApprovalStatus);
-
-            // console.log(myObj[index].ProfilePhoto);
-            // console.log(myObj[index].LastName);
-            // console.log(myObj[index].FirstName);
-            // console.log(myObj[index].Class);
-            // console.log(myObj[index].Department);
-
+            console.log(myObj[0].Reason);
+   
             // document.getElementById("studentProfile").src = myObj[index].ProfilePhoto;
-            document.getElementById("studentName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
-            document.getElementById("studentDepartment").innerHTML = myObj[index].Class + " " + myObj[index].Department;
+            // document.getElementById("studentName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
+            // document.getElementById("studentDepartment").innerHTML = myObj[index].Class + " " + myObj[index].Department;
 
-            document.getElementById("leaveID").value = myObj[index].LeaveID;
             document.getElementById("leaveType").innerHTML = myObj[index].LeaveType;
             document.getElementById("leaveReson").innerHTML = myObj[index].Reason;
             document.getElementById("leaveStart").innerHTML = myObj[index].StartDate;

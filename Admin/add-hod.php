@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
   // Validate username
   $username = trim($_POST["username"]);
-  if (empty($username) || !preg_match("/^\d{10}$/", $username)) {
+  if (empty($username)) {
     alert("Username must be a 10-digit number.");
     exit;
   }

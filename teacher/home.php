@@ -231,8 +231,6 @@ $day = date("l");
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="http://127.0.0.1:5501/student_dashbord.html#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
@@ -721,7 +719,7 @@ $day = date("l");
             // console.log(myObj[index].Department);
 
             document.getElementById("studentId").value  = myObj[index].StudentID;
-            document.getElementById("studentProfile").src ="../"+myObj[index].ProfilePhoto;
+            document.getElementById("studentProfile").src =myObj[index].ProfilePhoto;
             document.getElementById("studentName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
             document.getElementById("studentDepartment").innerHTML = myObj[index].Class + " " + myObj[index].Department;
 

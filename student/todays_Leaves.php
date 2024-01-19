@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include "../db_connect.php";
 
-$id = $_SESSION["hod_id"];
+$id = $_SESSION["student_id"];
 
 
 // set date and time
@@ -17,7 +17,7 @@ $month = $dateElements[1];
 $day = $dateElements[2];
 
 // $stmt = $conn->prepare("SELECT * FROM leaves WHERE HODID = $id AND DATE(DateTime) = CURDATE()");
-$stmt = $conn->prepare("SELECT * FROM leaves INNER JOIN students ON leaves.StudentID = students.StudentID WHERE leaves.TeacherID = $id AND DATE(leaves.DateTime) = CURDATE();");
+$stmt = $conn->prepare("SELECT * FROM Leaves WHERE StudentID = $id AND DATE(leaves.DateTime) = CURDATE()");
 $stmt->execute();
 $result = $stmt->get_result();
 $outp = $result->fetch_all(MYSQLI_ASSOC);
