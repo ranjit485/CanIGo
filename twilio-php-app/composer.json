@@ -1,0 +1,17 @@
+{
+    "name": "ranjit/twilio-php-app",
+    "require": {
+        "twilio/sdk": "^7.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ranjit\\TwilioPhpApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ranjit485",
+            "email": "patilranjit485@gmail.com"
+        }
+    ]
+}
