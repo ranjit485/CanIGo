@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     // twillo mesage here ranjit
     
-    // this message is diliverd to the parents when  srudent request leave
+    // this message is diliverd to the parents when  student request leave
 
    $to_parents_marathi ='
    तुम्हाला कळवण्यासाठी ही अधिसूचना आहे की तुमचा पाल्य ' . $_SESSION['student_firstname'] . ' ने खालील तारखांसाठी रजेची विनंती सादर केली आहेः ' . $start_date . '  ते ' . $end_date . '.
