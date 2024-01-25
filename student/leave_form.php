@@ -70,6 +70,17 @@
   if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
   }
+
+// Date Time validation
+var currentDate = new Date();
+      var currentDateStr = currentDate.toISOString().slice(0, 16); // Format: YYYY-MM-DDTHH:mm
+
+      // Set min attribute for Upcoming Event to allow only future dates
+      document.getElementById("startDate").setAttribute("min", currentDateStr);
+
+      // Set max attribute for Birthday to allow only past dates
+      document.getElementById("endDate").setAttribute("min", currentDateStr);
+
 </script>
 <!-- -----------------Modal End Leave form---------------------- -->
 <?php
