@@ -172,6 +172,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                           <th>Password</th>
                           <th>Edit</th>
                           <th>Delete</th>
+                          <th>Report</th>
                         </tr>
                       </thead>
                       <tfoot>
@@ -190,6 +191,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                           <th>Password</th>
                           <th>Edit</th>
                           <th>Delete</th>
+                          <th>Report</th>
                         </tr>
                       </tfoot>
                       <tbody>
@@ -241,7 +243,12 @@ if (isset($_SESSION["hod_username"]) == false) {
                                             <button class='btn btn-success deletebtn'>
                                               <i class='fas fa-trash text-white-300' title='delete'></i>
                                             </button>
-                                          </td>                                          
+                                          </td> 
+                                          <td>
+                                            <button class='btn btn-success genrateReport'>
+                                              <i class='fas fa-chart-bar text-white-300' title='Genrate Report'></i>
+                                            </button>
+                                          </td>                                     
                                         </tr>";
                           }
                         } else {
@@ -513,6 +520,69 @@ if (isset($_SESSION["hod_username"]) == false) {
   </div>
 <!-- -------------------- Logout Modal  START ----------------------------------------->
 
+<!-- -------------------- Report Modal  START ----------------------------------------->
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Genrate Report</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <section class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div class="card card-style1 border-0">
+                    <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 mb-4 mb-lg-0">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="reportProfile">
+                            </div>
+                            <div class="col-lg-6 px-xl-10">
+                                <ul class="list-unstyled mb-1-9">
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Name</span> Name</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Department</span> Coach</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Class :</span> 10 Years</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Mobail No:</span> edith@mail.com</li>
+                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Parent Mo:</span> www.example.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div>
+                    <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+                    <p>Edith is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12 mb-4 mb-sm-5">
+                        <div class="mb-4 mb-sm-5">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="#">Print</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- -------------------- Report Modal  START ----------------------------------------->
+
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -599,6 +669,52 @@ if (isset($_SESSION["hod_username"]) == false) {
         $('#studentId').val(data[1]);
         document.getElementById('stu_name').innerHTML = " " + data[2] + ' ' + data[3];
       });
+      
+
+      $('.genrateReport').on('click', function () {
+  // Show Bootstrap modal
+  $('#reportModal').modal('show');
+
+  const $tr = $(this).closest("tr");
+  const data = $tr.children("td").map(function () {
+    return $(this).text();
+  }).get();
+  
+  // Create a FormData object to send data to the server
+  const formData = new FormData();
+  formData.append('studentId', data[1]);
+
+  console.log(data[1])
+  const xmlhttp = new XMLHttpRequest();
+  xmlhttp.onload = function () {
+    const myObj = JSON.parse(this.responseText);
+    console.log(myObj)
+  
+            console.log(myObj.StudentID);
+            console.log(myObj.LeaveID);
+            console.log(myObj.LeaveType);
+            console.log(myObj.Reason);
+      // Example: uncomment and complete as needed
+      // document.getElementById("studentId").value = myObj.StudentID;
+      // document.getElementById("studentProfile").src = myObj.ProfilePhoto;
+      // document.getElementById("studentName").innerHTML = myObj.FirstName + " " + myObj.LastName;
+      // document.getElementById("studentDepartment").innerHTML = myObj.Class + " " + myObj.Department;
+      // document.getElementById("leaveID").value = myObj.LeaveID;
+      // document.getElementById("leaveType").innerHTML = myObj.LeaveType;
+      // document.getElementById("leaveReson").innerHTML = myObj.Reason;
+      // document.getElementById("leaveStart").innerHTML = myObj.StartDate;
+      // document.getElementById("leaveEnd").innerHTML = myObj.EndDate;
+      // document.getElementById("teacherStatus").innerHTML = myObj.TeacherApprovalStatus;
+  };
+
+  xmlhttp.open("POST", "student_leaves.php");
+  // xmlhttp.send();
+
+  xmlhttp.send(formData);
+});
+
+
+      // 
 
     });
       
