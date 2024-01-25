@@ -411,8 +411,8 @@ $day = date("l");
                                         ' . $row["LeaveType"] . '
                                         </div>
                                         <div class="mb-0 font-weight-bold text-gray-800">
-                                           <span class="badge rounded-pill badge-success mt-1">' . $row["HODApprovalStatus"] . '</span>
-                                           <span class="badge rounded-pill badge-success">' . $row["TeacherApprovalStatus"] . '</span>
+                                           <span class="badge rounded-pill badge-success mt-1">H ' . $row["HODApprovalStatus"] . '</span>
+                                           <span class="badge rounded-pill badge-success">T ' . $row["TeacherApprovalStatus"] . '</span>
                                         </div>
                                       </div>
                                       <div class="col-auto m-2">

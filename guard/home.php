@@ -535,7 +535,7 @@ $day = date("l");
                         console.log(myObj[index].Department);
 
                         document.getElementById("studentId").value = myObj[index].StudentID;
-                        document.getElementById("studentProfile").src = "../" + myObj[index].ProfilePhoto;
+                        document.getElementById("studentProfile").src = myObj[index].ProfilePhoto;
                         document.getElementById("studentName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
                         document.getElementById("studentDepartment").innerHTML = myObj[index].Class + " " + myObj[index].Department;
 

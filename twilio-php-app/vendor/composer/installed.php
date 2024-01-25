@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'ranjit/twilio-php-app',
+        'name' => 'administrator/twilio-php-app',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'c782a5cf104d162091edae7d84c687ea2d68b2fc',
+        'reference' => '00cefdad98f3ed53f9db4467375abebf82d59eea',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'ranjit/twilio-php-app' => array(
+        'administrator/twilio-php-app' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'c782a5cf104d162091edae7d84c687ea2d68b2fc',
+            'reference' => '00cefdad98f3ed53f9db4467375abebf82d59eea',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

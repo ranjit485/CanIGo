@@ -4,16 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb02732af6e5c1136ef8abcae1e75d6ab
+class ComposerStaticInit0e681f8a791be5f48f5d2b7ddf5ad784
 {
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
             'Twilio\\' => 7,
         ),
-        'R' => 
+        'A' => 
         array (
-            'Ranjit\\TwilioPhpApp\\' => 20,
+            'Administrator\\TwilioPhpApp\\' => 27,
         ),
     );
 
@@ -22,7 +22,7 @@ class ComposerStaticInitb02732af6e5c1136ef8abcae1e75d6ab
         array (
             0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
         ),
-        'Ranjit\\TwilioPhpApp\\' => 
+        'Administrator\\TwilioPhpApp\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -35,9 +35,9 @@ class ComposerStaticInitb02732af6e5c1136ef8abcae1e75d6ab
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb02732af6e5c1136ef8abcae1e75d6ab::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb02732af6e5c1136ef8abcae1e75d6ab::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb02732af6e5c1136ef8abcae1e75d6ab::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0e681f8a791be5f48f5d2b7ddf5ad784::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0e681f8a791be5f48f5d2b7ddf5ad784::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0e681f8a791be5f48f5d2b7ddf5ad784::$classMap;
 
         }, null, ClassLoader::class);
     }

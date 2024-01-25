@@ -27,7 +27,7 @@
             },
             "time": "2024-01-14T15:07:17+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Twilio\\": "src/Twilio/"
