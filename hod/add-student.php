@@ -20,7 +20,9 @@ if (isset($_SESSION["hod_username"]) == false) {
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -94,9 +96,12 @@ if (isset($_SESSION["hod_username"]) == false) {
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
-                <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["hod_firstname"] ?></span>
+                <span class="ml-2 d-none d-lg-inline text-gray-600 small">
+                  <?php echo $_SESSION["hod_firstname"] ?>
+                </span>
 
               </a>
               <!-- Dropdown - User Information -->
@@ -149,7 +154,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">All students</h6>
-                  
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -206,16 +211,16 @@ if (isset($_SESSION["hod_username"]) == false) {
                         $result_data = $conn->query($sql_data_display);
 
                         if ($result_data->num_rows > 0) {
-
+                          $i = 0;
                           // output data of each row  
                           while ($row = $result_data->fetch_assoc()) {
+                            $i = $i + 1;
                             $img = $row["ProfilePhoto"];
                             echo "<tr> 
                                           <td>
-                                          <img src='$img' class='img-fluid rounded ' style='height:50px;width:50px'>
+                                          <img src='$img' id='img$i' class='img-fluid rounded ' style='height:50px;width:50px'>
                                           </td> 
                                           <td>" . $row["StudentID"] . "</td> 
-
                                           <td>" . $row["FirstName"] . " </td> 
                                           <td>" . $row["LastName"] . " </td> 
                                           <td>" . $row["course"] . " </td> 
@@ -245,7 +250,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                                             </button>
                                           </td> 
                                           <td>
-                                            <button class='btn btn-success genrateReport'>
+                                            <button class='btn btn-success genrateReport' id='$i'>
                                               <i class='fas fa-chart-bar text-white-300' title='Genrate Report'></i>
                                             </button>
                                           </td>                                     
@@ -296,7 +301,8 @@ if (isset($_SESSION["hod_username"]) == false) {
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -315,7 +321,8 @@ if (isset($_SESSION["hod_username"]) == false) {
   </div>
 
   <!-- delete student modal-->
-  <div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudent" aria-hidden="true">
+  <div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudent"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -326,20 +333,21 @@ if (isset($_SESSION["hod_username"]) == false) {
         </div>
         <div class="modal-body">Are you sure you want to delete this student?<span id="stu_name"></span></div>
         <div class="modal-footer">
-        <form action='delete_student.php' method='post'>
-          <input type='hidden' name='studentId' value='' id='studentId'>
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" type="submit" name="submit">Delete</button>
-        </form>
+          <form action='delete_student.php' method='post'>
+            <input type='hidden' name='studentId' value='' id='studentId'>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-primary" type="submit" name="submit">Delete</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-    <!-- delete student modal end-->
+  <!-- delete student modal end-->
 
   <!-- -----------------Modal Start add student form---------------------- -->
 
-  <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel" aria-hidden="true">
+  <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -363,7 +371,7 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="class">Class</label>
-                <select  name="class" class="form-control" required>
+                <select name="class" class="form-control" required>
                   <option value="" selected disabled>Select class</option>
                   <option value="FY">FY</option>
                   <option value="SY">SY</option>
@@ -372,8 +380,8 @@ if (isset($_SESSION["hod_username"]) == false) {
                 </select>
               </div>
               <div class="form-group col-md-6">
-                  <label for="RollNo">Roll No</label>
-                  <input type="number" name="roll_no" class="form-control"  placeholder="Enter Roll No" required>
+                <label for="RollNo">Roll No</label>
+                <input type="number" name="roll_no" class="form-control" placeholder="Enter Roll No" required>
               </div>
             </div>
             <div class="form-group">
@@ -383,7 +391,8 @@ if (isset($_SESSION["hod_username"]) == false) {
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
               </div>
@@ -391,11 +400,12 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="studentContactNo">Student Contact No</label>
-                <input type="tel" name="student_mo" class="form-control"  placeholder="Enter contact number" required>
+                <input type="tel" name="student_mo" class="form-control" placeholder="Enter contact number" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="parentContactNo">Parent Contact No</label>
-                <input type="tel" name="parent_mo" class="form-control" placeholder="Enter parent's contact number" required>
+                <input type="tel" name="parent_mo" class="form-control" placeholder="Enter parent's contact number"
+                  required>
               </div>
             </div>
             <div class="form-group">
@@ -421,7 +431,8 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- -----------------Modal Start EDIT student form---------------------- -->
 
   <!-- Modal -->
-  <div class="modal fade" id="updateStudentModal" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel" aria-hidden="true">
+  <div class="modal fade" id="updateStudentModal" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -431,16 +442,18 @@ if (isset($_SESSION["hod_username"]) == false) {
           </button>
         </div>
         <div class="modal-body">
-          <form action="update_student.php" method="post" enctype="multipart/form-data">               
-             <input type="hidden" name="student_id" class="form-control" id="student_id">
+          <form action="update_student.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="student_id" class="form-control" id="student_id">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Enter first name" required>
+                <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Enter first name"
+                  required>
               </div>
               <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter last name" required>
+                <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter last name"
+                  required>
               </div>
             </div>
             <div class="form-row">
@@ -455,8 +468,8 @@ if (isset($_SESSION["hod_username"]) == false) {
                 </select>
               </div>
               <div class="form-group col-md-6">
-                  <label for="RollNo">Roll No</label>
-                  <input type="text" name="roll_no" class="form-control" id="rollNo" placeholder="Enter Roll No" required>
+                <label for="RollNo">Roll No</label>
+                <input type="text" name="roll_no" class="form-control" id="rollNo" placeholder="Enter Roll No" required>
               </div>
             </div>
             <div class="form-group">
@@ -466,7 +479,8 @@ if (isset($_SESSION["hod_username"]) == false) {
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile06" aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile06"
+                    aria-describedby="inputGroupFileAddon01">
                   <label class="custom-file-label" for="inputGroupFile06">Choose file</label>
                 </div>
               </div>
@@ -474,20 +488,24 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="studentContactNo">Student Contact No</label>
-                <input type="tel" name="student_mo" class="form-control" id="studentContactNo" placeholder="Enter contact number" required>
+                <input type="tel" name="student_mo" class="form-control" id="studentContactNo"
+                  placeholder="Enter contact number" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="parentContactNo">Parent Contact No</label>
-                <input type="tel" name="parent_mo" class="form-control" id="parentContactNo" placeholder="Enter parent's contact number" required>
+                <input type="tel" name="parent_mo" class="form-control" id="parentContactNo"
+                  placeholder="Enter parent's contact number" required>
               </div>
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" required>
+              <input type="text" name="username" class="form-control" id="username" placeholder="Enter username"
+                required>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password"
+                required>
             </div>
         </div>
         <div class="modal-footer">
@@ -498,10 +516,11 @@ if (isset($_SESSION["hod_username"]) == false) {
       </div>
     </div>
   </div>
-<!-- -----------------Modal End EDIT student form------------------------>
+  <!-- -----------------Modal End EDIT student form------------------------>
 
-<!-- -------------------- Logout Modal  START ----------------------------------------->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- -------------------- Logout Modal  START ----------------------------------------->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -518,10 +537,11 @@ if (isset($_SESSION["hod_username"]) == false) {
       </div>
     </div>
   </div>
-<!-- -------------------- Logout Modal  START ----------------------------------------->
+  <!-- -------------------- Logout Modal  START ----------------------------------------->
 
-<!-- -------------------- Report Modal  START ----------------------------------------->
-<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- -------------------- Report Modal  START ----------------------------------------->
+  <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -531,48 +551,67 @@ if (isset($_SESSION["hod_username"]) == false) {
           </button>
         </div>
         <div class="modal-body">
-        <section class="bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 mb-4 mb-sm-5">
-                <div class="card card-style1 border-0">
+          <section class="bg-light">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                  <div class="card card-style1 border-0">
                     <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 mb-4 mb-lg-0">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="reportProfile">
-                            </div>
-                            <div class="col-lg-6 px-xl-10">
-                                <ul class="list-unstyled mb-1-9">
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Name</span> Name</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Department</span> Coach</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Class :</span> 10 Years</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Mobail No:</span> edith@mail.com</li>
-                                    <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Parent Mo:</span> www.example.com</li>
-                                </ul>
-                            </div>
+                      <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="reportProfile" height="200"
+                            width="200">
                         </div>
+                        <div class="col-lg-6 px-xl-10">
+                          <ul class="list-unstyled mb-1-9">
+                            <li class="mb-2 mb-xl-3 display-28"><span
+                                class="display-26 text-secondary me-2 font-weight-600">Name</span><span
+                                id="stdName"></span></li>
+                            <li class="mb-2 mb-xl-3 display-28"> <span id="stdDepartment"></span></li>
+                            <li class="mb-2 mb-xl-3 display-28"><span
+                                class="display-26 text-secondary me-2 font-weight-600">Class :</span><span
+                                id="stdClass"></span></li>
+                            <li class="mb-2 mb-xl-3 display-28"><span
+                                class="display-26 text-secondary me-2 font-weight-600">Mobail No:</span><span
+                                id="mobailMoB"></span> </li>
+                            <li class="mb-2 mb-xl-3 display-28"><span
+                                class="display-26 text-secondary me-2 font-weight-600">Parent Mo:</span><span
+                                id="parentMob"></span></li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <div class="col-lg-12 mb-4 mb-sm-5">
-                <div>
+                <div class="col-lg-12 mb-4 mb-sm-5">
+                  <div>
                     <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
-                    <p>Edith is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed.</p>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-12 mb-4 mb-sm-5">
-                        <div class="mb-4 mb-sm-5">
-                            
-                        </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>Leave Type</th>
+                              <th>Reason</th>
+                              <th>When</th>
+                              <th>Start</th>
+                              <th>End</th>
+                              <th>BY Teacher</th>
+                               <th>By HOD</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              
+                          </tbody>
+                        </table>
+                      </div>
+
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
+              </div>
+          </section>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -581,7 +620,7 @@ if (isset($_SESSION["hod_username"]) == false) {
       </div>
     </div>
   </div>
-<!-- -------------------- Report Modal  START ----------------------------------------->
+  <!-- -------------------- Report Modal  START ----------------------------------------->
 
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -608,13 +647,13 @@ if (isset($_SESSION["hod_username"]) == false) {
   <script src="../js/demo/datatables-demo.js"></script>
 
   <script>
-    $('#inputGroupFile01').on('change', function() {
+    $('#inputGroupFile01').on('change', function () {
       //get the file name
       var fileName = $(this).val();
       //replace the "Choose a file" label
       $(this).next('.custom-file-label').html(fileName);
     })
-    $('#inputGroupFile06').on('change', function() {
+    $('#inputGroupFile06').on('change', function () {
       //get the file name
       var fileName = $(this).val();
       //replace the "Choose a file" label
@@ -626,42 +665,42 @@ if (isset($_SESSION["hod_username"]) == false) {
     }
   </script>
   <script>
-    $(document).ready(function() {
-      $('.editbtn').on('click', function(){
+    $(document).ready(function () {
+      $('.editbtn').on('click', function () {
 
         $('#updateStudentModal').modal('show');
 
         $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function(){
+        var data = $tr.children("td").map(function () {
           return $(this).text();
         }).get();
 
         var imgSrc = $tr.children("td:eq(0)").find("img").attr("src");
 
-      console.log(data);
-      $('#firstName').val(data[2]);
-      $('#lastName').val(data[3]);
-      // $('#course').val(data[4]);
-      // $('#department').val(data[5]);
-      // $('#class').val(data[6]);
-      $('#rollNo').val(data[7]);
-      // $('#profile').val(imgSrc);
-      $('#studentContactNo').val(data[8]);
-      $('#parentContactNo').val(data[9]);
-      $('#username').val(data[10]);
-      $('#password').val(data[11]);
-      $('#student_id').val(data[1]);
-       
-      console.log(data[5]);
-        
-   console.log(data[5]);
+        console.log(data);
+        $('#firstName').val(data[2]);
+        $('#lastName').val(data[3]);
+        // $('#course').val(data[4]);
+        // $('#department').val(data[5]);
+        // $('#class').val(data[6]);
+        $('#rollNo').val(data[7]);
+        // $('#profile').val(imgSrc);
+        $('#studentContactNo').val(data[8]);
+        $('#parentContactNo').val(data[9]);
+        $('#username').val(data[10]);
+        $('#password').val(data[11]);
+        $('#student_id').val(data[1]);
 
-      
+        console.log(data[5]);
+
+        console.log(data[5]);
+
+
       });
-      
-      $('.deletebtn').on('click', function(){            
+
+      $('.deletebtn').on('click', function () {
         $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function(){
+        var data = $tr.children("td").map(function () {
           return $(this).text();
         }).get();
 
@@ -669,55 +708,68 @@ if (isset($_SESSION["hod_username"]) == false) {
         $('#studentId').val(data[1]);
         document.getElementById('stu_name').innerHTML = " " + data[2] + ' ' + data[3];
       });
-      
+
 
       $('.genrateReport').on('click', function () {
-  // Show Bootstrap modal
-  $('#reportModal').modal('show');
-
-  const $tr = $(this).closest("tr");
-  const data = $tr.children("td").map(function () {
-    return $(this).text();
-  }).get();
-  
-  // Create a FormData object to send data to the server
-  const formData = new FormData();
-  formData.append('studentId', data[1]);
-
-  console.log(data[1])
-  const xmlhttp = new XMLHttpRequest();
-  xmlhttp.onload = function () {
-    const myObj = JSON.parse(this.responseText);
-    console.log(myObj)
-  
-            console.log(myObj.StudentID);
-            console.log(myObj.LeaveID);
-            console.log(myObj.LeaveType);
-            console.log(myObj.Reason);
-      // Example: uncomment and complete as needed
-      // document.getElementById("studentId").value = myObj.StudentID;
-      // document.getElementById("studentProfile").src = myObj.ProfilePhoto;
-      // document.getElementById("studentName").innerHTML = myObj.FirstName + " " + myObj.LastName;
-      // document.getElementById("studentDepartment").innerHTML = myObj.Class + " " + myObj.Department;
-      // document.getElementById("leaveID").value = myObj.LeaveID;
-      // document.getElementById("leaveType").innerHTML = myObj.LeaveType;
-      // document.getElementById("leaveReson").innerHTML = myObj.Reason;
-      // document.getElementById("leaveStart").innerHTML = myObj.StartDate;
-      // document.getElementById("leaveEnd").innerHTML = myObj.EndDate;
-      // document.getElementById("teacherStatus").innerHTML = myObj.TeacherApprovalStatus;
-  };
-
-  xmlhttp.open("POST", "student_leaves.php");
-  // xmlhttp.send();
-
-  xmlhttp.send(formData);
-});
+        // Show Bootstrap modal
+        $('#reportModal').modal('show');
 
 
-      // 
+        // alert(this.id)
+        $imgPath = "img" + this.id;
+        // alert($imgPath)
+        var imagePath = document.getElementById($imgPath).src;
+        // alert(imagePath)
+
+
+        const $tr = $(this).closest("tr");
+        const data = $tr.children("td").map(function () {
+          return $(this).text();
+        }).get();
+
+        // Create a FormData object to send data to the server
+        const formData = new FormData();
+        formData.append('studentId', data[1]);
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj)
+
+          console.log(data[1]);
+          // Example: uncomment and complete as needed
+          document.getElementById("reportProfile").src = imagePath;
+          document.getElementById("stdName").innerHTML = " " + data[2] + data[3];
+          document.getElementById("stdDepartment").innerHTML = " " + data[4] + data[5];
+          document.getElementById("stdClass").innerHTML = " " + data[6];
+          document.getElementById("mobailMoB").innerHTML = " " + data[8];
+          document.getElementById("parentMob").innerHTML = " " + data[9];
+
+
+          for (var i = 0; i < myObj.length; i++) {
+            var tableBody = document.querySelector('#dataTable tbody');
+            var row = tableBody.insertRow();
+            
+            var cell1 = row.insertCell(0).textContent = "ffff";
+            var cell3 = row.insertCell(1).textContent = myObj[i].Reason;
+            var cell4 = row.insertCell(2).textContent = myObj[i].DateTime;
+            var cell5 = row.insertCell(3).textContent = myObj[i].StartDate;
+            var cell6 = row.insertCell(4).textContent = myObj[i].EndDate;
+            var cell7 = row.insertCell(5).textContent = myObj[i].TeacherApprovalStatus;
+            var cell7 = row.insertCell(6).textContent = myObj[i].HODApprovalStatus;
+        }
+ 
+        };
+      
+        xmlhttp.open("POST", "student_leaves.php");
+        // xmlhttp.send();
+
+        xmlhttp.send(formData);
+      });
+
 
     });
-      
+
   </script>
 </body>
 
@@ -823,7 +875,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
   }
 
   // Check file size
-  if ($_FILES["profile"]["size"] > 500000) {
+  if ($_FILES["profile"]["size"] > 50000000) {
     alert("Sorry, your file is too large.");
     $uploadOk = 0;
   }
