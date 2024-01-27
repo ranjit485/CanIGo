@@ -551,8 +551,8 @@ if (isset($_SESSION["hod_username"]) == false) {
           </button>
         </div>
         <div class="modal-body">
-          <section class="bg-light">
-            <div class="container">
+          <section>
+            <div class="container" id="reportDiv">
               <div class="row">
                 <div class="col-lg-12 mb-4 mb-sm-5">
                   <div class="card card-style1 border-0">
@@ -585,11 +585,11 @@ if (isset($_SESSION["hod_username"]) == false) {
                 </div>
                 <div class="col-lg-12 mb-4 mb-sm-5">
                   <div>
-                    <span class="section-title text-primary mb-3 mb-sm-4">About Me</span>
+                    <span class="section-title text-primary mb-3 mb-sm-4">Leaves Report</span>
                     <!-- Card Body -->
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="reportTable" width="100%" cellspacing="0">
                           <thead>
                             <tr>
                               <th>Leave Type</th>
@@ -615,7 +615,7 @@ if (isset($_SESSION["hod_username"]) == false) {
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="#">Print</a>
+          <button class="btn btn-secondary" type="button" onclick="printDiv()">Print</button>
         </div>
       </div>
     </div>
@@ -747,10 +747,10 @@ if (isset($_SESSION["hod_username"]) == false) {
 
 
           for (var i = 0; i < myObj.length; i++) {
-            var tableBody = document.querySelector('#dataTable tbody');
+            var tableBody = document.querySelector('#reportTable tbody');
             var row = tableBody.insertRow();
             
-            var cell1 = row.insertCell(0).textContent = "ffff";
+            var cell1 = row.insertCell(0).textContent = myObj[i].LeaveType;
             var cell3 = row.insertCell(1).textContent = myObj[i].Reason;
             var cell4 = row.insertCell(2).textContent = myObj[i].DateTime;
             var cell5 = row.insertCell(3).textContent = myObj[i].StartDate;
@@ -769,6 +769,19 @@ if (isset($_SESSION["hod_username"]) == false) {
 
 
     });
+
+    // function to print report
+    function printDiv() {
+        var contentToPrint = document.getElementById("reportDiv").innerHTML;
+        var originalContent = document.body.innerHTML;
+    
+        document.body.innerHTML = contentToPrint;
+    
+        window.print();
+    
+        // Restore the original document content
+        document.body.innerHTML = originalContent;
+    }
 
   </script>
 </body>
