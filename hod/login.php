@@ -55,7 +55,7 @@
         <div class="col-lg-6">
           <div class="signup-content-wrapper">
             <div class="section-title">
-              <h3 class="mb-20">Login</h3>
+              <h3 class="mb-20">HOD Login</h3>
             </div>
             <div class="image">
               <img src="../assets/img/signup/signup-1/signup-img.svg" alt="" class="w-100">

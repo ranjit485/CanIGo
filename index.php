@@ -76,7 +76,7 @@
             <div class="hero-content-wrapper">
               <div class="content">
                 <h2 class="mb-30"><span class="mb-30" style="color:blue;">AITRC's
-                  </span>Smart System</h2>
+                  </span>Online Leave Management System</h2>
                 <p class="mb-40">"Experience the future of leave management at AITRC.Say goodbye to paperwork and hello
                   to convenience. Join us in making leave management effortless."</p>
                 <div class="buttons">

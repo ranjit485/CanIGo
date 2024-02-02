@@ -100,24 +100,13 @@ if (isset($_SESSION["hod_username"]) == false) {
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
                 <span class="ml-2 d-none d-lg-inline text-gray-600 small">
-                  <?php echo $_SESSION["hod_firstname"] ?>
+                  <?php echo $_SESSION["hod_Fullname"]?>
                 </span>
 
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item viewProfile">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="add-student.php">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Add Student
-                </a>
-                <a class="dropdown-item" href="addFaculty.php">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Add Teacher
-                </a>
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -171,7 +160,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                           <th>Department</th>
                           <th>Class</th>
                           <th>Roll No</th>
-                          <th>Mobail No</th>
+                          <th>Mobile No</th>
                           <th>Parent Mo </th>
                           <th>Username</th>
                           <th>Password</th>
@@ -190,7 +179,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                           <th>Department</th>
                           <th>Class</th>
                           <th>Roll No</th>
-                          <th>Mobail No</th>
+                          <th>Mobile No</th>
                           <th>Parent Mo </th>
                           <th>Username</th>
                           <th>Password</th>
@@ -279,15 +268,6 @@ if (isset($_SESSION["hod_username"]) == false) {
   </div>
   <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright © can I GO 2023</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->
@@ -572,7 +552,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                                 class="display-26 text-secondary me-2 font-weight-600">Class :</span><span
                                 id="stdClass"></span></li>
                             <li class="mb-2 mb-xl-3 display-28"><span
-                                class="display-26 text-secondary me-2 font-weight-600">Mobail No:</span><span
+                                class="display-26 text-secondary me-2 font-weight-600">Mobile No:</span><span
                                 id="mobailMoB"></span> </li>
                             <li class="mb-2 mb-xl-3 display-28"><span
                                 class="display-26 text-secondary me-2 font-weight-600">Parent Mo:</span><span
