@@ -10455,8 +10455,8 @@ a:focus {
   font-weight: 800;
   padding: 1.5rem 1rem;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
+  /* text-transform: uppercase;
+  letter-spacing: 0.05rem; */
   z-index: 1;
 }
 

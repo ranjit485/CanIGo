@@ -83,30 +83,120 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- Page Wrapper -->
   <div id="wrapper">
 
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon">
+                    <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
+                </div>
+                <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["hod_Fullname"]?></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <span>HOD - <?php echo $_SESSION["hod_department"]?></span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="home.php">
+                    <i class="fas fa-fw fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Student
+            </div>
+
+        
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="add-student.php">
+                    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Add Student</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Teacher
+            </div>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="addFaculty.php">
+                    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Add Faculty</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="../logout.php">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <span>Logout</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+
+        </ul>
+    <!-- End of Sidebar -->
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
+
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" id="userDropdown"
-                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
+              <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="img-profile m-2 rounded-circle" src="../images\logo.png">
                 <span class="ml-2 d-none d-lg-inline text-gray-600 small">
-                  <?php echo $_SESSION["hod_Fullname"]?>
+                  We Make it happen - AITRC
                 </span>
 
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in" aria-labelledby="userDropdown">
-               
+                <a class="dropdown-item viewProfile">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="add-student.php">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Add Student
+                </a>
+                <a class="dropdown-item" href="addFaculty.php">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Add Teacher
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -119,6 +209,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
         </nav>
         <!-- End of Topbar -->
+
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
