@@ -755,7 +755,8 @@ if (isset($_SESSION["hod_username"]) == false) {
         // Show Bootstrap modal
         $('#reportModal').modal('show');
 
-
+      
+         
         // alert(this.id)
         $imgPath = "img" + this.id;
         // alert($imgPath)
@@ -776,8 +777,14 @@ if (isset($_SESSION["hod_username"]) == false) {
         xmlhttp.onload = function() {
           const myObj = JSON.parse(this.responseText);
           console.log(myObj)
+          
+          if(myObj.length==0){
+            alert("No data Found")
+            var tableBody = document.querySelector('#reportTable tbody').remove();
 
+          }
           console.log(data);
+
           
 
           // // // Example: uncomment and complete as needed
