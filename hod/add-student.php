@@ -20,9 +20,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link
-    href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+  <link href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
@@ -75,6 +73,15 @@ if (isset($_SESSION["hod_username"]) == false) {
       left: 0;
       top: 0
     }
+
+    #profileHolder {
+      width: 100px;
+    }
+
+    #aitName {
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -86,79 +93,79 @@ if (isset($_SESSION["hod_username"]) == false) {
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon">
-                    <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
-                </div>
-                <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["hod_Fullname"]?></div>
-            </a>
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+          <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
+        </div>
+        <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["hod_Fullname"] ?></div>
+      </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link">
-                    <span>HOD - <?php echo $_SESSION["hod_department"]?></span></a>
-            </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link">
+          <span>HOD - <?php echo $_SESSION["hod_department"] ?></span></a>
+      </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="home.php">
-                    <i class="fas fa-fw fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Student
-            </div>
-
-        
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="add-student.php">
-                    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Add Student</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Teacher
-            </div>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="addFaculty.php">
-                    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Add Faculty</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="../logout.php">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Logout</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
 
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="home.php">
+          <i class="fas fa-fw fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Student
+      </div>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="add-student.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Add Student</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Teacher
+      </div>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="addFaculty.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Add Faculty</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="../logout.php">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Logout</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+
+    </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -247,8 +254,6 @@ if (isset($_SESSION["hod_username"]) == false) {
                           <th>ID</th>
                           <th>Name</th>
                           <th>Last</th>
-                          <th>Course</th>
-                          <th>Department</th>
                           <th>Class</th>
                           <th>Roll No</th>
                           <th>Mobile No</th>
@@ -266,8 +271,6 @@ if (isset($_SESSION["hod_username"]) == false) {
                           <th>ID</th>
                           <th>Name</th>
                           <th>Last</th>
-                          <th>Course</th>
-                          <th>Department</th>
                           <th>Class</th>
                           <th>Roll No</th>
                           <th>Mobile No</th>
@@ -303,9 +306,6 @@ if (isset($_SESSION["hod_username"]) == false) {
                                           <td>" . $row["StudentID"] . "</td> 
                                           <td>" . $row["FirstName"] . " </td> 
                                           <td>" . $row["LastName"] . " </td> 
-                                          <td>" . $row["course"] . " </td> 
-
-                                          <td> " . $row["Department"] . "</td> 
 
                                           <td> " . $row["Class"] . "</td>
 
@@ -372,8 +372,7 @@ if (isset($_SESSION["hod_username"]) == false) {
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -392,8 +391,7 @@ if (isset($_SESSION["hod_username"]) == false) {
   </div>
 
   <!-- delete student modal-->
-  <div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudent"
-    aria-hidden="true">
+  <div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudent" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -417,8 +415,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
   <!-- -----------------Modal Start add student form---------------------- -->
 
-  <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
-    aria-hidden="true">
+  <div class="modal fade" id="addFacultyModel" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -462,8 +459,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
               </div>
@@ -475,8 +471,7 @@ if (isset($_SESSION["hod_username"]) == false) {
               </div>
               <div class="form-group col-md-6">
                 <label for="parentContactNo">Parent Contact No</label>
-                <input type="tel" name="parent_mo" class="form-control" placeholder="Enter parent's contact number"
-                  required>
+                <input type="tel" name="parent_mo" class="form-control" placeholder="Enter parent's contact number" required>
               </div>
             </div>
             <div class="form-group">
@@ -502,8 +497,7 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- -----------------Modal Start EDIT student form---------------------- -->
 
   <!-- Modal -->
-  <div class="modal fade" id="updateStudentModal" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel"
-    aria-hidden="true">
+  <div class="modal fade" id="updateStudentModal" tabindex="-1" role="dialog" aria-labelledby="addFacultyModel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -518,13 +512,11 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="firstName">First Name</label>
-                <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Enter first name"
-                  required>
+                <input type="text" name="first_name" class="form-control" id="firstName" placeholder="Enter first name" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter last name"
-                  required>
+                <input type="text" name="last_name" class="form-control" id="lastName" placeholder="Enter last name" required>
               </div>
             </div>
             <div class="form-row">
@@ -550,8 +542,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                 </div>
                 <div class="custom-file">
-                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile06"
-                    aria-describedby="inputGroupFileAddon01">
+                  <input type="file" name="profile" class="custom-file-input" id="inputGroupFile06" aria-describedby="inputGroupFileAddon01">
                   <label class="custom-file-label" for="inputGroupFile06">Choose file</label>
                 </div>
               </div>
@@ -559,24 +550,20 @@ if (isset($_SESSION["hod_username"]) == false) {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="studentContactNo">Student Contact No</label>
-                <input type="tel" name="student_mo" class="form-control" id="studentContactNo"
-                  placeholder="Enter contact number" required>
+                <input type="tel" name="student_mo" class="form-control" id="studentContactNo" placeholder="Enter contact number" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="parentContactNo">Parent Contact No</label>
-                <input type="tel" name="parent_mo" class="form-control" id="parentContactNo"
-                  placeholder="Enter parent's contact number" required>
+                <input type="tel" name="parent_mo" class="form-control" id="parentContactNo" placeholder="Enter parent's contact number" required>
               </div>
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" name="username" class="form-control" id="username" placeholder="Enter username"
-                required>
+              <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" required>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password"
-                required>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
             </div>
         </div>
         <div class="modal-footer">
@@ -590,8 +577,7 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- -----------------Modal End EDIT student form------------------------>
 
   <!-- -------------------- Logout Modal  START ----------------------------------------->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -611,82 +597,68 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- -------------------- Logout Modal  START ----------------------------------------->
 
   <!-- -------------------- Report Modal  START ----------------------------------------->
-  <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Genrate Report</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
           <section>
             <div class="container" id="reportDiv">
-              <div class="row">
-                <div class="col-lg-12 mb-4 mb-sm-5">
-                  <div class="card card-style1 border-0">
-                    <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
-                      <div class="row align-items-center">
-                        <div class="col-lg-6 mb-4 mb-lg-0">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="reportProfile" height="200"
-                            width="200">
-                        </div>
-                        <div class="col-lg-6 px-xl-10">
-                          <ul class="list-unstyled mb-1-9">
-                            <li class="mb-2 mb-xl-3 display-28"><span
-                                class="display-26 text-secondary me-2 font-weight-600">Name</span><span
-                                id="stdName"></span></li>
-                            <li class="mb-2 mb-xl-3 display-28"> <span id="stdDepartment"></span></li>
-                            <li class="mb-2 mb-xl-3 display-28"><span
-                                class="display-26 text-secondary me-2 font-weight-600">Class :</span><span
-                                id="stdClass"></span></li>
-                            <li class="mb-2 mb-xl-3 display-28"><span
-                                class="display-26 text-secondary me-2 font-weight-600">Mobile No:</span><span
-                                id="mobailMoB"></span> </li>
-                            <li class="mb-2 mb-xl-3 display-28"><span
-                                class="display-26 text-secondary me-2 font-weight-600">Parent Mo:</span><span
-                                id="parentMob"></span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12 mb-4 mb-sm-5">
-                  <div>
-                    <span class="section-title text-primary mb-3 mb-sm-4">Leaves Report</span>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table table-bordered" id="reportTable" width="100%" cellspacing="0">
-                          <thead>
-                            <tr>
-                              <th>Leave Type</th>
-                              <th>Reason</th>
-                              <th>When</th>
-                              <th>Start</th>
-                              <th>End</th>
-                              <th>BY Teacher</th>
-                               <th>By HOD</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                              
-                          </tbody>
-                        </table>
-                      </div>
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td id="aitLogo">
+                      <img src="../images\logo.png" height="100" width="100">
+                    </td>
+                    <td id="aitName">
+                      <h2>Adarsh Institute Of Technology and Research Centre Vita</h2>
+                      <h5>Student Leaves Report</h5>
+                    </td>
+                  </tr>
 
-                    </div>
-                  </div>
-                </div>
+                  <tr>
+                    <td id="profileHolder">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="reportProfile" height="150" width="150">
+                    </td>
+                    <td id="infoHolder">
+                      <h5 id="stdName"></h5>
+                      <h5 id="stdClass"></h5>
+                      <h5 id="stdDepartment"></h5>
+                      <h5 id="stdMob"></h5>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              <!-- Card Body -->
+              <div class="table-responsive">
+                <table class="table table-bordered" id="reportTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Leave Type</th>
+                      <th>Reason</th>
+                      <th>When</th>
+                      <th>Start</th>
+                      <th>End</th>
+                      <th>BY Teacher</th>
+                      <th>By HOD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
               </div>
+            </div>
           </section>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-secondary" type="button" onclick="printDiv()">Print</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="reload()">Cancel</button>
+          <button class="btn btn-primary" type="button" onclick="printDiv()">Print</button>
         </div>
       </div>
     </div>
@@ -718,13 +690,13 @@ if (isset($_SESSION["hod_username"]) == false) {
   <script src="../js/demo/datatables-demo.js"></script>
 
   <script>
-    $('#inputGroupFile01').on('change', function () {
+    $('#inputGroupFile01').on('change', function() {
       //get the file name
       var fileName = $(this).val();
       //replace the "Choose a file" label
       $(this).next('.custom-file-label').html(fileName);
     })
-    $('#inputGroupFile06').on('change', function () {
+    $('#inputGroupFile06').on('change', function() {
       //get the file name
       var fileName = $(this).val();
       //replace the "Choose a file" label
@@ -736,17 +708,15 @@ if (isset($_SESSION["hod_username"]) == false) {
     }
   </script>
   <script>
-    $(document).ready(function () {
-      $('.editbtn').on('click', function () {
+    $(document).ready(function() {
+      $('.editbtn').on('click', function() {
 
         $('#updateStudentModal').modal('show');
 
         $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function () {
+        var data = $tr.children("td").map(function() {
           return $(this).text();
         }).get();
-
-        var imgSrc = $tr.children("td:eq(0)").find("img").attr("src");
 
         console.log(data);
         $('#firstName').val(data[2]);
@@ -754,12 +724,12 @@ if (isset($_SESSION["hod_username"]) == false) {
         // $('#course').val(data[4]);
         // $('#department').val(data[5]);
         // $('#class').val(data[6]);
-        $('#rollNo').val(data[7]);
+        $('#rollNo').val(data[5]);
         // $('#profile').val(imgSrc);
-        $('#studentContactNo').val(data[8]);
-        $('#parentContactNo').val(data[9]);
-        $('#username').val(data[10]);
-        $('#password').val(data[11]);
+        $('#studentContactNo').val(data[6]);
+        $('#parentContactNo').val(data[7]);
+        $('#username').val(data[8]);
+        $('#password').val(data[9]);
         $('#student_id').val(data[1]);
 
         console.log(data[5]);
@@ -769,9 +739,9 @@ if (isset($_SESSION["hod_username"]) == false) {
 
       });
 
-      $('.deletebtn').on('click', function () {
+      $('.deletebtn').on('click', function() {
         $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function () {
+        var data = $tr.children("td").map(function() {
           return $(this).text();
         }).get();
 
@@ -781,7 +751,7 @@ if (isset($_SESSION["hod_username"]) == false) {
       });
 
 
-      $('.genrateReport').on('click', function () {
+      $('.genrateReport').on('click', function() {
         // Show Bootstrap modal
         $('#reportModal').modal('show');
 
@@ -794,7 +764,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 
 
         const $tr = $(this).closest("tr");
-        const data = $tr.children("td").map(function () {
+        const data = $tr.children("td").map(function() {
           return $(this).text();
         }).get();
 
@@ -803,24 +773,24 @@ if (isset($_SESSION["hod_username"]) == false) {
         formData.append('studentId', data[1]);
 
         const xmlhttp = new XMLHttpRequest();
-        xmlhttp.onload = function () {
+        xmlhttp.onload = function() {
           const myObj = JSON.parse(this.responseText);
           console.log(myObj)
 
-          console.log(data[1]);
-          // Example: uncomment and complete as needed
-          document.getElementById("reportProfile").src = imagePath;
-          document.getElementById("stdName").innerHTML = " " + data[2] + data[3];
-          document.getElementById("stdDepartment").innerHTML = " " + data[4] + data[5];
-          document.getElementById("stdClass").innerHTML = " " + data[6];
-          document.getElementById("mobailMoB").innerHTML = " " + data[8];
-          document.getElementById("parentMob").innerHTML = " " + data[9];
+          console.log(data);
+          
 
+          // // // Example: uncomment and complete as needed
+           document.getElementById("reportProfile").src = imagePath;
+          document.getElementById("stdName").innerHTML = " " + data[2] + data[3];
+          document.getElementById("stdDepartment").innerHTML = " " +"<?php echo $_SESSION["hod_department"]?>";
+          document.getElementById("stdClass").innerHTML = " " + data[4];
+          document.getElementById("stdMob").innerHTML = " " + data[6];
 
           for (var i = 0; i < myObj.length; i++) {
             var tableBody = document.querySelector('#reportTable tbody');
             var row = tableBody.insertRow();
-            
+
             var cell1 = row.insertCell(0).textContent = myObj[i].LeaveType;
             var cell3 = row.insertCell(1).textContent = myObj[i].Reason;
             var cell4 = row.insertCell(2).textContent = myObj[i].DateTime;
@@ -828,10 +798,10 @@ if (isset($_SESSION["hod_username"]) == false) {
             var cell6 = row.insertCell(4).textContent = myObj[i].EndDate;
             var cell7 = row.insertCell(5).textContent = myObj[i].TeacherApprovalStatus;
             var cell7 = row.insertCell(6).textContent = myObj[i].HODApprovalStatus;
-        }
- 
+          }
+
         };
-      
+
         xmlhttp.open("POST", "student_leaves.php");
         // xmlhttp.send();
 
@@ -843,17 +813,19 @@ if (isset($_SESSION["hod_username"]) == false) {
 
     // function to print report
     function printDiv() {
-        var contentToPrint = document.getElementById("reportDiv").innerHTML;
-        var originalContent = document.body.innerHTML;
-    
-        document.body.innerHTML = contentToPrint;
-    
-        window.print();
-    
-        // Restore the original document content
-        document.body.innerHTML = originalContent;
-    }
+      var contentToPrint = document.getElementById("reportDiv").innerHTML;
+      var originalContent = document.body.innerHTML;
 
+      document.body.innerHTML = contentToPrint;
+
+      window.print();
+
+      // Restore the original document content
+      document.body.innerHTML = originalContent;
+    }
+    function reload(){
+      location.reload();
+    }
   </script>
 </body>
 

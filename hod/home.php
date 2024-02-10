@@ -116,8 +116,39 @@ $day = date("l");
 // echo "Today is " . date("Y-m-d") . "<br>";
 // echo "Today is " . date("l");
 
+// echo getAllCount();
+function getLeaveCount($status)
+{
 
+  $hod_id = $_SESSION["hod_id"];
+  $hod_course = $_SESSION["hod_course"];
+  $hod_department = $_SESSION["hod_department"];
 
+  include "../db_connect.php";
+  $result = $conn->query("SELECT COUNT(*) as count FROM leaves WHERE `HODID` = '$hod_id'  AND `HODApprovalStatus` = '$status' ");
+  if ($result) {
+    $count = $result->fetch_assoc()['count'];
+    return $count;
+  } else {
+    return $conn->error;
+  }
+}
+function getOutCount($status)
+{
+
+  $hod_id = $_SESSION["hod_id"];
+  $hod_course = $_SESSION["hod_course"];
+  $hod_department = $_SESSION["hod_department"];
+
+  include "../db_connect.php";
+  $result = $conn->query("SELECT COUNT(*) as count FROM leaves WHERE `HODID` = '$hod_id'  AND `ByGuard` = '$status' ");
+  if ($result) {
+    $count = $result->fetch_assoc()['count'];
+    return $count;
+  } else {
+    return $conn->error;
+  }
+}
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
@@ -138,7 +169,6 @@ $day = date("l");
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- --------------------- -->
-
   <!-- --------------------- -->
 
   <!-- Custom styles for this template -->
@@ -332,18 +362,18 @@ $day = date("l");
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        All students</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Pending</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?php echo getAllCount("SY") ?>
+                        <?php echo getLeaveCount("Pending");?>
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
+                      <i class="fas fa-spinner fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -357,33 +387,14 @@ $day = date("l");
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        FY students</div>
+                        Approved
+                      </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?php echo getCount("FY") ?>
+                        <?php echo getLeaveCount("Approved");?>
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        SY students</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?php echo getCount("SY") ?>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
+                      <i class="fas fa-check-double fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -395,18 +406,42 @@ $day = date("l");
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">TY students
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Assigend
                       </div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                            <?php echo getCount("TY") ?>
+                            <?php echo getLeaveCount("Assigned"); ?>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      <i class="fas fa-check fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">OUT
+                      </div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                            <?php echo getOutCount("OUT"); ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-person-running fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -758,6 +793,7 @@ $day = date("l");
         </div>
       </div>
     </div>
+    <table id="example" class="display" width="100%"></table>
     <!-- ----------------------------------- -->
     <?php include "profile.php" ?>
 

@@ -220,7 +220,7 @@ if (isset($_SESSION["hod_username"]) == false) {
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Faculty</h1>
-            <a href="http://127.0.0.1:5501/student_dashbord.html#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <!-- <a href="http://127.0.0.1:5501/student_dashbord.html#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
           </div>
 
           <!-- Content Row -->
@@ -293,6 +293,56 @@ if (isset($_SESSION["hod_username"]) == false) {
                         </tr>
                       </tfoot>
                       <tbody>
+                        <?php
+                        include "../db_connect.php";
+                        $hod_id = $_SESSION["hod_id"];
+                        $hod_course = $_SESSION["hod_course"];
+                        $hod_department = $_SESSION["hod_department"];
+
+                        $sql_data_display = "SELECT * FROM teachers WHERE `course` = '$hod_course' AND `Department` = '$hod_department'";
+
+                        $result_data = $conn->query($sql_data_display);
+
+                        if ($result_data->num_rows > 0) {
+                          $i = 0;
+                          // output data of each row  
+                          while ($row = $result_data->fetch_assoc()) {
+                            $img = $row["ProfilePhoto"];
+                            echo "<tr> 
+                                          <td>
+                                          <img src='$img' id='img$i' class='img-fluid rounded ' style='height:50px;width:50px'>
+                                          </td> 
+                                          <td>" . $row["LastName"] . "" . $row["LastName"] . " </td> 
+                                          <td>" . $row["course"] . " </td> 
+
+                                          <td> " . $row["Department"] . "</td> 
+
+                                          <td> " . $row["Class"] . "</td>
+
+                                          <td> " . $row["Position"] . "</td>
+
+                                          <td> " . $row["Username"] . "</td> 
+                                          
+                                          <td>" . $row["Password"] . "</td>  
+                                          <td>
+                                            <button class='btn btn-success editbtn' id='$i'>
+                                              <i class='fas fa-edit text-white-300' title='editbtn'></i>
+                                            </button>
+                                          </td>
+                                          <td>
+                                            <button class='btn btn-success deletebtn' id='$i'>
+                                              <i class='fas fa-trash text-white-300' title='deletebtn' id='$i'></i>
+                                            </button>
+                                          </td>
+                                        </tr>";
+                                        $i = $i +1;
+                          }
+                        } else {
+                          echo "error or no results";
+                        }
+                        $conn->close();
+                        ?>
+
                       </tbody>
                     </table>
                   </div>
@@ -477,7 +527,6 @@ if (isset($_SESSION["hod_username"]) == false) {
       </div>
     </div>
   </div>
-
   <!-- -----------------Modal End update faculty form---------------------- -->
 
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -520,54 +569,6 @@ if (isset($_SESSION["hod_username"]) == false) {
     </div>
   </div>
     <!-- delete teacher modal end-->
-  <script>
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.onload = function() {
-      const myObj = JSON.parse(this.responseText);
-      console.log(myObj);
-
-      for (var i = 0; i < myObj.length; i++) {
-        var tableBody = document.querySelector('#dataTable tbody');
-        var row = tableBody.insertRow();
-        var pf = myObj[i].ProfilePhoto;
-        
-        var image = document.createElement('img');
-        image.src = myObj[i].ProfilePhoto;
-        image.className ="img-fluid rounded";
-        image.style.height='50px';
-        image.style.width='50px';
-
-        var deleteBtn = document.createElement('button');
-        deleteBtn.className ="btn btn-success deletebtn";
-        deleteBtn.id = i;
-        var trashIcon = document.createElement('i');
-        trashIcon.className = "fas fa-trash text-white-300";
-        deleteBtn.appendChild(trashIcon);
-
-        var editBtn = document.createElement('button');
-        editBtn.className ="btn btn-success editbtn";
-        editBtn.id=i;
-        var editIcon = document.createElement('i');
-        editIcon.className = "fas fa-edit text-white-300";
-        editBtn.appendChild(editIcon);
-
-        var cell0 = row.insertCell(0).appendChild(image);
-        var cell1 = row.insertCell(1).textContent = myObj[i].FirstName + ' ' +  myObj[i].LastName;
-        var cell2 = row.insertCell(2).textContent = myObj[i].course;
-        var cell3 = row.insertCell(3).textContent = myObj[i].Department;
-        var cell4 = row.insertCell(4).textContent = myObj[i].Class;
-        var cell5 = row.insertCell(5).textContent = myObj[i].Position;
-        var cell6 = row.insertCell(6).textContent = myObj[i].Username;
-        var cell7 = row.insertCell(7).textContent = myObj[i].Password;
-        var cell8 = row.insertCell(8).appendChild(editBtn);
-        var cell9 = row.insertCell(9).appendChild(deleteBtn);
-
-      }
-    }
-    
-    xmlhttp.open("POST", "getTeachers.php");
-    xmlhttp.send()
-  </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
@@ -579,22 +580,22 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- Custom scripts for all pages-->
   <script src="../js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="../vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../js/demo/chart-area-demo.js"></script>
-  <script src="../js/demo/chart-pie-demo.js"></script>
 
   <!-- Page level plugins -->
   <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="../js/demo/datatables-demo.js"></script>
+  <!-- <script src="../js/demo/datatables-demo.js"></script> -->
 
   <script>
     $(document).ready(function() {
+      $('#dataTable').DataTable({
+          pageLength: 10,
+          filter: true,
+          deferRender: true,
+          scrollCollapse: true,
+      });
 
       $('.deletebtn').on('click', function() {
         var index = this.id;
@@ -615,6 +616,7 @@ if (isset($_SESSION["hod_username"]) == false) {
       
       $('.editbtn').on('click', function() {
         var index = this.id;
+        console.log(this.id)
         $('#updateFacultyModel').modal('show');
 
         const xmlhttp = new XMLHttpRequest();
