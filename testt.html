@@ -3,57 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Large Modal</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>JavaScript Notification Example</title>
 </head>
 <body>
 
-<!-- Button to trigger the modal -->
-<button type="button" class="btn btn-primary" onclick="showLargeModal()">Open Large Modal</button>
-
-<!-- Large Modal -->
-<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="largeModalLabel">Large Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeLargeModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Content of the modal goes here -->
-                <p>This is a large modal content.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeLargeModal()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<button onclick="showNotification()">Show Notification</button>
 
 <script>
-    function showLargeModal() {
-        $('#largeModal').modal('show');
+    function showNotification() {
+        // Check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        } else if (Notification.permission === "granted") {
+            // If permission is already granted, create a notification
+            createNotification();
+        } else if (Notification.permission !== "denied") {
+            // Request permission from the user
+            Notification.requestPermission().then(function (permission) {
+                if (permission === "granted") {
+                    // If permission is granted after the request, create a notification
+                    createNotification();
+                }
+            });
+        }
     }
 
-    function closeLargeModal() {
-        $('#largeModal').modal('hide');
-    }
+    function createNotification() {
+        // Create a new notification
+        var notification = new Notification("Hello, World!", {
+            icon: "profiles/hods/AAV POly CM.jpg"
+        });
 
-    function saveChanges() {
-        // Add your logic for saving changes here
-        // This function is called when the "Save changes" button is clicked
-        console.log('Changes saved!');
-        closeLargeModal(); // Close the modal after saving changes
+        // Optional: Handle click event on the notification
+        notification.onclick = function () {
+            console.log("Notification clicked");
+            
+        };
     }
 </script>
 

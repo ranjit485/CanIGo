@@ -7,7 +7,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 ?>
 
 <?php
-
+  
 include "../db_connect.php";
 
 // echo $username;
@@ -796,7 +796,6 @@ function getOutCount($status)
     <table id="example" class="display" width="100%"></table>
     <!-- ----------------------------------- -->
     <?php include "profile.php" ?>
-
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -913,7 +912,46 @@ function getOutCount($status)
           // alert(this.id);
         });
       }); 
+
     </script>
+    
+<script>
+    function showNotification() {
+        // Check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        } else if (Notification.permission === "granted") {
+            // If permission is already granted, create a notification
+            createNotification();
+        } else if (Notification.permission !== "denied") {
+            // Request permission from the user
+            Notification.requestPermission().then(function (permission) {
+                if (permission === "granted") {
+                    // If permission is granted after the request, create a notification
+                    createNotification();
+                }
+            });
+        }
+    }
+
+    function createNotification() {
+        // Create a new notification
+        var notification = new Notification("Hello, World!", {
+            icon: "../profiles/hods/AAV POly CM.jpg"
+        });
+
+        // Optional: Handle click event on the notification
+        notification.onclick = function () {
+            console.log("Notification clicked");
+            
+        };
+
+    }
+    
+    setInterval(() => {
+          showNotification();
+        }, 16000);
+</script>
 
 </body>
 
