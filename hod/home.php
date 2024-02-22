@@ -757,8 +757,9 @@ function getOutCount($status)
             </div>
           </section>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="reload()">Close</button>
             <a class="btn btn-primary smartReportbtn">Search</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal" onclick="printDiv('reportDiv')">Print</button>
           </div>
         </div>
       </div>
@@ -1007,13 +1008,13 @@ function getOutCount($status)
           var selectedFrom = document.getElementById('leavesFrom').value;
           var selectedTo = document.getElementById('leavesTo').value;
 
-
-          document.getElementById('reportClass').innerText =selectedClass+" "+"Student Leaves Report";
+          classInfo="<?php echo $_SESSION["hod_course"]?>"+" "+"<?php echo $_SESSION["hod_department"]?>";
+          document.getElementById('reportClass').innerText =classInfo+selectedClass+" "+"Student Leaves Report";
 
           // Create a FormData object to send data to the server
           const formData = new FormData();
 
-          formData.append('form',selectedFrom);
+          formData.append('from',selectedFrom);
           formData.append('to', selectedTo);
           formData.append('Class', selectedClass);
 
@@ -1021,19 +1022,26 @@ function getOutCount($status)
           xmlhttp.onload = function() {
             const myObj = JSON.parse(this.responseText);
             console.log(myObj)
-            
-              // for (var i = 0; i < myObj.length; i++) {
-              //   var tableBody = document.querySelector('#reportTable tbody');
-              //   var row = tableBody.insertRow();
 
-              //   var cell1 = row.insertCell(0).textContent = myObj[i].LeaveType;
-              //   var cell3 = row.insertCell(1).textContent = myObj[i].Reason;
-              //   var cell4 = row.insertCell(2).textContent = myObj[i].DateTime;
-              //   var cell5 = row.insertCell(3).textContent = myObj[i].StartDate;
-              //   var cell6 = row.insertCell(4).textContent = myObj[i].EndDate;
-              //   var cell7 = row.insertCell(5).textContent = myObj[i].TeacherApprovalStatus;
-              //   var cell7 = row.insertCell(6).textContent = myObj[i].HODApprovalStatus;
-              // }
+            if(myObj.length == 0 || myObj == " "){
+              alert("No data found")
+              // var tableBody = document.querySelector('#reportDiv').remove();
+
+            }
+            
+              for (var i = 0; i < myObj.length; i++) {
+                var tableBody = document.querySelector('#reportTable tbody');
+                var row = tableBody.insertRow();
+
+                var cell1 = row.insertCell(0).textContent = myObj[i].StudentFirstName;
+                var cell1 = row.insertCell(1).textContent = myObj[i].LeaveType;
+                var cell3 = row.insertCell(2).textContent = myObj[i].Reason;
+                var cell4 = row.insertCell(3).textContent = myObj[i].DateTime;
+                var cell5 = row.insertCell(4).textContent = myObj[i].StartDate;
+                var cell6 = row.insertCell(5).textContent = myObj[i].EndDate;
+                var cell7 = row.insertCell(6).textContent = myObj[i].TeacherApprovalStatus;
+                var cell7 = row.insertCell(7).textContent = myObj[i].HODApprovalStatus;
+              }
 
           };
 
@@ -1042,6 +1050,24 @@ function getOutCount($status)
         });
 
       });
+
+      
+    // function to print report
+    function printDiv(id) {
+      var contentToPrint = document.getElementById(id).innerHTML;
+      var originalContent = document.body.innerHTML;
+
+      document.body.innerHTML = contentToPrint;
+
+      window.print();
+
+      // Restore the original document content
+      document.body.innerHTML = originalContent;
+    }
+
+    function reload(){
+      location.reload();
+    }
 
       // Notification code here
 

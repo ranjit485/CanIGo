@@ -11,13 +11,33 @@ $year = $dateElements[0];
 $month = $dateElements[1];
 $day = $dateElements[2];
 
-$id = $_SESSION["hod_id"];
 // $class = $_POST['class']; 
-$class ="TY";
 
+$hod_id = $_SESSION["hod_id"];
+$leavesFrom = $_POST['from'];
+$leavesTo = $_POST['to'];
+$class = $_POST['Class'];
 
 // echo $studentId;
-$stmt = $conn->prepare("SELECT * FROM leaves INNER JOIN students ON leaves.StudentID = students.StudentID WHERE leaves.HODID = $id AND DAY(leaves.DateTime) = $date AND Class =$class");
+$stmt = $conn->prepare("
+SELECT
+    l.*,
+    s.FirstName AS StudentFirstName,
+    s.LastName AS StudentLastName,
+    t.FirstName AS TeacherFirstName,
+    t.LastName AS TeacherLastName
+FROM
+    leaves l
+LEFT JOIN students s ON l.StudentID = s.StudentID
+LEFT JOIN teachers t ON l.TeacherID = t.TeacherID
+WHERE
+    l.HODID = $hod_id
+    AND s.Class = '$class' -- Specify the class (e.g., 'SY')
+    AND DATE(l.StartDate) >= '$leavesFrom' -- Start date
+    AND DATE(l.EndDate) <= '$leavesTo'   -- End date
+ORDER BY
+    l.StartDate;
+");
 $stmt->execute();
 $result = $stmt->get_result();
 $outp = $result->fetch_all(MYSQLI_ASSOC);
