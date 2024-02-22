@@ -786,9 +786,7 @@ if (isset($_SESSION["hod_username"]) == false) {
           console.log(data);
 
           
-
-          // // // Example: uncomment and complete as needed
-           document.getElementById("reportProfile").src = imagePath;
+          document.getElementById("reportProfile").src = imagePath;
           document.getElementById("stdName").innerHTML = " " + data[2] + data[3];
           document.getElementById("stdDepartment").innerHTML = " " +"<?php echo $_SESSION["hod_department"]?>";
           document.getElementById("stdClass").innerHTML = " " + data[4];

@@ -7,7 +7,7 @@ if (isset($_SESSION["hod_username"]) == false) {
 ?>
 
 <?php
-  
+
 include "../db_connect.php";
 
 // echo $username;
@@ -29,7 +29,6 @@ if ($result_data->num_rows > 0) {
     $_SESSION["hod_username"] = $row['Username'];  // I know username already in session. 'ranjit'
     $_SESSION["hod_course"] = $row['course'];
     $_SESSION["hod_Fullname"] =  " $row[FirstName]  $row[LastName] ";
-
   }
 } else {
   echo "error or no results";
@@ -233,71 +232,71 @@ function getOutCount($status)
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-icon">
-                    <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
-                </div>
-                <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["hod_Fullname"]?></div>
-            </a>
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+          <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
+        </div>
+        <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["hod_Fullname"] ?></div>
+      </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link">
-                    <span>HOD - <?php echo $_SESSION["hod_department"]?></span></a>
-            </li>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link">
+          <span>HOD - <?php echo $_SESSION["hod_department"] ?></span></a>
+      </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Student
-            </div>
-
-        
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="add-student.php">
-                    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Add Student</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Teacher
-            </div>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="addFaculty.php">
-                    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Add Faculty</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="../logout.php">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    <span>Logout</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Student
+      </div>
 
 
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="add-student.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Add Student</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Teacher
+      </div>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="addFaculty.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Add Faculty</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="../logout.php">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Logout</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+
+    </ul>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -354,7 +353,7 @@ function getOutCount($status)
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm smartReport"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
@@ -369,7 +368,7 @@ function getOutCount($status)
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                         Pending</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?php echo getLeaveCount("Pending");?>
+                        <?php echo getLeaveCount("Pending"); ?>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -390,7 +389,7 @@ function getOutCount($status)
                         Approved
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?php echo getLeaveCount("Approved");?>
+                        <?php echo getLeaveCount("Approved"); ?>
                       </div>
                     </div>
                     <div class="col-auto">
@@ -423,7 +422,7 @@ function getOutCount($status)
                 </div>
               </div>
             </div>
-            
+
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
@@ -448,7 +447,7 @@ function getOutCount($status)
               </div>
             </div>
           </div>
-          
+
           <div class="row">
 
             <div class="col-xl-8 col-lg-7">
@@ -621,7 +620,7 @@ function getOutCount($status)
                         $result_data = $conn->query($sql_data_display);
 
                         if ($result_data->num_rows > 0) {
-                          $i=0;
+                          $i = 0;
                           // output data of each row  
                           while ($row = $result_data->fetch_assoc()) {
                             echo "<tr> 
@@ -646,7 +645,7 @@ function getOutCount($status)
                                     </td>
                                     
                                     ";
-                                    $i=$i+1;
+                            $i = $i + 1;
                           }
                         } else {
                           echo "error or no results";
@@ -685,7 +684,87 @@ function getOutCount($status)
   <a class="scroll-to-top rounded" href="page-top" style="display: none;">
     <i class="fas fa-angle-up"></i>
   </a>
+  <!-- smart report Modal start here -->
+  <div class="modal fade" id="smartReportModal" tabindex="-1" role="dialog" aria-labelledby="smartReportModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="smartReportModal">Genrate Report</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="#" method="post">  
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="classSelect">Class</label>
+                <select id="classSelect" name="class" class="form-control" required>
+                  <option value="" selected disabled>Select Class</option>
+                  <option value="SY">SY</option>
+                  <option value="TY">TY</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>  
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="student_enrollment">From</label>
+                <input type="date" name="leaves-from" class="form-control" id="leavesFrom" placeholder="Select from date" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="leaves-to">To</label>
+                <input type="date" name="leaves-to" class="form-control" id="leavesTo" placeholder="Select from date" required>
+              </div>
+          </div>
+          </form>
+          <section>
+            <div class="container" id="reportDiv">
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                <tbody>
+                  <tr>
+                    <td id="aitLogo">
+                      <img src="../images\logo.png" height="100" width="100">
+                    </td>
+                    <td id="aitName">
+                      <h2>Adarsh Institute Of Technology and Research Centre Vita</h2>
+                      <h5 id="reportClass"></h5>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+              <!-- Card Body -->
+              <div class="table-responsive">
+                <table class="table table-bordered" id="reportTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Leave Type</th>
+                      <th>Reason</th>
+                      <th>When</th>
+                      <th>Start</th>
+                      <th>End</th>
+                      <th>BY Teacher</th>
+                      <th>By HOD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary smartReportbtn">Search</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- smart report form model end here -->
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -822,7 +901,7 @@ function getOutCount($status)
 
     <script>
       $(document).ready(function() {
-        
+
         $('.viewLeave').on('click', function() {
           $('#leaveModal').modal('show');
           // alert(this.id);
@@ -886,7 +965,7 @@ function getOutCount($status)
             // console.log(myObj[index].FirstName);
             // console.log(myObj[index].Class);
             // console.log(myObj[index].Department);
- 
+
             document.getElementById("studentId").value = myObj[index].StudentID;
             document.getElementById("studentProfile").src = myObj[index].ProfilePhoto;
             document.getElementById("studentName").innerHTML = myObj[index].FirstName + " " + myObj[index].LastName;
@@ -905,53 +984,107 @@ function getOutCount($status)
 
 
       });
-            
+
       $(document).ready(function() {
         $('.viewProfile').on('click', function() {
           $('#profileModal').modal('show');
           // alert(this.id);
         });
-      }); 
+      });
 
-    </script>
-    
-<script>
-    function showNotification() {
+      //  smart report start here
+
+      $(document).ready(function() {
+        $('.smartReport').on('click', function() {
+          $('#smartReportModal').modal('show');
+        });
+      });
+
+      $(document).ready(function() {
+        $('.smartReportbtn').on('click', function() {
+
+          var selectedClass = document.getElementById('classSelect').value;
+          var selectedFrom = document.getElementById('leavesFrom').value;
+          var selectedTo = document.getElementById('leavesTo').value;
+
+
+          document.getElementById('reportClass').innerText =selectedClass+" "+"Student Leaves Report";
+
+          // Create a FormData object to send data to the server
+          const formData = new FormData();
+
+          formData.append('form',selectedFrom);
+          formData.append('to', selectedTo);
+          formData.append('Class', selectedClass);
+
+          const xmlhttp = new XMLHttpRequest();
+          xmlhttp.onload = function() {
+            const myObj = JSON.parse(this.responseText);
+            console.log(myObj)
+            
+              // for (var i = 0; i < myObj.length; i++) {
+              //   var tableBody = document.querySelector('#reportTable tbody');
+              //   var row = tableBody.insertRow();
+
+              //   var cell1 = row.insertCell(0).textContent = myObj[i].LeaveType;
+              //   var cell3 = row.insertCell(1).textContent = myObj[i].Reason;
+              //   var cell4 = row.insertCell(2).textContent = myObj[i].DateTime;
+              //   var cell5 = row.insertCell(3).textContent = myObj[i].StartDate;
+              //   var cell6 = row.insertCell(4).textContent = myObj[i].EndDate;
+              //   var cell7 = row.insertCell(5).textContent = myObj[i].TeacherApprovalStatus;
+              //   var cell7 = row.insertCell(6).textContent = myObj[i].HODApprovalStatus;
+              // }
+
+          };
+
+          xmlhttp.open("POST", "smartSearch.php");
+          xmlhttp.send(formData);
+        });
+
+      });
+
+      // Notification code here
+
+      function showNotification() {
         // Check if the browser supports notifications
         if (!("Notification" in window)) {
-            alert("This browser does not support desktop notification");
+          alert("This browser does not support desktop notification");
         } else if (Notification.permission === "granted") {
-            // If permission is already granted, create a notification
-            createNotification();
+          // If permission is already granted, create a notification
+          createNotification();
         } else if (Notification.permission !== "denied") {
-            // Request permission from the user
-            Notification.requestPermission().then(function (permission) {
-                if (permission === "granted") {
-                    // If permission is granted after the request, create a notification
-                    createNotification();
-                }
-            });
+          // Request permission from the user
+          Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+              // If permission is granted after the request, create a notification
+              createNotification();
+            }
+          });
         }
-    }
+      }
 
-    function createNotification() {
+      function createNotification() {
         // Create a new notification
         var notification = new Notification("Hello, World!", {
-            icon: "../profiles/hods/AAV POly CM.jpg"
+          icon: "../profiles/hods/AAV POly CM.jpg"
         });
 
         // Optional: Handle click event on the notification
-        notification.onclick = function () {
-            console.log("Notification clicked");
-            
+        notification.onclick = function() {
+          console.log("Notification clicked");
+
         };
 
-    }
+      }
+
+      setInterval(() => {
+        // showNotification();
+      }, 16000);
+
+      key = "name";
+            document.cookie = key + "=" + "ranjit";
     
-    setInterval(() => {
-          showNotification();
-        }, 16000);
-</script>
+    </script>
 
 </body>
 
