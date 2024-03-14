@@ -13,6 +13,20 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $roll_no = $_POST["roll_no"];
 
+
+
+echo "Student ID: $student_id<br>";
+echo "First Name: $first_name<br>";
+echo "Last Name: $last_name<br>";
+echo "Department: $department<br>";
+echo "Class: $class<br>";
+echo "Course: $course<br>";
+echo "Student Mobile: $student_mo<br>";
+echo "Parent Mobile: $parent_mo<br>";
+echo "Username: $username<br>";
+echo "Password: $password<br>";
+echo "Roll Number: $roll_no<br>";
+
 function alert($message)
 {
   echo '<script>
@@ -126,7 +140,7 @@ if ($stmt_insert_profile->execute()) {
           window.history.replaceState( null, null, window.location.href );
       }
       </script>';
-  // header("location:add-student.php");
+  header("location:add-student.php");
 
 } else {
   die("Error: " . $stmt_insert_profile->error);

@@ -297,7 +297,6 @@ if (isset($_SESSION["hod_username"]) == false) {
                           $i = 0;
                           // output data of each row  
                           while ($row = $result_data->fetch_assoc()) {
-                            $i = $i + 1;
                             $img = $row["ProfilePhoto"];
                             echo "<tr> 
                                           <td>
@@ -320,12 +319,12 @@ if (isset($_SESSION["hod_username"]) == false) {
                                           
                                           <td>" . $row["Password"] . "</td>  
                                           <td>
-                                            <button class='btn btn-success editbtn'>
+                                            <button class='btn btn-success editbtn' id='$i'>
                                               <i class='fas fa-edit text-white-300' title='edit'></i>
                                             </button>
                                           </td>
                                           <td>
-                                            <button class='btn btn-success deletebtn'>
+                                            <button class='btn btn-success deletebtn'  id='$i'>
                                               <i class='fas fa-trash text-white-300' title='delete'></i>
                                             </button>
                                           </td> 
@@ -335,6 +334,8 @@ if (isset($_SESSION["hod_username"]) == false) {
                                             </button>
                                           </td>                                     
                                         </tr>";
+                                        $i = $i + 1;
+
                           }
                         } else {
                           echo "error or no results";
@@ -675,19 +676,12 @@ if (isset($_SESSION["hod_username"]) == false) {
   <!-- Custom scripts for all pages-->
   <script src="../js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="../vendor/chart.js/Chart.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="../js/demo/chart-area-demo.js"></script>
-  <script src="../js/demo/chart-pie-demo.js"></script>
 
   <!-- Page level plugins -->
   <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="../js/demo/datatables-demo.js"></script>
 
   <script>
     $('#inputGroupFile01').on('change', function() {
@@ -706,56 +700,71 @@ if (isset($_SESSION["hod_username"]) == false) {
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
     }
-  </script>
-  <script>
+
+    // table data handleing delete update report
+
     $(document).ready(function() {
-      $('.editbtn').on('click', function() {
-
-        $('#updateStudentModal').modal('show');
-
-        $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function() {
-          return $(this).text();
-        }).get();
-
-        console.log(data);
-        $('#firstName').val(data[2]);
-        $('#lastName').val(data[3]);
-        // $('#course').val(data[4]);
-        // $('#department').val(data[5]);
-        // $('#class').val(data[6]);
-        $('#rollNo').val(data[5]);
-        // $('#profile').val(imgSrc);
-        $('#studentContactNo').val(data[6]);
-        $('#parentContactNo').val(data[7]);
-        $('#username').val(data[8]);
-        $('#password').val(data[9]);
-        $('#student_id').val(data[1]);
-
-        console.log(data[5]);
-
-        console.log(data[5]);
-
-
+      $('#dataTable').DataTable({
+          pageLength: 10,
+          filter: true,
+          deferRender: true,
+          scrollCollapse: true,
       });
 
       $('.deletebtn').on('click', function() {
-        $tr = $(this).closest("tr");
-        var data = $tr.children("td").map(function() {
-          return $(this).text();
-        }).get();
-
+        var index = this.id;
+        alert(index)
         $('#deleteStudent').modal('show');
-        $('#studentId').val(data[1]);
-        document.getElementById('stu_name').innerHTML = " " + data[2] + ' ' + data[3];
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const studentsObj = JSON.parse(this.responseText);
+        
+          // console.log(studentsObj);
+          //   console.log(studentsObj[index].StudentID);
+          //   console.log(studentsObj[index].FirstName);
+          //   console.log(studentsObj[index].LastName);
+        $('#studentId').val(studentsObj[index].StudentID);
+        document.getElementById('stu_name').innerHTML = studentsObj[index].FirstName + " "+studentsObj[index].LastName;
+        }
+        xmlhttp.open("POST", "getStudents.php");
+        xmlhttp.send();
+
+      });
+      
+      $('.editbtn').on('click', function() {
+        var index = this.id;
+        console.log(this.id)
+          $('#updateStudentModal').modal('show');
+
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function() {
+          const myObj = JSON.parse(this.responseText);
+          console.log(myObj);
+          
+          document.getElementById("student_id").value = myObj[index].StudentID;
+          document.getElementById("firstName").value = myObj[index].FirstName;
+          document.getElementById("lastName").value = myObj[index].LastName;
+          document.getElementById("rollNo").value = myObj[index].RollNo;
+          document.getElementById("parentContactNo").value = myObj[index].ParentContactNo;
+          document.getElementById("studentContactNo").value = myObj[index].StudentContactNo;
+          document.getElementById("username").value = myObj[index].Username;
+          document.getElementById("password").value = myObj[index].Password;
+        }
+
+        xmlhttp.open("POST", "getStudents.php");
+        xmlhttp.send();
+
       });
 
+    });
+
+    $(document).ready(function() {
 
       $('.genrateReport').on('click', function() {
         // Show Bootstrap modal
         $('#reportModal').modal('show');
-
-      
+        // $('.genrateReport').attr("disabled", true)
          
         // alert(this.id)
         $imgPath = "img" + this.id;
