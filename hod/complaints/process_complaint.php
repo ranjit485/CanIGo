@@ -37,7 +37,7 @@ $stmt_hod_status->bind_param("ss", $status, $complaint_id);
 if ($stmt_hod_status->execute()) {
     echo '<script>';
     echo 'alert("Complaint ' . $status . '");';
-    echo 'window.location.href = "home.php";';
+    echo 'window.location.href = "student.php";';
     echo '</script>';
 } else {
     die("Error: " . $stmt_insert_profile->error);

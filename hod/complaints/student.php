@@ -416,7 +416,7 @@ $hod_department = $_SESSION["hod_department"];
 
                         // echo $month;    
 
-                        $sql_data_display = "SELECT * FROM complaints WHERE MONTH(DateTime) = $month";
+                        $sql_data_display = "SELECT * FROM complaints WHERE HODID = $id AND MONTH(DateTime) = $month";
 
                         $result_data = $conn->query($sql_data_display);
 
