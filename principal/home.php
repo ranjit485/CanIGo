@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["hod_username"]) == false) {
+if (isset($_SESSION["principal_username"]) == false) {
   header("location:../index.php");
 }
 
@@ -9,47 +9,6 @@ if (isset($_SESSION["hod_username"]) == false) {
 <?php
 
 include "../db_connect.php";
-
-// echo $username;
-$username = $_SESSION["hod_username"];
-$sql_data_display = "SELECT * FROM `hods` WHERE `Username` = \"$username\";";
-
-$result_data = $conn->query($sql_data_display);
-
-if ($result_data->num_rows > 0) {
-
-  // output data of each row  
-  while ($row = $result_data->fetch_assoc()) {
-
-    $_SESSION["ProfilePhoto"] = $row['ProfilePhoto'];
-    $_SESSION["hod_id"] = $row['HODID'];
-    $_SESSION["hod_firstname"] = $row['FirstName'];
-    $_SESSION["hod_lastname"] = $row['LastName'];
-    $_SESSION["hod_department"] = $row['Department'];
-    $_SESSION["hod_username"] = $row['Username'];  // I know username already in session. 'ranjit'
-    $_SESSION["hod_course"] = $row['course'];
-    $_SESSION["hod_Fullname"] =  " $row[FirstName]  $row[LastName] ";
-  }
-} else {
-  echo "error or no results";
-}
-
-// echo $_SESSION["ProfilePhoto"];
-// echo $_SESSION["hod_id"];
-// echo $_SESSION["hod_lastname"];
-// echo $_SESSION["ProfilePhoto"];
-// echo $_SESSION["hod_username"];
-// echo $_SESSION["hod_course"];
-// echo $_SESSION["hod_department"];
-
-
-// Close the connection
-$conn->close();
-
-$hod_id = $_SESSION["hod_id"];
-$hod_course = $_SESSION["hod_course"];
-$hod_department = $_SESSION["hod_department"];
-
 
 
 function getAllCount()
@@ -162,7 +121,7 @@ function getOutCount($status)
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>HOD Admin Panel</title>
+  <title>Princpal Admin</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -234,10 +193,8 @@ function getOutCount($status)
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-icon">
-          <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
-        </div>
-        <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["hod_Fullname"] ?></div>
+      
+        <div class="sidebar-brand-text mx-2"> AITRC</div>
       </a>
 
       <!-- Divider -->
@@ -246,7 +203,7 @@ function getOutCount($status)
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link">
-          <span>HOD - <?php echo $_SESSION["hod_department"] ?></span></a>
+          <span>PRINCIPAl</span></a>
       </li>
 
       <!-- Divider -->
@@ -254,20 +211,14 @@ function getOutCount($status)
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Student
+        Complaints
       </div>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="complaints/student.php">
-          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-          <span>Student Complaints</span>
-        </a>
-      </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="add-student.php">
+        <a class="nav-link collapsed" href="complaints.php">
           <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-          <span>Add Student</span>
+          <span>View Complaints</span>
         </a>
       </li>
 
@@ -278,12 +229,6 @@ function getOutCount($status)
       <div class="sidebar-heading">
         Teacher
       </div>
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="complaints/teacher.php">
-          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
-          <span>Teacher Complaints </span></a>
-      </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -365,7 +310,7 @@ function getOutCount($status)
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm smartReport"><i class="fas fa-download fa-sm text-white-50"></i> Generate Leave Report</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm smartReport"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Content Row -->
@@ -489,20 +434,15 @@ function getOutCount($status)
 
                     <?php
 
-                    $username = $_SESSION["hod_username"];
-                    $id = $_SESSION["hod_id"];
-
-                    $todays_leaves = "SELECT * FROM leaves WHERE HODID = $id AND DATE(DateTime) = CURDATE()";
-                    $approved_leaves = "SELECT * FROM leaves WHERE HODID = $id AND DATE(DateTime) = CURDATE()";
-                    $pending_leaves = "SELECT * FROM leaves WHERE HODID = $id AND DATE(DateTime) = CURDATE()";
-                    $all_leaves = "SELECT * FROM leaves WHERE HODID = $id";
+    
+                    $todays_leaves = "SELECT * FROM leaves WHERE DATE(DateTime) = CURDATE()";
+                    // $approved_leaves = "SELECT * FROM leaves WHERE HODID = $id AND DATE(DateTime) = CURDATE()";
+                    // $pending_leaves = "SELECT * FROM leaves WHERE HODID = $id AND DATE(DateTime) = CURDATE()";
+                    // $all_leaves = "SELECT * FROM leaves WHERE HODID = $id";
 
                     function  getTodaysLeaves($query)
                     {
                       include "../db_connect.php";
-
-                      $username = $_SESSION["hod_username"];
-                      $id = $_SESSION["hod_id"];
 
                       $sql_data_display = "$query";
 
@@ -526,7 +466,7 @@ function getOutCount($status)
                                         </div>
                                         <div class="mb-0 font-weight-bold text-gray-800">
                                            <span class="badge rounded-pill badge-success mt-1">H ' . $row["HODApprovalStatus"] . '</span>
-                                           <span class="badge rounded-pill badge-success">T ' . $row["TeacherApprovalStatus"] . '</span>
+                                           <span class="badge rounded-pill badge-success">P ' . $row["TeacherApprovalStatus"] . '</span>
                                         </div>
                                       </div>
                                       <div class="col-auto m-2">
@@ -688,7 +628,6 @@ function getOutCount($status)
 
 
   </div>
-  <?php include "profile.php" ?>
 
   </div>
 

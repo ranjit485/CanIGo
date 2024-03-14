@@ -207,6 +207,67 @@ $day = date("l");
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+          <img class="img-profile m-2 rounded-circle" src="<?php echo " $_SESSION[ProfilePhoto]" ?>" width="40"
+          height="40">
+        </div>
+        <div class="sidebar-brand-text mx-2">
+          <?php echo $_SESSION["student_firstname"]," ",$_SESSION["student_lastname"] ?>
+        </div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link">
+          <span>
+            <?php echo $_SESSION["student_class"] ," ",$_SESSION["student_department"] ?>
+          </span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="home.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="complaint.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Complaints</span>
+        </a>
+      </li>
+
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="../../logout.php">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Logout</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+
+    </ul>
+    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -242,15 +303,7 @@ $day = date("l");
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle"  id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="ml-2 img-profile rounded-circle" src="<?php echo $_SESSION["ProfilePhoto"] ?>" /> 
-
-                <span class="ml-2 d-none d-lg-inline text-gray-600 small">
-                  <?php
-                  echo $_SESSION["student_firstname"]; // Check the username specifically
-
-                  ?>
-                </span>
+              
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                   <a class="dropdown-item" data-toggle="modal" data-target="#profileModal">
@@ -352,19 +405,6 @@ $day = date("l");
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Year Graph</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Action</a>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">Something else
-                        here </a>
-                    </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -396,19 +436,6 @@ $day = date("l");
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Todays Leaves <?php echo ' Date ' . date("Y-m-d") . '' ?></h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="http://127.0.0.1:5501/student_dashbord.html#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Get Leaves</div>
-                      <a class="dropdown-item" href="">All Leaves</a>
-                      <a class="dropdown-item" href="">Pending Leaves</a>
-                      <a class="dropdown-item" href="">Approved Leaves</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="http://127.0.0.1:5501/student_dashbord.html#">All Leaves </a>
-                    </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -597,15 +624,6 @@ $day = date("l");
   </div>
   <!-- End of Main Content -->
 
-  <!-- Footer -->
-  <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright © can I GO 2023</span>
-      </div>
-    </div>
-  </footer>
-  <!-- End of Footer -->
 
   </div>
   <!-- End of Content Wrapper -->

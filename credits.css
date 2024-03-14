@@ -1,0 +1,13 @@
+.team-member {
+    display: inline-block;
+    margin: 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s, transform 1s, color 0.5s;
+    color: #333;
+}
+
+.team-member.active {
+    color: #7d05ee; /* Change the color as needed */
+}

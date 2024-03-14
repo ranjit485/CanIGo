@@ -42,69 +42,6 @@ $teacher_course = $_SESSION["teacher_course"];
 $teacher_department = $_SESSION["teacher_department"];
 
 
-function getAllCount()
-{
-
-  $teacher_id = $_SESSION["teacher_id"];
-  $teacher_course = $_SESSION["teacher_course"];
-  $teacher_department = $_SESSION["teacher_department"];
-
-  include "../db_connect.php";
-  $result = $conn->query("SELECT COUNT(*) as count FROM students WHERE `course` = '$teacher_course' AND `Department` = '$teacher_department' ");
-  if ($result) {
-    $count = $result->fetch_assoc()['count'];
-    return $count;
-  } else {
-    return $conn->error;
-  }
-}
-
-// echo getAllCount();
-function getCount($class)
-{
-
-  $teacher_id = $_SESSION["teacher_id"];
-  $teacher_course = $_SESSION["teacher_course"];
-  $teacher_department = $_SESSION["teacher_department"];
-
-  include "../db_connect.php";
-  $result = $conn->query("SELECT COUNT(*) as count FROM students WHERE `course` = '$teacher_course' AND `Department` = '$teacher_department' AND `Class` = '$class' ");
-  if ($result) {
-    $count = $result->fetch_assoc()['count'];
-    return $count;
-  } else {
-    return $conn->error;
-  }
-}
-
-// echo getCount("SY");
-// echo getCount("FY");
-// echo getCount("TY");
-
-function countMonth($month)
-{
-  return "SELECT COUNT(*) as count FROM leaves WHERE `TeacherID` = $teacher_id AND MONTH(`DateTime`) = $month";
-}
-
-function countYear($year)
-{
-  return "SELECT COUNT(*) as count FROM leaves WHERE `StudentID` = 1 AND YEAR(`DateTime`) = $year";
-}
-
-// echo getCount(countMonth(1));
-// echo getCount(countYear(2023));
-
-// set date and time
-$date = date("Y-m-d");
-$day = date("l");
-// $time = ;
-// echo "Today is " . date("Y/m/d") . "<br>";
-// echo "Today is " . date("Y.m.d") . "<br>";
-// echo "Today is " . date("Y-m-d") . "<br>";
-// echo "Today is " . date("l");
-
-
-
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://127.0.0.1:5501/student_dashbord.html -->
@@ -130,6 +67,7 @@ $day = date("l");
 
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="../credits.css" rel="stylesheet">
   <style type="text/css">
     /* Chart.js */
     @keyframes chartjs-render-animation {
@@ -184,8 +122,61 @@ $day = date("l");
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    <!-- End of Sidebar -->
+    
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+  <div class="sidebar-brand-icon">
+    <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>" width="40" height="40">
+  </div>
+  <div class="sidebar-brand-text mx-2"> <?php echo $_SESSION["teacher_firstname"]," ",$_SESSION["teacher_lastname"] ?></div>
+</a>
+
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+  <a class="nav-link">
+    <span><?php echo $_SESSION["teacher_class"] ," ",$_SESSION["teacher_department"] ?></span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+  Teacher
+</div>
+
+<li class="nav-item">
+  <a class="nav-link collapsed" href="complaint.php">
+    <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+    <span>Complaint</span>
+  </a>
+</li>
+
+
+<!-- Nav Item - Tables -->
+<li class="nav-item">
+  <a class="nav-link" href="../../logout.php">
+    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+    <span>Logout</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
+
+
+</ul>
+<!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -202,8 +193,8 @@ $day = date("l");
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile m-2 rounded-circle" src="<?php echo "$_SESSION[ProfilePhoto]" ?>">
-                <span class="ml-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["teacher_firstname"] ?></span>
+                <img class="img-profile m-2 rounded-circle" src="../images\logo.png">
+                <span class="ml-2 d-none d-lg-inline text-gray-600 small"><div id="credits" class="team-member m-0 font-weight-bold text-primary"></div></span>
 
               </a>
               <!-- Dropdown - User Information -->
@@ -233,85 +224,6 @@ $day = date("l");
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
           </div>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        All students</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getAllCount("SY") ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        FY students</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getCount("FY") ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                        SY students</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo getCount("SY") ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-eye fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">TY students
-                      </div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo getCount("TY") ?></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
 
           <div class="row">
 
@@ -679,6 +591,7 @@ $day = date("l");
 
   <!-- Page level plugins -->
   <script src="../vendor/chart.js/Chart.min.js"></script>
+  <script src="../credits.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="../js/demo/chart-area-demo.js"></script>
