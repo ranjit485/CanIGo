@@ -312,7 +312,7 @@ if (isset($_SESSION["hod_username"]) == false) {
                                           <td>
                                           <img src='$img' id='img$i' class='img-fluid rounded ' style='height:50px;width:50px'>
                                           </td> 
-                                          <td>" . $row["LastName"] . "" . $row["LastName"] . " </td> 
+                                          <td>" . $row["FirstName"] . " " . $row["LastName"] . " </td> 
                                           <td>" . $row["course"] . " </td> 
 
                                           <td> " . $row["Department"] . "</td> 
