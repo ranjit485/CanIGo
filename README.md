@@ -11,58 +11,38 @@ Welcome to the University Student Leave Management System! This system is design
    - **Calendar View:** Both students and teachers can view leave requests in a calendar format for better visualization.
 
 ### 2. SMS Alerts
-   - **Leave Status Updates:** Students receive SMS alerts notifying them of the status of their leave requests (approved/rejected).
+   - **Leave Status Updates:** Student Parents receive SMS alerts notifying them of the status of their leave requests (approved/rejected).
    - **Reminders:** Reminders for upcoming leaves are sent to both students and teachers.
+   - **Report Genration**
+
 
 ### 3. Complaint System
    - **Student Complaints:** Students can submit complaints regarding various issues through the system.
+   - **Report Genration**
    - **Teacher Response:** Teachers can view and respond to student complaints, providing necessary assistance or resolutions.
    - **Track Complaint Status:** Students can track the status of their complaints, whether they are pending, resolved, or in progress.
 
-## How to Use
+## Roles and Responsibilities
 
-### For Students:
-1. **Leave Request:**
-   - Log in to your student account.
-   - Navigate to the leave request section.
-   - Fill in the required details such as leave start date, end date, reason, etc.
-   - Submit the request.
-2. **View Leave History:**
-   - Access the leave history section to view the status of your leave requests.
-3. **Submit Complaints:**
-   - Navigate to the complaint section.
-   - Fill in the complaint details and submit.
+### Students:
+- Submit leave requests.
+- View leave history.
+- Submit complaints.
 
-### For Teachers:
-1. **Approve/Reject Leave Requests:**
-   - Log in to your teacher account.
-   - Access the leave management section.
-   - Review pending leave requests and approve/reject them accordingly.
-2. **View Complaints:**
-   - Access the complaint section to view student complaints.
-   - Provide necessary assistance or resolutions by responding to the complaints.
-   - 
-### For HODS:
-1. **Approve/Reject Leave Requests:**
-   - Log in to your hod account.
-   - Access the leave management section.
-   - Review pending leave requests and approve/reject them accordingly.
-2. **View Complaints:**
-   - Access the complaint section to view student and teacher complaints.
-   - Provide necessary assistance or resolutions by responding to the complaints.
-   - 
-### For Principal:
-1. **View Leave Requests:**
-   - Review pending leave requests and approve/reject them accordingly.
-2. **View Complaints:**
-   - Access the complaint section to view student and teacher complaints.
-   - Provide necessary assistance or resolutions by responding to the complaints.
+### Teachers:
+- Approve/reject student leave requests.
 
-### For Guards:
-1. **Approve/Reject Leave Requests:**
-   - Log in to your hod account.
-   - Access the leave management section.
-   - Review pending leave requests and add status them accordingly.
+### HODs (Heads of Departments):
+- Approve/reject student leave requests.
+- View student and teacher complaints and provide necessary assistance.
+
+### Principal:
+- View student leave requests.
+- View student and teacher complaints and provide necessary assistance.
+
+### Guards:
+- Manage leave requests submitted by guards.
+- Review and update leave request statuses.
 
 ## Technologies Used
 
@@ -71,6 +51,27 @@ Welcome to the University Student Leave Management System! This system is design
 - **Database:** MySQL
 - **SMS Service:** Twilio API
 - **Authentication:** JWT (JSON Web Tokens)
+
+## Screenshots
+
+Below are screenshots of key sections of the system:
+
+1. **Login Page:**
+
+   ![Login Page](screenshots/login.png)
+
+2. **Leave Request Form:**
+
+   ![Leave Request Form](screenshots/leave_request.png)
+
+3. **Leave History:**
+
+   ![Leave History](screenshots/leave_history.png)
+
+4. **Complaint Submission Page:**
+
+   ![Complaint Submission](screenshots/complaint_submission.png)
+
 
 ## Installation
 
