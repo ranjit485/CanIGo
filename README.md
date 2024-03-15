@@ -1,6 +1,6 @@
 # University Student Leave Management System
 
-Welcome to the University Student Leave Management System! This system is designed to streamline the leave management process for both students and teachers within the university. It also includes features such as SMS alerts and a complaint system for efficient communication between students and teachers.
+Welcome to the University Student Leave Management System! This system is designed to streamline the leave management process for both students within the university. It also includes features such as SMS alerts and a complaint system for efficient communication between students and teachers.
 
 ## Features
 
@@ -90,5 +90,5 @@ Below are screenshots of key sections of the system:
 
 ## Contributors
 
-- Ranjit Patil (@johndoe)
-- Bhaskar Harugade (@janesmith)
+- Ranjit Patil (@ranjit485)
+- Bhaskar Harugade (@bhaskar3512)
