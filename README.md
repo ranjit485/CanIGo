@@ -56,21 +56,29 @@ Welcome to the University Student Leave Management System! This system is design
 
 Below are screenshots of key sections of the system:
 
-1. **Login Page:**
+1. **Home Page:**
 
-   ![Login Page](screenshots/login.png)
+   ![Login Page](Screenshots/index.png)1.
 
-2. **Leave Request Form:**
+2. **Login Page:**
 
-   ![Leave Request Form](screenshots/leave_request.png)
+   ![Login Page](Screenshots/login.png)
 
-3. **Leave History:**
+3. **Home Page:**
 
-   ![Leave History](screenshots/leave_history.png)
+   ![Login Page](Screenshots/student_home.png)
 
-4. **Complaint Submission Page:**
+4. **Leave Request Form:**
 
-   ![Complaint Submission](screenshots/complaint_submission.png)
+   ![Leave Request Form](Screenshots/home.png)
+
+5. **Leave History:**
+
+   ![Leave History](Screenshots/history.png)
+
+6. **Complaint Submission Page:**
+
+   ![Complaint Submission](Screenshots/complaints.png)
 
 
 ## Installation
