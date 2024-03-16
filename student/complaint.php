@@ -166,7 +166,7 @@ $student_department = $_SESSION["student_department"];
           height="40">
         </div>
         <div class="sidebar-brand-text mx-2">
-          <?php echo $_SESSION["teacher_firstname"]," ",$_SESSION["teacher_lastname"] ?>
+          <?php echo $_SESSION["student_firstname"]," ",$_SESSION["student_lastname"] ?>
         </div>
       </a>
 
