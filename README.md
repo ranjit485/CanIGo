@@ -50,7 +50,6 @@ Welcome to the University Student Leave Management System! This system is design
 - **Backend:** PHP
 - **Database:** MySQL
 - **SMS Service:** Twilio API
-- **Authentication:** JWT (JSON Web Tokens)
 
 ## Screenshots
 
