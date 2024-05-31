@@ -252,7 +252,7 @@ $day = date("l");
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="../../logout.php">
+        <a class="nav-link" href="../logout.php">
           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
           <span>Logout</span></a>
       </li>

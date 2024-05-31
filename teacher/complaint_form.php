@@ -51,7 +51,9 @@ include "../db_connect.php";
 if (!isset($_SESSION["teacher_id"])) {
     die("Error: Teacher ID not found in the session. Please check your login logic.");
 }
-
+if (!isset($_SESSION["hod_id"])) {
+  die("Error: HOD ID not found in the session. Please check your login logic.");
+}
 $teacher_id = $_SESSION["teacher_id"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {

@@ -4,11 +4,10 @@ if (isset($_SESSION["teacher_username"]) == false) {
   header("location:../index.php");
 }
 
-?>
 
-<?php
 
 include "../db_connect.php";
+
 
 // echo $username;
 $teacher_username = $_SESSION["teacher_username"];
@@ -34,13 +33,33 @@ if ($result_data->num_rows > 0) {
   echo "error or no results";
 }
 
-// Close the connection
-$conn->close();
 
 $teacher_id = $_SESSION["teacher_id"];
 $teacher_course = $_SESSION["teacher_course"];
 $teacher_department = $_SESSION["teacher_department"];
 
+//  get hod info 
+
+$hod_data_display = "SELECT * FROM `hods` WHERE `course` = '$teacher_course' AND `Department` = '$teacher_department'";
+// echo $hod_data_display;
+$result_data = $conn->query($hod_data_display);
+
+if ($result_data->num_rows > 0) {
+
+  // output data of each row  
+  while ($row = $result_data->fetch_assoc()) {
+
+    $_SESSION["hod_id"] = $row['HODID'];
+    $_SESSION["hod_firstname"] = $row['FirstName'];
+    $_SESSION["hod_lastname"] = $row['LastName'];
+
+  }
+} else {
+  echo "error or no results for hod";
+}
+
+// Close the connection
+$conn->close();
 
 ?>
 <!DOCTYPE html>
@@ -161,7 +180,7 @@ $teacher_department = $_SESSION["teacher_department"];
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
-  <a class="nav-link" href="../../logout.php">
+  <a class="nav-link" href="../logout.php">
     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
     <span>Logout</span></a>
 </li>
@@ -205,7 +224,7 @@ $teacher_department = $_SESSION["teacher_department"];
                 </a>
                 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="../logout.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

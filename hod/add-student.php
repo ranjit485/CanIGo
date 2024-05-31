@@ -134,6 +134,13 @@ if (isset($_SESSION["hod_username"]) == false) {
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="dump_student.php">
+          <i class="fas fa-fw fa-plus fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Dump Student</span>
+        </a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
