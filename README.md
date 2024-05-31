@@ -83,9 +83,8 @@ Below are screenshots of key sections of the system:
 ## Installation
 
 1. Clone this repository to your local machine.
-2. Import the database schema provided in `database.sql`.
-3. Configure database connection settings in `config.php`.
-5. Run the application on a PHP server.
+2. Import the database schema provided in `canigo-database.sql`.
+3. Run the application on a PHP server.
 
 ## Contributors
 
